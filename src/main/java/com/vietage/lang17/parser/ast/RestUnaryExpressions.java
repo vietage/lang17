@@ -3,21 +3,21 @@ package com.vietage.lang17.parser.ast;
 /**
  * EBNF:
  * <pre>
- *     ',' { WHITESPACE } EXPRESSION { WHITESPACE }
+ *     MUL_OP { WHITESPACE } UNARY_EXPR { WHITESPACE }
  * </pre>
  */
-public class RestExpressions extends CompositeElement {
+public class RestUnaryExpressions extends CompositeElement {
 
-    private final Token comma = new Token(",");
+    private final MulKeyword mulKeyword = new MulKeyword();
     private final OptionalWhitespace optionalWhitespace = new OptionalWhitespace();
-    private final Expression expression = new Expression();
+    private final UnaryExpression unaryExpression = new UnaryExpression();
 
     @Override
     protected Element[] getElements() {
         return new Element[]{
-                comma,
+                mulKeyword,
                 optionalWhitespace,
-                expression,
+                unaryExpression,
                 optionalWhitespace
         };
     }
