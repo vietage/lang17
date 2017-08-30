@@ -15,6 +15,8 @@ public class CharElement extends Element {
 
     @Override
     public boolean parse(Context context) {
+        context.exit();
+
         int result = context.getSourceReader().read(cbuf);
 
         if (result == SourceReader.EOF) {

@@ -15,6 +15,8 @@ public class AlphaNumeric extends Element {
 
     @Override
     public boolean parse(Context context) {
+        context.exit();
+
         return context.getSourceReader().read(cbuf) != SourceReader.EOF &&
                 Character.isLetterOrDigit(cbuf[0]);
     }
