@@ -3,13 +3,13 @@ package com.vietage.lang17.parser.ast;
 /**
  * EBNF:
  * <pre>
- *     { WHITESPACE } { FUNCTION { WHITESPACE } }
+ *     { WHITESPACE } FUNCTIONS
  * </pre>
  */
 public class Program extends CompositeElement {
 
     private final OptionalWhitespace optionalWhitespace = new OptionalWhitespace();
-    private final ZeroOrMore<FunctionAndWhitespace> functions = new ZeroOrMore<>(FunctionAndWhitespace::new);
+    private final Functions functions = new Functions();
 
     @Override
     protected Element[] getElements() {

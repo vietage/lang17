@@ -39,4 +39,8 @@ public class SourceReader {
     public int getPosition() {
         return position;
     }
+
+    public boolean isEndOfFile() {
+        return position == source.length;
+    }
 }
