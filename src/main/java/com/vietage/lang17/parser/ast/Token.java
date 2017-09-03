@@ -1,6 +1,7 @@
 package com.vietage.lang17.parser.ast;
 
 import com.vietage.lang17.parser.Context;
+import com.vietage.lang17.parser.SourceReader;
 
 import java.util.Arrays;
 
@@ -16,6 +17,9 @@ public class Token extends Element {
 
     @Override
     public boolean parse(Context context) {
-        return context.getSourceReader().read(cbuf) != -1 && Arrays.equals(token, cbuf);
+        context.exit();
+
+        return context.getSourceReader().read(cbuf) != SourceReader.EOF &&
+                Arrays.equals(token, cbuf);
     }
 }
