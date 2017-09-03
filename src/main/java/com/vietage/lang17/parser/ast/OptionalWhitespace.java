@@ -1,6 +1,7 @@
 package com.vietage.lang17.parser.ast;
 
 import com.vietage.lang17.parser.Context;
+import com.vietage.lang17.parser.SourceReader;
 
 /**
  * EBNF:
@@ -10,15 +11,20 @@ import com.vietage.lang17.parser.Context;
  */
 public class OptionalWhitespace extends Element {
 
-    private final Whitespace whitespace = new Whitespace();
-
     @Override
     public boolean parse(Context context) {
-        if (context.getLastResult()) {
-            context.enter(whitespace);
-        } else {
-            context.exit();
+        context.exit();
+
+        SourceReader sr = context.getSourceReader();
+        char[] cbuf = new char[1];
+
+        while (sr.read(cbuf) != SourceReader.EOF) {
+            if (!Character.isWhitespace(cbuf[0])) {
+                sr.reset(sr.getPosition() - 1);
+                break;
+            }
         }
+
         return true;
     }
 }
