@@ -4,7 +4,7 @@ import com.vietage.lang17.parser.Context;
 
 public class ZeroOrOne<T extends Element> extends Element {
 
-    private final T element;
+    private T element;
 
     public ZeroOrOne(T element) {
         this.element = element;
@@ -12,7 +12,18 @@ public class ZeroOrOne<T extends Element> extends Element {
 
     @Override
     public boolean parse(Context context) {
-        return false;
+        if (!context.getLastResult()) {
+            element = null;
+            return false;
+        }
+
+        if (element == null) {
+            context.enter(element);
+        } else {
+            context.exit();
+        }
+
+        return true;
     }
 
     public T getElement() {
