@@ -8,14 +8,14 @@ package com.vietage.lang17.parser.ast;
  */
 public class RelativeExpression extends CompositeElement {
 
-    private final AndExpression andExpression = new AndExpression();
+    private final AddExpression addExpression = new AddExpression();
     private final OptionalWhitespace optionalWhitespace = new OptionalWhitespace();
     private final ZeroOrOne<RightAndExpression> rightAndExpression = new ZeroOrOne<>(new RightAndExpression());
 
     @Override
     protected Element[] getElements() {
         return new Element[]{
-                andExpression,
+                addExpression,
                 optionalWhitespace,
                 rightAndExpression
         };
