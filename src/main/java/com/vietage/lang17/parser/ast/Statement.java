@@ -8,16 +8,24 @@ package com.vietage.lang17.parser.ast;
  */
 public class Statement extends Choice {
 
-    private final VarDefinition varDefinition = new VarDefinition();
-    private final Assignment assignment = new Assignment();
-    private final IfStatement ifStatement = new IfStatement();
-    private final WhileLoop whileLoop = new WhileLoop();
-    private final LoopOp loopOp = new LoopOp();
-    private final Call call = new Call();
-    private final ReturnStatement returnStatement = new ReturnStatement();
+    private VarDefinition varDefinition;
+    private Assignment assignment;
+    private IfStatement ifStatement;
+    private WhileLoop whileLoop;
+    private LoopOp loopOp;
+    private Call call;
+    private ReturnStatement returnStatement;
 
     @Override
     protected Element[] getElements() {
+        varDefinition = new VarDefinition();
+        assignment = new Assignment();
+        ifStatement = new IfStatement();
+        whileLoop = new WhileLoop();
+        loopOp = new LoopOp();
+        call = new Call();
+        returnStatement = new ReturnStatement();
+
         return new Element[]{
                 varDefinition,
                 assignment,

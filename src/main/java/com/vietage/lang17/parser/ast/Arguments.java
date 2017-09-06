@@ -3,21 +3,31 @@ package com.vietage.lang17.parser.ast;
 /**
  * EBNF:
  * <pre>
- * ARGUMENT { WHITESPACE } { ',' { WHITESPACE } ARGUMENT { WHITESPACE } } .
+ *     ARGUMENT { WHITESPACE } { ',' { WHITESPACE } ARGUMENT { WHITESPACE } }
  * </pre>
  */
 public class Arguments extends CompositeElement {
 
-    private final Argument argument = new Argument();
-    private final OptionalWhitespace optionalWhitespace = new OptionalWhitespace();
-    private final ZeroOrMore<RestArguments> restArguments = new ZeroOrMore<>(RestArguments::new);
+    private Argument argument;
+    private ZeroOrMore<RestArguments> restArguments;
 
     @Override
     protected Element[] getElements() {
+        argument = new Argument();
+        restArguments = new ZeroOrMore<>(RestArguments::new);
+
         return new Element[]{
                 argument,
-                optionalWhitespace,
+                new OptionalWhitespace(),
                 restArguments
         };
+    }
+
+    public Argument getArgument() {
+        return argument;
+    }
+
+    public ZeroOrMore<RestArguments> getRestArguments() {
+        return restArguments;
     }
 }

@@ -8,17 +8,21 @@ package com.vietage.lang17.parser.ast;
  */
 public class RestAndExpressions extends CompositeElement {
 
-    private final Token orKeyword = new Token("||");
-    private final OptionalWhitespace optionalWhitespace = new OptionalWhitespace();
-    private final AndExpression andExpression = new AndExpression();
+    private AndExpression andExpression;
 
     @Override
     protected Element[] getElements() {
+        andExpression = new AndExpression();
+
         return new Element[]{
-                orKeyword,
-                optionalWhitespace,
+                new Token("||"),
+                new OptionalWhitespace(),
                 andExpression,
-                optionalWhitespace
+                new OptionalWhitespace()
         };
+    }
+
+    public AndExpression getAndExpression() {
+        return andExpression;
     }
 }

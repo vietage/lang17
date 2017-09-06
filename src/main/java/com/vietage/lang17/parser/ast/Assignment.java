@@ -8,19 +8,28 @@ package com.vietage.lang17.parser.ast;
  */
 public class Assignment extends CompositeElement {
 
-    private final VarAccess varAccess = new VarAccess();
-    private final OptionalWhitespace optionalWhitespace = new OptionalWhitespace();
-    private final Token equalsSign = new Token("=");
-    private final Expression expression = new Expression();
+    private VarAccess varAccess;
+    private Expression expression;
 
     @Override
     protected Element[] getElements() {
+        varAccess = new VarAccess();
+        expression = new Expression();
+
         return new Element[]{
                 varAccess,
-                optionalWhitespace,
-                equalsSign,
-                optionalWhitespace,
+                new OptionalWhitespace(),
+                new Token("="),
+                new OptionalWhitespace(),
                 expression
         };
+    }
+
+    public VarAccess getVarAccess() {
+        return varAccess;
+    }
+
+    public Expression getExpression() {
+        return expression;
     }
 }

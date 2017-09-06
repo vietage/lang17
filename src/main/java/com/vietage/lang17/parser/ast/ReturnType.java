@@ -8,14 +8,19 @@ package com.vietage.lang17.parser.ast;
  */
 public class ReturnType extends Choice {
 
-    private final Token voidToken = new Token("void");
-    private final Type type = new Type();
+    private Type type;
 
     @Override
     protected Element[] getElements() {
+        type = new Type();
+
         return new Element[]{
-                voidToken,
+                new Token("void"),
                 type
         };
+    }
+
+    public Type getType() {
+        return type;
     }
 }

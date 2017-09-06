@@ -8,16 +8,26 @@ package com.vietage.lang17.parser.ast;
  */
 public class Argument extends CompositeElement {
 
-    private final Type type = new Type();
-    private final OptionalWhitespace optionalWhitespace = new OptionalWhitespace();
-    private final Name name = new Name();
+    private Type type;
+    private Name name;
 
     @Override
     protected Element[] getElements() {
+        type = new Type();
+        name = new Name();
+
         return new Element[]{
                 type,
-                optionalWhitespace,
+                new OptionalWhitespace(),
                 name
         };
+    }
+
+    public Type getType() {
+        return type;
+    }
+
+    public Name getName() {
+        return name;
     }
 }

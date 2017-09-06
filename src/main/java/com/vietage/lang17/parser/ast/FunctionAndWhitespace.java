@@ -8,14 +8,19 @@ package com.vietage.lang17.parser.ast;
  */
 public class FunctionAndWhitespace extends CompositeElement {
 
-    private final Function function = new Function();
-    private final OptionalWhitespace optionalWhitespace = new OptionalWhitespace();
+    private Function function;
 
     @Override
     protected Element[] getElements() {
+        function = new Function();
+
         return new Element[]{
                 function,
-                optionalWhitespace
+                new OptionalWhitespace()
         };
+    }
+
+    public Function getFunction() {
+        return function;
     }
 }

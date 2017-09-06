@@ -8,16 +8,26 @@ package com.vietage.lang17.parser.ast;
  */
 public class AndExpression extends CompositeElement {
 
-    private final EqualExpression equalExpression = new EqualExpression();
-    private final OptionalWhitespace optionalWhitespace = new OptionalWhitespace();
-    private final ZeroOrMore<RestEqualExpressions> restEqualExpressions = new ZeroOrMore<>(RestEqualExpressions::new);
+    private EqualExpression equalExpression;
+    private ZeroOrMore<RestEqualExpressions> restEqualExpressions;
 
     @Override
     protected Element[] getElements() {
+        equalExpression = new EqualExpression();
+        restEqualExpressions = new ZeroOrMore<>(RestEqualExpressions::new);
+
         return new Element[]{
                 equalExpression,
-                optionalWhitespace,
+                new OptionalWhitespace(),
                 restEqualExpressions
         };
+    }
+
+    public EqualExpression getEqualExpression() {
+        return equalExpression;
+    }
+
+    public ZeroOrMore<RestEqualExpressions> getRestEqualExpressions() {
+        return restEqualExpressions;
     }
 }

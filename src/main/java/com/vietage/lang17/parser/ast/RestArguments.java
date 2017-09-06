@@ -8,17 +8,21 @@ package com.vietage.lang17.parser.ast;
  */
 public class RestArguments extends CompositeElement {
 
-    private final Token comma = new Token(",");
-    private final OptionalWhitespace optionalWhitespace = new OptionalWhitespace();
-    private final Argument argument = new Argument();
+    private Argument argument;
 
     @Override
     protected Element[] getElements() {
+        argument = new Argument();
+
         return new Element[]{
-                comma,
-                optionalWhitespace,
+                new Token(","),
+                new OptionalWhitespace(),
                 argument,
-                optionalWhitespace
+                new OptionalWhitespace()
         };
+    }
+
+    public Argument getArgument() {
+        return argument;
     }
 }

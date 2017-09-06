@@ -8,16 +8,26 @@ package com.vietage.lang17.parser.ast;
  */
 public class NewArray extends CompositeElement {
 
-    private final BasicType basicType = new BasicType();
-    private final OptionalWhitespace optionalWhitespace = new OptionalWhitespace();
-    private final IndexExpression indexExpression = new IndexExpression();
+    private BasicType basicType;
+    private IndexExpression indexExpression;
 
     @Override
     protected Element[] getElements() {
+        basicType = new BasicType();
+        indexExpression = new IndexExpression();
+
         return new Element[]{
                 basicType,
-                optionalWhitespace,
+                new OptionalWhitespace(),
                 indexExpression
         };
+    }
+
+    public BasicType getBasicType() {
+        return basicType;
+    }
+
+    public IndexExpression getIndexExpression() {
+        return indexExpression;
     }
 }

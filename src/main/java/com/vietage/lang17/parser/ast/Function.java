@@ -12,27 +12,45 @@ package com.vietage.lang17.parser.ast;
  */
 public class Function extends CompositeElement {
 
-    private final ReturnType returnType = new ReturnType();
-    private final OptionalWhitespace optionalWhitespace = new OptionalWhitespace();
-    private final Name name = new Name();
-    private final Token leftParenthesis = new Token("(");
-    private final ZeroOrOne<Arguments> arguments = new ZeroOrOne<>(new Arguments());
-    private final Token rightParenthesis = new Token(")");
-    private final Block block = new Block();
+    private ReturnType returnType;
+    private Name name;
+    private ZeroOrOne<Arguments> arguments;
+    private Block block;
 
     @Override
     protected Element[] getElements() {
+        returnType = new ReturnType();
+        name = new Name();
+        arguments = new ZeroOrOne<>(new Arguments());
+        block = new Block();
+
         return new Element[]{
                 returnType,
-                optionalWhitespace,
+                new OptionalWhitespace(),
                 name,
-                optionalWhitespace,
-                leftParenthesis,
-                optionalWhitespace,
+                new OptionalWhitespace(),
+                new Token("("),
+                new OptionalWhitespace(),
                 arguments,
-                rightParenthesis,
-                optionalWhitespace,
+                new Token(")"),
+                new OptionalWhitespace(),
                 block
         };
+    }
+
+    public ReturnType getReturnType() {
+        return returnType;
+    }
+
+    public Name getName() {
+        return name;
+    }
+
+    public ZeroOrOne<Arguments> getArguments() {
+        return arguments;
+    }
+
+    public Block getBlock() {
+        return block;
     }
 }

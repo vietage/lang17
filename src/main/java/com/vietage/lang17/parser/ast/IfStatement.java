@@ -11,22 +11,36 @@ package com.vietage.lang17.parser.ast;
  */
 public class IfStatement extends CompositeElement {
 
-    private final Token ifKeyword = new Token("if");
-    private final OptionalWhitespace optionalWhitespace = new OptionalWhitespace();
-    private final BracketsExpression bracketsExpression = new BracketsExpression();
-    private final Block block = new Block();
-    private final ZeroOrOne<ElseBlock> elseBlock = new ZeroOrOne<>(new ElseBlock());
+    private BracketsExpression bracketsExpression;
+    private Block block;
+    private ZeroOrOne<ElseBlock> elseBlock;
 
     @Override
     protected Element[] getElements() {
+        bracketsExpression = new BracketsExpression();
+        block = new Block();
+        elseBlock = new ZeroOrOne<>(new ElseBlock());
+
         return new Element[]{
-                ifKeyword,
-                optionalWhitespace,
+                new Token("if"),
+                new OptionalWhitespace(),
                 bracketsExpression,
-                optionalWhitespace,
+                new OptionalWhitespace(),
                 block,
-                optionalWhitespace,
+                new OptionalWhitespace(),
                 elseBlock
         };
+    }
+
+    public BracketsExpression getBracketsExpression() {
+        return bracketsExpression;
+    }
+
+    public Block getBlock() {
+        return block;
+    }
+
+    public ZeroOrOne<ElseBlock> getElseBlock() {
+        return elseBlock;
     }
 }

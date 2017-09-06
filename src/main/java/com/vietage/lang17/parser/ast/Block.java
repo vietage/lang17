@@ -8,18 +8,21 @@ package com.vietage.lang17.parser.ast;
  */
 public class Block extends CompositeElement {
 
-    private final Token leftCurlyBracket = new Token("{");
-    private final OptionalWhitespace optionalWhitespace = new OptionalWhitespace();
-    private final ZeroOrMore<Statements> statements = new ZeroOrMore<>(Statements::new);
-    private final Token rightCurlyBracket = new Token("}");
+    private ZeroOrMore<Statements> statements;
 
     @Override
     protected Element[] getElements() {
+        statements = new ZeroOrMore<>(Statements::new);
+
         return new Element[]{
-                leftCurlyBracket,
-                optionalWhitespace,
+                new Token("{"),
+                new OptionalWhitespace(),
                 statements,
-                rightCurlyBracket
+                new Token("}")
         };
+    }
+
+    public ZeroOrMore<Statements> getStatements() {
+        return statements;
     }
 }

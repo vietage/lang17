@@ -8,14 +8,25 @@ package com.vietage.lang17.parser.ast;
  */
 public class Type extends CompositeElement {
 
-    private final BasicType basicType = new BasicType();
-    private final ZeroOrOne<Token> arrayModifier = new ZeroOrOne<>(new Token("[]"));
+    private BasicType basicType;
+    private ZeroOrOne<Token> arrayModifier;
 
     @Override
     protected Element[] getElements() {
+        basicType = new BasicType();
+        arrayModifier = new ZeroOrOne<>(new Token("[]"));
+
         return new Element[]{
                 basicType,
                 arrayModifier
         };
+    }
+
+    public BasicType getBasicType() {
+        return basicType;
+    }
+
+    public ZeroOrOne<Token> getArrayModifier() {
+        return arrayModifier;
     }
 }

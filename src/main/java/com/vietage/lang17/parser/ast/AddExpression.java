@@ -8,16 +8,26 @@ package com.vietage.lang17.parser.ast;
  */
 public class AddExpression extends CompositeElement {
 
-    private final MulExpression mulExpression = new MulExpression();
-    private final OptionalWhitespace optionalWhitespace = new OptionalWhitespace();
-    private final ZeroOrMore<RestMulExpressions> restMulExpressions = new ZeroOrMore<>(RestMulExpressions::new);
+    private MulExpression mulExpression;
+    private ZeroOrMore<RestMulExpressions> restMulExpressions;
 
     @Override
     protected Element[] getElements() {
+        mulExpression = new MulExpression();
+        restMulExpressions = new ZeroOrMore<>(RestMulExpressions::new);
+
         return new Element[]{
                 mulExpression,
-                optionalWhitespace,
+                new OptionalWhitespace(),
                 restMulExpressions
         };
+    }
+
+    public MulExpression getMulExpression() {
+        return mulExpression;
+    }
+
+    public ZeroOrMore<RestMulExpressions> getRestMulExpressions() {
+        return restMulExpressions;
     }
 }

@@ -8,16 +8,26 @@ package com.vietage.lang17.parser.ast;
  */
 public class RightRelativeExpression extends CompositeElement {
 
-    private final EqualOp equalOp = new EqualOp();
-    private final OptionalWhitespace optionalWhitespace = new OptionalWhitespace();
-    private final RelativeExpression relativeExpression = new RelativeExpression();
+    private EqualOp equalOp;
+    private RelativeExpression relativeExpression;
 
     @Override
     protected Element[] getElements() {
+        equalOp = new EqualOp();
+        relativeExpression = new RelativeExpression();
+
         return new Element[]{
                 equalOp,
-                optionalWhitespace,
+                new OptionalWhitespace(),
                 relativeExpression
         };
+    }
+
+    public EqualOp getEqualOp() {
+        return equalOp;
+    }
+
+    public RelativeExpression getRelativeExpression() {
+        return relativeExpression;
     }
 }

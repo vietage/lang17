@@ -8,17 +8,21 @@ package com.vietage.lang17.parser.ast;
  */
 public class RestExpressions extends CompositeElement {
 
-    private final Token comma = new Token(",");
-    private final OptionalWhitespace optionalWhitespace = new OptionalWhitespace();
-    private final Expression expression = new Expression();
+    private Expression expression;
 
     @Override
     protected Element[] getElements() {
+        expression = new Expression();
+
         return new Element[]{
-                comma,
-                optionalWhitespace,
+                new Token(","),
+                new OptionalWhitespace(),
                 expression,
-                optionalWhitespace
+                new OptionalWhitespace()
         };
+    }
+
+    public Expression getExpression() {
+        return expression;
     }
 }

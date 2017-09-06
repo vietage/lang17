@@ -8,14 +8,20 @@ package com.vietage.lang17.parser.ast;
  */
 public class ValueExpression extends Choice {
 
-    private final BracketsExpression bracketsExpression = new BracketsExpression();
-    private final Constant constant = new Constant();
-    private final VarAccess varAccess = new VarAccess();
-    private final NewArray newArray = new NewArray();
-    private final Call call = new Call();
+    private BracketsExpression bracketsExpression;
+    private Constant constant;
+    private VarAccess varAccess;
+    private NewArray newArray;
+    private Call call;
 
     @Override
     protected Element[] getElements() {
+        bracketsExpression = new BracketsExpression();
+        constant = new Constant();
+        varAccess = new VarAccess();
+        newArray = new NewArray();
+        call = new Call();
+
         return new Element[]{
                 bracketsExpression,
                 constant,

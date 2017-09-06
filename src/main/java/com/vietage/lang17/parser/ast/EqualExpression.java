@@ -8,17 +8,26 @@ package com.vietage.lang17.parser.ast;
  */
 public class EqualExpression extends CompositeElement {
 
-    private final RelativeExpression relativeExpression = new RelativeExpression();
-    private final OptionalWhitespace optionalWhitespace = new OptionalWhitespace();
-    private final ZeroOrOne<RightRelativeExpression> rightRelativeExpression =
-            new ZeroOrOne<>(new RightRelativeExpression());
+    private RelativeExpression relativeExpression;
+    private ZeroOrOne<RightRelativeExpression> rightRelativeExpression;
 
     @Override
     protected Element[] getElements() {
+        relativeExpression = new RelativeExpression();
+        rightRelativeExpression = new ZeroOrOne<>(new RightRelativeExpression());
+
         return new Element[]{
                 relativeExpression,
-                optionalWhitespace,
+                new OptionalWhitespace(),
                 rightRelativeExpression
         };
+    }
+
+    public RelativeExpression getRelativeExpression() {
+        return relativeExpression;
+    }
+
+    public ZeroOrOne<RightRelativeExpression> getRightRelativeExpression() {
+        return rightRelativeExpression;
     }
 }

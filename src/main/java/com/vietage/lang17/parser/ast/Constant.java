@@ -8,12 +8,16 @@ package com.vietage.lang17.parser.ast;
  */
 public class Constant extends Choice {
 
-    private final NumberConstant numberConstant = new NumberConstant();
-    private final StringConstant stringConstant = new StringConstant();
-    private final BooleanConstant booleanConstant = new BooleanConstant();
+    private NumberConstant numberConstant;
+    private StringConstant stringConstant;
+    private BooleanConstant booleanConstant;
 
     @Override
     protected Element[] getElements() {
+        numberConstant = new NumberConstant();
+        stringConstant = new StringConstant();
+        booleanConstant = new BooleanConstant();
+
         return new Element[]{
                 numberConstant,
                 stringConstant,

@@ -8,17 +8,21 @@ package com.vietage.lang17.parser.ast;
  */
 public class RestEqualExpressions extends CompositeElement {
 
-    private final Token andKeyword = new Token("&&");
-    private final OptionalWhitespace optionalWhitespace = new OptionalWhitespace();
-    private final EqualExpression equalExpression = new EqualExpression();
+    private EqualExpression equalExpression;
 
     @Override
     protected Element[] getElements() {
+        equalExpression = new EqualExpression();
+
         return new Element[]{
-                andKeyword,
-                optionalWhitespace,
+                new Token("&&"),
+                new OptionalWhitespace(),
                 equalExpression,
-                optionalWhitespace
+                new OptionalWhitespace()
         };
+    }
+
+    public EqualExpression getEqualExpression() {
+        return equalExpression;
     }
 }

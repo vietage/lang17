@@ -8,18 +8,21 @@ package com.vietage.lang17.parser.ast;
  */
 public class BracketsExpression extends CompositeElement {
 
-    private final Token leftParenthesis = new Token("(");
-    private final OptionalWhitespace optionalWhitespace = new OptionalWhitespace();
-    private final Expression expression = new Expression();
-    private final Token rightParenthesis = new Token(")");
+    private Expression expression;
 
     @Override
     protected Element[] getElements() {
+        expression = new Expression();
+
         return new Element[]{
-                leftParenthesis,
-                optionalWhitespace,
+                new Token("("),
+                new OptionalWhitespace(),
                 expression,
-                rightParenthesis
+                new Token(")")
         };
+    }
+
+    public Expression getExpression() {
+        return expression;
     }
 }

@@ -10,19 +10,28 @@ package com.vietage.lang17.parser.ast;
  */
 public class WhileLoop extends CompositeElement {
 
-    private final Token whileKeyword = new Token("while");
-    private final OptionalWhitespace optionalWhitespace = new OptionalWhitespace();
-    private final BracketsExpression bracketsExpression = new BracketsExpression();
-    private final Block block = new Block();
+    private BracketsExpression bracketsExpression;
+    private Block block;
 
     @Override
     protected Element[] getElements() {
+        bracketsExpression = new BracketsExpression();
+        block = new Block();
+
         return new Element[]{
-                whileKeyword,
-                optionalWhitespace,
+                new Token("while"),
+                new OptionalWhitespace(),
                 bracketsExpression,
-                optionalWhitespace,
+                new OptionalWhitespace(),
                 block
         };
+    }
+
+    public BracketsExpression getBracketsExpression() {
+        return bracketsExpression;
+    }
+
+    public Block getBlock() {
+        return block;
     }
 }

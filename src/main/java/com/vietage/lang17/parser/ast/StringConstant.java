@@ -8,15 +8,20 @@ package com.vietage.lang17.parser.ast;
  */
 public class StringConstant extends CompositeElement {
 
-    private final Token quotationMark = new Token("\"");
-    private final StringToken stringToken = new StringToken();
+    private StringToken stringToken;
 
     @Override
     protected Element[] getElements() {
+        stringToken = new StringToken();
+
         return new Element[]{
-                quotationMark,
+                new Token("\""),
                 stringToken,
-                quotationMark
+                new Token("\"")
         };
+    }
+
+    public StringToken getStringToken() {
+        return stringToken;
     }
 }

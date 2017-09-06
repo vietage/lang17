@@ -8,14 +8,11 @@ package com.vietage.lang17.parser.ast;
  */
 public class BooleanConstant extends Choice {
 
-    private final Token trueToken = new Token("true");
-    private final Token falseToken = new Token("false");
-
     @Override
     protected Element[] getElements() {
         return new Element[]{
-                trueToken,
-                falseToken
+                new Token("true"),
+                new Token("false")
         };
     }
 }

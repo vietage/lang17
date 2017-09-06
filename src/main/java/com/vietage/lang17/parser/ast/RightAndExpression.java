@@ -8,16 +8,26 @@ package com.vietage.lang17.parser.ast;
  */
 public class RightAndExpression extends CompositeElement {
 
-    private final RelativeOp relativeOp = new RelativeOp();
-    private final OptionalWhitespace optionalWhitespace = new OptionalWhitespace();
-    private final AddExpression addExpression = new AddExpression();
+    private RelativeOp relativeOp;
+    private AddExpression addExpression;
 
     @Override
     protected Element[] getElements() {
+        relativeOp = new RelativeOp();
+        addExpression = new AddExpression();
+
         return new Element[]{
                 relativeOp,
-                optionalWhitespace,
+                new OptionalWhitespace(),
                 addExpression
         };
+    }
+
+    public RelativeOp getRelativeOp() {
+        return relativeOp;
+    }
+
+    public AddExpression getAddExpression() {
+        return addExpression;
     }
 }

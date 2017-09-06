@@ -8,18 +8,21 @@ package com.vietage.lang17.parser.ast;
  */
 public class IndexExpression extends CompositeElement {
 
-    private final Token leftSquareBracket = new Token("[");
-    private final OptionalWhitespace optionalWhitespace = new OptionalWhitespace();
-    private final Expression expression = new Expression();
-    private final Token rightSquareBracket = new Token("]");
+    private Expression expression;
 
     @Override
     protected Element[] getElements() {
+        expression = new Expression();
+
         return new Element[]{
-                leftSquareBracket,
-                optionalWhitespace,
+                new Token("["),
+                new OptionalWhitespace(),
                 expression,
-                rightSquareBracket
+                new Token("]")
         };
+    }
+
+    public Expression getExpression() {
+        return expression;
     }
 }

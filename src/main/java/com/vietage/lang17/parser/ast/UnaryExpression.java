@@ -8,16 +8,26 @@ package com.vietage.lang17.parser.ast;
  */
 public class UnaryExpression extends CompositeElement {
 
-    private final ZeroOrOne<UnaryKeyword> unaryKeyword = new ZeroOrOne<>(new UnaryKeyword());
-    private final OptionalWhitespace optionalWhitespace = new OptionalWhitespace();
-    private final ValueExpression valueExpression = new ValueExpression();
+    private ZeroOrOne<UnaryKeyword> unaryKeyword;
+    private ValueExpression valueExpression;
 
     @Override
     protected Element[] getElements() {
+        unaryKeyword = new ZeroOrOne<>(new UnaryKeyword());
+        valueExpression = new ValueExpression();
+
         return new Element[]{
                 unaryKeyword,
-                optionalWhitespace,
+                new OptionalWhitespace(),
                 valueExpression
         };
+    }
+
+    public ZeroOrOne<UnaryKeyword> getUnaryKeyword() {
+        return unaryKeyword;
+    }
+
+    public ValueExpression getValueExpression() {
+        return valueExpression;
     }
 }

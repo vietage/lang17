@@ -8,16 +8,26 @@ package com.vietage.lang17.parser.ast;
  */
 public class Expressions extends CompositeElement {
 
-    private final Expression expression = new Expression();
-    private final OptionalWhitespace optionalWhitespace = new OptionalWhitespace();
-    private final ZeroOrMore<RestExpressions> restExpressions = new ZeroOrMore<>(RestExpressions::new);
+    private Expression expression;
+    private ZeroOrMore<RestExpressions> restExpressions;
 
     @Override
     protected Element[] getElements() {
+        expression = new Expression();
+        restExpressions = new ZeroOrMore<>(RestExpressions::new);
+
         return new Element[]{
                 expression,
-                optionalWhitespace,
+                new OptionalWhitespace(),
                 restExpressions
         };
+    }
+
+    public Expression getExpression() {
+        return expression;
+    }
+
+    public ZeroOrMore<RestExpressions> getRestExpressions() {
+        return restExpressions;
     }
 }

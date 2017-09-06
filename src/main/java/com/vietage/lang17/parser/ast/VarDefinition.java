@@ -11,22 +11,42 @@ package com.vietage.lang17.parser.ast;
  */
 public class VarDefinition extends CompositeElement {
 
-    private final Type type = new Type();
-    private final OptionalWhitespace optionalWhitespace = new OptionalWhitespace();
-    private final Name name = new Name();
-    private final Token equalsSign = new Token("=");
-    private final Expression expression = new Expression();
+    private Type type;
+    private Name name;
+    private Token equalsSign;
+    private Expression expression;
 
     @Override
     protected Element[] getElements() {
+        type = new Type();
+        name = new Name();
+        equalsSign = new Token("=");
+        expression = new Expression();
+
         return new Element[]{
                 type,
-                optionalWhitespace,
+                new OptionalWhitespace(),
                 name,
-                optionalWhitespace,
+                new OptionalWhitespace(),
                 equalsSign,
-                optionalWhitespace,
+                new OptionalWhitespace(),
                 expression
         };
+    }
+
+    public Type getType() {
+        return type;
+    }
+
+    public Name getName() {
+        return name;
+    }
+
+    public Token getEqualsSign() {
+        return equalsSign;
+    }
+
+    public Expression getExpression() {
+        return expression;
     }
 }

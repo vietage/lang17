@@ -8,16 +8,26 @@ package com.vietage.lang17.parser.ast;
  */
 public class RestMulExpressions extends CompositeElement {
 
-    private final AddKeyword addKeyword = new AddKeyword();
-    private final OptionalWhitespace optionalWhitespace = new OptionalWhitespace();
-    private final MulExpression mulExpression = new MulExpression();
+    private AddKeyword addKeyword;
+    private MulExpression mulExpression;
 
     @Override
     protected Element[] getElements() {
+        addKeyword = new AddKeyword();
+        mulExpression = new MulExpression();
+
         return new Element[]{
                 addKeyword,
-                optionalWhitespace,
+                new OptionalWhitespace(),
                 mulExpression
         };
+    }
+
+    public AddKeyword getAddKeyword() {
+        return addKeyword;
+    }
+
+    public MulExpression getMulExpression() {
+        return mulExpression;
     }
 }

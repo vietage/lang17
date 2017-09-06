@@ -8,21 +8,29 @@ package com.vietage.lang17.parser.ast;
  */
 public class Call extends CompositeElement {
 
-    private final Name name = new Name();
-    private final OptionalWhitespace optionalWhitespace = new OptionalWhitespace();
-    private final Token leftParenthesis = new Token("(");
-    private final ZeroOrOne<Expressions> expressions = new ZeroOrOne<>(new Expressions());
-    private final Token rightParenthesis = new Token(")");
+    private Name name;
+    private ZeroOrOne<Expressions> expressions;
 
     @Override
     protected Element[] getElements() {
+        name = new Name();
+        expressions = new ZeroOrOne<>(new Expressions());
+
         return new Element[]{
                 name,
-                optionalWhitespace,
-                leftParenthesis,
-                optionalWhitespace,
+                new OptionalWhitespace(),
+                new Token("("),
+                new OptionalWhitespace(),
                 expressions,
-                rightParenthesis
+                new Token(")")
         };
+    }
+
+    public Name getName() {
+        return name;
+    }
+
+    public ZeroOrOne<Expressions> getExpressions() {
+        return expressions;
     }
 }

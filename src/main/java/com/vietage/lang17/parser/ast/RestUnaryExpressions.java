@@ -8,17 +8,27 @@ package com.vietage.lang17.parser.ast;
  */
 public class RestUnaryExpressions extends CompositeElement {
 
-    private final MulKeyword mulKeyword = new MulKeyword();
-    private final OptionalWhitespace optionalWhitespace = new OptionalWhitespace();
-    private final UnaryExpression unaryExpression = new UnaryExpression();
+    private MulKeyword mulKeyword;
+    private UnaryExpression unaryExpression;
 
     @Override
     protected Element[] getElements() {
+        mulKeyword = new MulKeyword();
+        unaryExpression = new UnaryExpression();
+
         return new Element[]{
                 mulKeyword,
-                optionalWhitespace,
+                new OptionalWhitespace(),
                 unaryExpression,
-                optionalWhitespace
+                new OptionalWhitespace()
         };
+    }
+
+    public MulKeyword getMulKeyword() {
+        return mulKeyword;
+    }
+
+    public UnaryExpression getUnaryExpression() {
+        return unaryExpression;
     }
 }

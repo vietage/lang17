@@ -8,16 +8,20 @@ package com.vietage.lang17.parser.ast;
  */
 public class ReturnStatement extends CompositeElement {
 
-    private final Token returnKeyword = new Token("return");
-    private final OptionalWhitespace optionalWhitespace = new OptionalWhitespace();
-    private final Expression expression = new Expression();
+    private Expression expression;
 
     @Override
     protected Element[] getElements() {
+        expression = new Expression();
+
         return new Element[]{
-                returnKeyword,
-                optionalWhitespace,
+                new Token("return"),
+                new OptionalWhitespace(),
                 expression
         };
+    }
+
+    public Expression getExpression() {
+        return expression;
     }
 }

@@ -8,16 +8,26 @@ package com.vietage.lang17.parser.ast;
  */
 public class VarAccess extends CompositeElement {
 
-    private final Name name = new Name();
-    private final OptionalWhitespace optionalWhitespace = new OptionalWhitespace();
-    private final ZeroOrOne<IndexExpression> indexExpression = new ZeroOrOne<>(new IndexExpression());
+    private Name name;
+    private ZeroOrOne<IndexExpression> indexExpression;
 
     @Override
     protected Element[] getElements() {
+        name = new Name();
+        indexExpression = new ZeroOrOne<>(new IndexExpression());
+
         return new Element[]{
                 name,
-                optionalWhitespace,
+                new OptionalWhitespace(),
                 indexExpression
         };
+    }
+
+    public Name getName() {
+        return name;
+    }
+
+    public ZeroOrOne<IndexExpression> getIndexExpression() {
+        return indexExpression;
     }
 }

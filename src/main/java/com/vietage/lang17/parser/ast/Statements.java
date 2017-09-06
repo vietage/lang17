@@ -8,14 +8,19 @@ package com.vietage.lang17.parser.ast;
  */
 public class Statements extends CompositeElement {
 
-    private final Statement statement = new Statement();
-    private final OptionalWhitespace optionalWhitespace = new OptionalWhitespace();
+    private Statement statement;
 
     @Override
     protected Element[] getElements() {
+        statement = new Statement();
+
         return new Element[]{
                 statement,
-                optionalWhitespace
+                new OptionalWhitespace()
         };
+    }
+
+    public Statement getStatement() {
+        return statement;
     }
 }
