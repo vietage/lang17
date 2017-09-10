@@ -27,7 +27,7 @@ public class Lang17Parser {
         }
 
         if (!context.getLastResult()) {
-            throw new ParseException("Parse error:\n" + errorChain.getErrorMessage());
+            throw new ParseException(errorChain.formatErrorMessage(sourceReader));
         }
 
         return program;

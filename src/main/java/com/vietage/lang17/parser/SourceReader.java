@@ -64,4 +64,11 @@ public class SourceReader {
     public Position getPosition() {
         return new Position(position);
     }
+
+    public String getLine(int number) {
+        if (number < 0 || number > lines.size() - 1) {
+            throw new IllegalArgumentException("Illegal line number: " + number);
+        }
+        return lines.get(number);
+    }
 }
