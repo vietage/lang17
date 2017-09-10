@@ -1,18 +1,19 @@
 package com.vietage.lang17.parser.ast;
 
 import com.vietage.lang17.parser.Context;
+import com.vietage.lang17.parser.Position;
 
 public abstract class Element {
 
-    private int startPosition;
+    private Position startPosition;
 
     public abstract boolean parse(Context context);
 
-    public int getStartPosition() {
+    public Position getStartPosition() {
         return startPosition;
     }
 
-    public void setStartPosition(int startPosition) {
+    public void setStartPosition(Position startPosition) {
         this.startPosition = startPosition;
     }
 }

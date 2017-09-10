@@ -1,6 +1,7 @@
 package com.vietage.lang17.parser.ast;
 
 import com.vietage.lang17.parser.Context;
+import com.vietage.lang17.parser.Position;
 import com.vietage.lang17.parser.SourceReader;
 
 /**
@@ -20,12 +21,14 @@ public class IntegerPart extends Element {
         SourceReader sourceReader = context.getSourceReader();
         char[] cbuf = new char[1];
         StringBuilder sb = new StringBuilder();
+        Position lastPosition = sourceReader.getPosition();
 
-        while (sourceReader.read(cbuf) != SourceReader.EOF) {
+        while (sourceReader.read(cbuf)) {
             if (Character.isDigit(cbuf[0])) {
                 sb.append(cbuf[0]);
+                lastPosition = sourceReader.getPosition();
             } else {
-                sourceReader.reset(sourceReader.getPosition() - 1);
+                sourceReader.reset(lastPosition);
                 break;
             }
         }

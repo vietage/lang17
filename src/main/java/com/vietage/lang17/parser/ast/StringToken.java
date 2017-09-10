@@ -1,6 +1,7 @@
 package com.vietage.lang17.parser.ast;
 
 import com.vietage.lang17.parser.Context;
+import com.vietage.lang17.parser.Position;
 import com.vietage.lang17.parser.SourceReader;
 
 /**
@@ -20,10 +21,11 @@ public class StringToken extends Element {
         SourceReader sr = context.getSourceReader();
         StringBuilder sb = new StringBuilder();
         char[] cbuf = new char[1];
+        Position lastPosition = sr.getPosition();
 
         boolean escape = false;
 
-        while (sr.read(cbuf) != SourceReader.EOF) {
+        while (sr.read(cbuf)) {
             switch (cbuf[0]) {
                 case '\\':
                     if (escape) {
@@ -38,7 +40,7 @@ public class StringToken extends Element {
                         escape = false;
                         sb.append(cbuf[0]);
                     } else {
-                        sr.reset(sr.getPosition() - 1);
+                        sr.reset(lastPosition);
                         this.result = sb.toString();
                         return true;
                     }
@@ -46,6 +48,7 @@ public class StringToken extends Element {
                 default:
                     sb.append(cbuf[0]);
             }
+            lastPosition = sr.getPosition();
         }
 
         return false;

@@ -20,7 +20,7 @@ public class ErrorChain {
 
     public String getErrorMessage() {
         return errorChain.stream()
-                .map(Object::toString)
+                .map(o -> o.toString() + " position: " + o.getStartPosition())
                 .collect(Collectors.joining("\n"));
     }
 }

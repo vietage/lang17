@@ -1,6 +1,7 @@
 package com.vietage.lang17.parser.ast;
 
 import com.vietage.lang17.parser.Context;
+import com.vietage.lang17.parser.Position;
 import com.vietage.lang17.parser.SourceReader;
 
 /**
@@ -23,17 +24,20 @@ public class Name extends Element {
         StringBuilder sb = new StringBuilder();
         char[] cbuf = new char[1];
 
-        if (sr.read(cbuf) != SourceReader.EOF && isLetterOrUnderscore(cbuf[0])) {
+        if (sr.read(cbuf) && isLetterOrUnderscore(cbuf[0])) {
             sb.append(cbuf[0]);
         } else {
             return false;
         }
 
-        while (sr.read(cbuf) != SourceReader.EOF) {
+        Position lastPosition = sr.getPosition();
+
+        while (sr.read(cbuf)) {
             if (isLetterOrDigitOrUnderscore(cbuf[0])) {
                 sb.append(cbuf[0]);
+                lastPosition = sr.getPosition();
             } else {
-                sr.reset(sr.getPosition() - 1);
+                sr.reset(lastPosition);
                 break;
             }
         }

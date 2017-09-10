@@ -1,6 +1,7 @@
 package com.vietage.lang17.parser.ast;
 
 import com.vietage.lang17.parser.Context;
+import com.vietage.lang17.parser.Position;
 import com.vietage.lang17.parser.SourceReader;
 
 /**
@@ -17,12 +18,14 @@ public class OptionalWhitespace extends Element {
 
         SourceReader sr = context.getSourceReader();
         char[] cbuf = new char[1];
+        Position lastPosition = sr.getPosition();
 
-        while (sr.read(cbuf) != SourceReader.EOF) {
+        while (sr.read(cbuf)) {
             if (!Character.isWhitespace(cbuf[0])) {
-                sr.reset(sr.getPosition() - 1);
+                sr.reset(lastPosition);
                 break;
             }
+            lastPosition = sr.getPosition();
         }
 
         return true;
