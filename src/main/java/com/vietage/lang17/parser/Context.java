@@ -1,6 +1,6 @@
 package com.vietage.lang17.parser;
 
-import com.vietage.lang17.parser.ast.Element;
+import com.vietage.lang17.parser.lexeme.Element;
 
 import java.util.Deque;
 import java.util.LinkedList;

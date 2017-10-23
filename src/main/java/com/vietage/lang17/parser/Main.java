@@ -1,6 +1,6 @@
 package com.vietage.lang17.parser;
 
-import com.vietage.lang17.parser.ast.Program;
+import com.vietage.lang17.parser.lexeme.Program;
 
 import java.io.IOException;
 

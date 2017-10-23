@@ -1,56 +1,11 @@
 package com.vietage.lang17.parser.ast;
 
-/**
- * EBNF:
- * <pre>
- *     RETURN_TYPE
- *     { WHITESPACE } NAME
- *     { WHITESPACE } '('
- *     { WHITESPACE } [ ARGUMENTS ] ')'
- *     { WHITESPACE } BLOCK
- * </pre>
- */
-public class Function extends CompositeElement {
+import com.vietage.lang17.parser.ast.statement.Statement;
 
-    private ReturnType returnType;
-    private Name name;
-    private ZeroOrOne<Arguments> arguments;
-    private Block block;
+import java.util.List;
 
-    @Override
-    protected Element[] getElements() {
-        returnType = new ReturnType();
-        name = new Name();
-        arguments = new ZeroOrOne<>(new Arguments());
-        block = new Block();
-
-        return new Element[]{
-                returnType,
-                new OptionalWhitespace(),
-                name,
-                new OptionalWhitespace(),
-                new Token("("),
-                new OptionalWhitespace(),
-                arguments,
-                new Token(")"),
-                new OptionalWhitespace(),
-                block
-        };
-    }
-
-    public ReturnType getReturnType() {
-        return returnType;
-    }
-
-    public Name getName() {
-        return name;
-    }
-
-    public ZeroOrOne<Arguments> getArguments() {
-        return arguments;
-    }
-
-    public Block getBlock() {
-        return block;
-    }
+public class Function {
+    private final Type returnType;
+    private final List<Argument> arguments;
+    private final List<Statement> statements;
 }
