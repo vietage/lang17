@@ -1,14 +1,15 @@
 package com.vietage.lang17.parser;
 
-import com.vietage.lang17.parser.lexeme.Program;
+import com.vietage.lang17.lexer.Lexer;
+import com.vietage.lang17.lexer.lexeme.Root;
 
 import java.io.IOException;
 
 public class Main {
 
     public static void main(String[] args) throws IOException {
-        Lang17Parser parser = new Lang17Parser();
-        Program program = parser.parse("examples/helloWorld");
-        System.out.println(program);
+        Lexer lexer = new Lexer();
+        Root root = lexer.read("examples/helloWorld");
+        System.out.println(root);
     }
 }
