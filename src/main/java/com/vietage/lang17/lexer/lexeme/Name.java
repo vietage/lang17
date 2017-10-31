@@ -1,8 +1,8 @@
 package com.vietage.lang17.lexer.lexeme;
 
-import com.vietage.lang17.parser.Context;
-import com.vietage.lang17.parser.Position;
-import com.vietage.lang17.parser.SourceReader;
+import com.vietage.lang17.lexer.Context;
+import com.vietage.lang17.lexer.Position;
+import com.vietage.lang17.lexer.SourceReader;
 
 /**
  * EBNF:

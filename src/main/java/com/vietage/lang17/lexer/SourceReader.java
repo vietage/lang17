@@ -1,4 +1,4 @@
-package com.vietage.lang17.parser;
+package com.vietage.lang17.lexer;
 
 import java.io.IOException;
 import java.nio.file.Files;

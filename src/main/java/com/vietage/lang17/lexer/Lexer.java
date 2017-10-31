@@ -1,8 +1,5 @@
 package com.vietage.lang17.lexer;
 
-import com.vietage.lang17.parser.Context;
-import com.vietage.lang17.parser.ErrorChain;
-import com.vietage.lang17.parser.SourceReader;
 import com.vietage.lang17.lexer.lexeme.Element;
 import com.vietage.lang17.lexer.lexeme.Root;
 
