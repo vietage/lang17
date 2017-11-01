@@ -24,6 +24,10 @@ public class ZeroOrOne<T extends Element> extends Element {
         return true;
     }
 
+    public Boolean getResult() {
+        return result;
+    }
+
     public T getElement() {
         return element;
     }

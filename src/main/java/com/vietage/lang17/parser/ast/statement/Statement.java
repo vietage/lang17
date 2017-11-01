@@ -1,4 +1,6 @@
 package com.vietage.lang17.parser.ast.statement;
 
-public abstract class Statement {
+import com.vietage.lang17.parser.ast.ASTElement;
+
+public abstract class Statement extends ASTElement {
 }

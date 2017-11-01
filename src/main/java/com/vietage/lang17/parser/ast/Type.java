@@ -6,7 +6,7 @@ public enum Type {
     FLOAT,
     STRING,
     BOOLEAN_ARRAY,
-    INT_ARRAY,
+    INTEGER_ARRAY,
     FLOAT_ARRAY,
     STRING_ARRAY;
 }
