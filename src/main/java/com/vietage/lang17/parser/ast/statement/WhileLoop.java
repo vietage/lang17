@@ -5,6 +5,7 @@ import com.vietage.lang17.parser.ast.expression.Expression;
 import java.util.List;
 
 public class WhileLoop extends Statement {
+
     private final Expression condition;
     private final List<Statement> statements;
 }

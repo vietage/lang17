@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Function extends ASTElement {
+
     private final String name;
     private final Type returnType;
     private final List<Argument> arguments = new ArrayList<>();
