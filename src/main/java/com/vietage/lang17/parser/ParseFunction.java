@@ -27,21 +27,19 @@ public class ParseFunction extends ParseCommand<FunctionAndWhitespace, Function>
     }
 
     private Type parseReturnType(ReturnType returnType) {
-        if (returnType.getElement() == returnType.getType()) {
-            boolean isArray = returnType.getType().getArrayModifier().getResult();
+        com.vietage.lang17.lexer.lexeme.Type type = returnType.getType();
 
-            BasicType basicType = returnType.getType().getBasicType();
-
-            if (basicType.getIntToken() == basicType.getElement()) {
-                return isArray ? Type.INTEGER_ARRAY : Type.INTEGER;
-            } else if (basicType.getFloatToken() == basicType.getElement()) {
-                return isArray ? Type.FLOAT_ARRAY : Type.FLOAT;
-            } else if (basicType.getBooleanToken() == basicType.getElement()) {
-                return isArray ? Type.BOOLEAN_ARRAY : Type.BOOLEAN;
-            } else if (basicType.getStringToken() == basicType.getElement()) {
-                return isArray ? Type.STRING_ARRAY : Type.STRING;
-            }
+        if (type == null) {
+            // return void type
+            return null;
         }
-        return null;
+
+        boolean isArray = type.getArrayModifier().getResult();
+
+        BasicType basicType = type.getBasicType();
+
+        return isArray ?
+                Type.getArrayType(basicType.getType()) :
+                basicType.getType();
     }
 }

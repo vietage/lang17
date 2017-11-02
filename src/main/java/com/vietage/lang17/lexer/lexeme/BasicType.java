@@ -1,5 +1,9 @@
 package com.vietage.lang17.lexer.lexeme;
 
+import com.vietage.lang17.parser.ast.Type;
+
+import java.util.Map;
+
 /**
  * EBNF:
  * <pre>
@@ -8,39 +12,24 @@ package com.vietage.lang17.lexer.lexeme;
  */
 public class BasicType extends Choice {
 
-    private Token intToken;
-    private Token floatToken;
-    private Token booleanToken;
-    private Token stringToken;
+    private static final Map<Integer, Type> TYPES = Map.ofEntries(
+            Map.entry(0, Type.INTEGER),
+            Map.entry(1, Type.FLOAT),
+            Map.entry(2, Type.BOOLEAN),
+            Map.entry(3, Type.STRING)
+    );
 
     @Override
     protected Element[] getElements() {
-        intToken = new Token("int");
-        floatToken = new Token("float");
-        booleanToken = new Token("boolean");
-        stringToken = new Token("string");
-
         return new Element[]{
-                intToken,
-                floatToken,
-                booleanToken,
-                stringToken
+                new Token("int"),
+                new Token("float"),
+                new Token("boolean"),
+                new Token("string")
         };
     }
 
-    public Token getIntToken() {
-        return intToken;
-    }
-
-    public Token getFloatToken() {
-        return floatToken;
-    }
-
-    public Token getBooleanToken() {
-        return booleanToken;
-    }
-
-    public Token getStringToken() {
-        return stringToken;
+    public Type getType() {
+        return TYPES.get(getCurrentElement());
     }
 }

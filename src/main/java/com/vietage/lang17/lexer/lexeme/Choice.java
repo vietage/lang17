@@ -29,6 +29,10 @@ public abstract class Choice extends Element {
         }
     }
 
+    protected int getCurrentElement() {
+        return currentElement;
+    }
+
     public Element getElement() {
         return elements[currentElement];
     }

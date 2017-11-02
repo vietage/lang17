@@ -21,6 +21,6 @@ public class ReturnType extends Choice {
     }
 
     public Type getType() {
-        return type;
+        return getElement() == type ? type : null;
     }
 }
