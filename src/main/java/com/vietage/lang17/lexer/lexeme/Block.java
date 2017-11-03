@@ -8,11 +8,11 @@ package com.vietage.lang17.lexer.lexeme;
  */
 public class Block extends CompositeElement {
 
-    private ZeroOrMore<Statements> statements;
+    private ZeroOrMore<StatementAndWhitespace> statements;
 
     @Override
     protected Element[] getElements() {
-        statements = new ZeroOrMore<>(Statements::new);
+        statements = new ZeroOrMore<>(StatementAndWhitespace::new);
 
         return new Element[]{
                 new Token("{"),
@@ -22,7 +22,7 @@ public class Block extends CompositeElement {
         };
     }
 
-    public ZeroOrMore<Statements> getStatements() {
+    public ZeroOrMore<StatementAndWhitespace> getStatements() {
         return statements;
     }
 }

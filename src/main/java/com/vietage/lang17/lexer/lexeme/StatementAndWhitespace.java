@@ -6,7 +6,7 @@ package com.vietage.lang17.lexer.lexeme;
  *     STATEMENT { WHITESPACE }
  * </pre>
  */
-public class Statements extends CompositeElement {
+public class StatementAndWhitespace extends CompositeElement {
 
     private Statement statement;
 
