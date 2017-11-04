@@ -9,10 +9,16 @@ import java.util.Queue;
 public class Parser {
 
     private final Queue<ParseCommand> commandQueue = new ArrayDeque<>();
+    private Program program;
 
     public Program parse(Root root) {
-        Program program = new Program();
+        commandQueue.add(new ParseProgram(root, program -> this.program = program));
 
+        do {
+            ParseCommand parseAction = commandQueue.remove();
+            parseAction.parse(commandQueue);
+        } while (!commandQueue.isEmpty());
 
+        return program;
     }
 }
