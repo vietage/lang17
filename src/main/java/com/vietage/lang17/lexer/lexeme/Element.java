@@ -3,17 +3,11 @@ package com.vietage.lang17.lexer.lexeme;
 import com.vietage.lang17.lexer.Context;
 import com.vietage.lang17.lexer.Position;
 
-public abstract class Element {
+public interface Element {
 
-    private Position startPosition;
+    boolean parse(Context context);
 
-    public abstract boolean parse(Context context);
+    Position getStartPosition();
 
-    public Position getStartPosition() {
-        return startPosition;
-    }
-
-    public void setStartPosition(Position startPosition) {
-        this.startPosition = startPosition;
-    }
+    void setStartPosition(Position startPosition);
 }

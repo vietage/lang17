@@ -10,7 +10,7 @@ import com.vietage.lang17.lexer.SourceReader;
  *     DIGIT { DIGIT }
  * </pre>
  */
-public class IntegerPart extends Element {
+public class IntegerPart extends BaseElement {
 
     private Long result;
 

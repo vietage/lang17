@@ -8,19 +8,19 @@ package com.vietage.lang17.lexer.lexeme;
  */
 public class StatementAndWhitespace extends CompositeElement {
 
-    private Statement statement;
+    private StatementChoice statementChoice;
 
     @Override
     protected Element[] getElements() {
-        statement = new Statement();
+        statementChoice = new StatementChoice();
 
         return new Element[]{
-                statement,
+                statementChoice,
                 new OptionalWhitespace()
         };
     }
 
-    public Statement getStatement() {
-        return statement;
+    public StatementChoice getStatementChoice() {
+        return statementChoice;
     }
 }

@@ -10,7 +10,7 @@ import com.vietage.lang17.lexer.SourceReader;
  *     ? character sequence ?
  * </pre>
  */
-public class StringToken extends Element {
+public class StringToken extends BaseElement {
 
     private String result;
 

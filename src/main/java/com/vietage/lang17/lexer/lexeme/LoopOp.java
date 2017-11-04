@@ -6,7 +6,7 @@ package com.vietage.lang17.lexer.lexeme;
  *     'break' | 'continue'
  * </pre>
  */
-public class LoopOp extends Choice {
+public class LoopOp extends Choice implements Statement {
 
     @Override
     protected Element[] getElements() {
@@ -14,5 +14,10 @@ public class LoopOp extends Choice {
                 new Token("break"),
                 new Token("continue")
         };
+    }
+
+    @Override
+    public void accept(Visitor visitor) {
+        visitor.visit(this);
     }
 }

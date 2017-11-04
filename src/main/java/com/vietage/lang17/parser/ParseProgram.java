@@ -16,12 +16,12 @@ public class ParseProgram extends ParseCommand<Root, Program> {
     public void parse(Queue<ParseCommand> commandQueue) {
         Program program = new Program();
 
-        action.doAction(program);
-
         for (FunctionAndWhitespace func : lexeme.getFunctions().getFunctions()) {
             commandQueue.add(new ParseFunction(func, function -> {
                 program.getFunctions().put(function.getName(), function);
             }));
         }
+
+        action.doAction(program);
     }
 }

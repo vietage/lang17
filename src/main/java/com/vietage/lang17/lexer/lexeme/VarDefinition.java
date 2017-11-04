@@ -9,7 +9,7 @@ package com.vietage.lang17.lexer.lexeme;
  *     { WHITESPACE } EXPRESSION
  * </pre>
  */
-public class VarDefinition extends CompositeElement {
+public class VarDefinition extends CompositeElement implements Statement {
 
     private Type type;
     private Name name;
@@ -32,6 +32,11 @@ public class VarDefinition extends CompositeElement {
                 new OptionalWhitespace(),
                 expression
         };
+    }
+
+    @Override
+    public void accept(Visitor visitor) {
+        visitor.visit(this);
     }
 
     public Type getType() {

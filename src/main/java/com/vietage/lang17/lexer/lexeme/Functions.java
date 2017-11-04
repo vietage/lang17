@@ -13,7 +13,7 @@ import java.util.List;
  *     FUNCTION { WHITESPACE } { FUNCTION { WHITESPACE } }
  * </pre>
  */
-public class Functions extends Element {
+public class Functions extends BaseElement {
 
     private final List<FunctionAndWhitespace> functions = new ArrayList<>();
     private FunctionAndWhitespace currentFunction;

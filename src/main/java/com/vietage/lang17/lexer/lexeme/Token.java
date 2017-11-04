@@ -4,7 +4,7 @@ import com.vietage.lang17.lexer.Context;
 
 import java.util.Arrays;
 
-public class Token extends Element {
+public class Token extends BaseElement {
 
     private final char[] token;
 

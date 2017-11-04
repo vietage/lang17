@@ -2,7 +2,7 @@ package com.vietage.lang17.lexer.lexeme;
 
 import com.vietage.lang17.lexer.Context;
 
-public abstract class Choice extends Element {
+public abstract class Choice extends BaseElement {
 
     private static final int INIT_STATE = -1;
 

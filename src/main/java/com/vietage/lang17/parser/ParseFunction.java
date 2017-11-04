@@ -1,12 +1,13 @@
 package com.vietage.lang17.parser;
 
-import com.vietage.lang17.lexer.lexeme.*;
+import com.vietage.lang17.lexer.lexeme.Arguments;
+import com.vietage.lang17.lexer.lexeme.BasicType;
+import com.vietage.lang17.lexer.lexeme.FunctionAndWhitespace;
+import com.vietage.lang17.lexer.lexeme.RestArguments;
 import com.vietage.lang17.parser.ast.Argument;
 import com.vietage.lang17.parser.ast.Function;
 import com.vietage.lang17.parser.ast.Type;
-import com.vietage.lang17.parser.ast.statement.Statement;
 
-import java.util.List;
 import java.util.Queue;
 
 public class ParseFunction extends ParseCommand<FunctionAndWhitespace, Function> {
@@ -23,7 +24,7 @@ public class ParseFunction extends ParseCommand<FunctionAndWhitespace, Function>
         Function function = new Function(name, type);
 
         parseArguments(function);
-        parseStatements(function);
+        parseStatements(function, commandQueue);
 
         action.doAction(function);
     }
@@ -42,11 +43,9 @@ public class ParseFunction extends ParseCommand<FunctionAndWhitespace, Function>
         }
     }
 
-    private void parseStatements(Function function) {
-        List<StatementAndWhitespace> statements = lexeme.getFunction().getBlock().getStatements().getElements();
-        for (StatementAndWhitespace statementAndWhitespace : statements) {
-            function.getStatements().add(parseStatement(statementAndWhitespace.getStatement()));
-        }
+    private void parseStatements(Function function, Queue<ParseCommand> commandQueue) {
+        commandQueue.add(new ParseStatements(lexeme.getFunction().getBlock(),
+                statement -> function.getStatements().add(statement)));
     }
 
     private Argument parseArgument(com.vietage.lang17.lexer.lexeme.Argument argument) {
@@ -54,10 +53,6 @@ public class ParseFunction extends ParseCommand<FunctionAndWhitespace, Function>
                 parseType(argument.getType()),
                 argument.getName().getResult()
         );
-    }
-
-    private Statement parseStatement(com.vietage.lang17.lexer.lexeme.Statement statement) {
-        // TODO parse statement
     }
 
     private Type parseType(com.vietage.lang17.lexer.lexeme.Type type) {

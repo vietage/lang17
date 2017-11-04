@@ -6,7 +6,7 @@ package com.vietage.lang17.lexer.lexeme;
  *     VAR_ACCESS { WHITESPACE } '=' { WHITESPACE } EXPRESSION
  * </pre>
  */
-public class Assignment extends CompositeElement {
+public class Assignment extends CompositeElement implements Statement {
 
     private VarAccess varAccess;
     private Expression expression;
@@ -23,6 +23,11 @@ public class Assignment extends CompositeElement {
                 new OptionalWhitespace(),
                 expression
         };
+    }
+
+    @Override
+    public void accept(Visitor visitor) {
+        visitor.visit(this);
     }
 
     public VarAccess getVarAccess() {

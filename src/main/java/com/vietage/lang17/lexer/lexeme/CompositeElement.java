@@ -2,7 +2,7 @@ package com.vietage.lang17.lexer.lexeme;
 
 import com.vietage.lang17.lexer.Context;
 
-public abstract class CompositeElement extends Element {
+public abstract class CompositeElement extends BaseElement {
 
     private static final int FIRST_ELEMENT = 0;
 

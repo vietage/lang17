@@ -12,7 +12,7 @@ import com.vietage.lang17.lexer.SourceReader;
  *     ALPHA_NUM = CHAR | ? digit ?
  * </pre>
  */
-public class Name extends Element {
+public class Name extends BaseElement {
 
     private String result;
 

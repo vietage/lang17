@@ -6,7 +6,7 @@ package com.vietage.lang17.lexer.lexeme;
  *     'return' { WHITESPACE } EXPRESSION
  * </pre>
  */
-public class ReturnStatement extends CompositeElement {
+public class ReturnStatement extends CompositeElement implements Statement {
 
     private Expression expression;
 
@@ -19,6 +19,11 @@ public class ReturnStatement extends CompositeElement {
                 new OptionalWhitespace(),
                 expression
         };
+    }
+
+    @Override
+    public void accept(Visitor visitor) {
+        visitor.visit(this);
     }
 
     public Expression getExpression() {

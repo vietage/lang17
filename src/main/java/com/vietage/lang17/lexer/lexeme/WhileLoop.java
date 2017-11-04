@@ -8,7 +8,7 @@ package com.vietage.lang17.lexer.lexeme;
  *     { WHITESPACE } BLOCK
  * </pre>
  */
-public class WhileLoop extends CompositeElement {
+public class WhileLoop extends CompositeElement implements Statement {
 
     private BracketsExpression bracketsExpression;
     private Block block;
@@ -25,6 +25,11 @@ public class WhileLoop extends CompositeElement {
                 new OptionalWhitespace(),
                 block
         };
+    }
+
+    @Override
+    public void accept(Visitor visitor) {
+        visitor.visit(this);
     }
 
     public BracketsExpression getBracketsExpression() {

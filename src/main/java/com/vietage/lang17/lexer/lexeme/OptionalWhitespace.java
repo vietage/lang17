@@ -10,7 +10,7 @@ import com.vietage.lang17.lexer.SourceReader;
  *     { WHITESPACE }
  * </pre>
  */
-public class OptionalWhitespace extends Element {
+public class OptionalWhitespace extends BaseElement {
 
     @Override
     public boolean parse(Context context) {

@@ -9,7 +9,7 @@ package com.vietage.lang17.lexer.lexeme;
  *     { WHITESPACE } [ ELSE_BLOCK ]
  * </pre>
  */
-public class IfStatement extends CompositeElement {
+public class IfStatement extends CompositeElement implements Statement {
 
     private BracketsExpression bracketsExpression;
     private Block block;
@@ -30,6 +30,11 @@ public class IfStatement extends CompositeElement {
                 new OptionalWhitespace(),
                 elseBlock
         };
+    }
+
+    @Override
+    public void accept(Visitor visitor) {
+        visitor.visit(this);
     }
 
     public BracketsExpression getBracketsExpression() {
