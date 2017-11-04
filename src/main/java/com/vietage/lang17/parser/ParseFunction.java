@@ -1,7 +1,6 @@
 package com.vietage.lang17.parser;
 
 import com.vietage.lang17.lexer.lexeme.Arguments;
-import com.vietage.lang17.lexer.lexeme.BasicType;
 import com.vietage.lang17.lexer.lexeme.FunctionAndWhitespace;
 import com.vietage.lang17.lexer.lexeme.RestArguments;
 import com.vietage.lang17.parser.ast.Argument;
@@ -60,13 +59,6 @@ public class ParseFunction extends ParseCommand<FunctionAndWhitespace, Function>
             // return void type
             return null;
         }
-
-        boolean isArray = type.getArrayModifier().getResult();
-
-        BasicType basicType = type.getBasicType();
-
-        return isArray ?
-                Type.getArrayType(basicType.getType()) :
-                basicType.getType();
+        return type.getType();
     }
 }

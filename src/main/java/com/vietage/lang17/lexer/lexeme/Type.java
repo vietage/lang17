@@ -22,11 +22,11 @@ public class Type extends CompositeElement {
         };
     }
 
-    public BasicType getBasicType() {
-        return basicType;
-    }
+    public com.vietage.lang17.parser.ast.Type getType() {
+        boolean isArray = arrayModifier.getResult();
 
-    public ZeroOrOne<Token> getArrayModifier() {
-        return arrayModifier;
+        return isArray ?
+                com.vietage.lang17.parser.ast.Type.getArrayType(basicType.getType()) :
+                basicType.getType();
     }
 }
