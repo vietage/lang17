@@ -12,13 +12,21 @@ public class Parser {
     private Program program;
 
     public Program parse(Root root) {
-        commandQueue.add(new ParseProgram(root, program -> this.program = program));
+        commandQueue.add(new ParseProgram(root, this::setProgram));
 
-        do {
-            ParseCommand parseAction = commandQueue.remove();
-            parseAction.parse(commandQueue);
-        } while (!commandQueue.isEmpty());
+        while (!commandQueue.isEmpty()) {
+            ParseCommand parseCommand = commandQueue.remove();
+            parseCommand.parse(commandQueue);
+        }
 
         return program;
+    }
+
+    public Program getProgram() {
+        return program;
+    }
+
+    private void setProgram(Program program) {
+        this.program = program;
     }
 }
