@@ -5,6 +5,7 @@ import com.vietage.lang17.parser.ast.expression.Expression;
 public class VariableAssignment extends Statement {
 
     private final String name;
+    private Expression indexExpression;
     private Expression expression;
 
     public VariableAssignment(String name) {
@@ -13,6 +14,14 @@ public class VariableAssignment extends Statement {
 
     public String getName() {
         return name;
+    }
+
+    public Expression getIndexExpression() {
+        return indexExpression;
+    }
+
+    public void setIndexExpression(Expression indexExpression) {
+        this.indexExpression = indexExpression;
     }
 
     public Expression getExpression() {

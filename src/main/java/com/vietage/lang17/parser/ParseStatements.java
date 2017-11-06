@@ -43,7 +43,25 @@ public class ParseStatements extends ParseCommand
 
     @Override
     public void visit(Assignment assignment) {
+        String name = assignment.getVarAccess().getName().getResult();
 
+        VariableAssignment variableAssignment = new VariableAssignment(name);
+
+        // parse array index expression
+        if (assignment.getVarAccess().getIndexExpression().getResult()) {
+            commandQueue.add(new ParseExpression(
+                    assignment.getVarAccess().getIndexExpression().getElement().getExpression(),
+                    variableAssignment::setIndexExpression
+            ));
+        }
+
+        // parse right hand expression
+        commandQueue.add(new ParseExpression(
+                assignment.getExpression(),
+                variableAssignment::setExpression
+        ));
+
+        action.doAction(variableAssignment);
     }
 
     @Override
