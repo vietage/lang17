@@ -5,7 +5,6 @@ import com.vietage.lang17.lexer.lexeme.Block;
 import com.vietage.lang17.lexer.lexeme.Call;
 import com.vietage.lang17.lexer.lexeme.LoopOp;
 import com.vietage.lang17.lexer.lexeme.RestExpressions;
-import com.vietage.lang17.lexer.lexeme.ReturnStatement;
 import com.vietage.lang17.lexer.lexeme.StatementAndWhitespace;
 import com.vietage.lang17.lexer.lexeme.VarDefinition;
 import com.vietage.lang17.parser.ast.expression.Expression;
@@ -13,6 +12,7 @@ import com.vietage.lang17.parser.ast.expression.FunctionCall;
 import com.vietage.lang17.parser.ast.statement.BreakStatement;
 import com.vietage.lang17.parser.ast.statement.ContinueStatement;
 import com.vietage.lang17.parser.ast.statement.IfStatement;
+import com.vietage.lang17.parser.ast.statement.ReturnStatement;
 import com.vietage.lang17.parser.ast.statement.Statement;
 import com.vietage.lang17.parser.ast.statement.VariableAssignment;
 import com.vietage.lang17.parser.ast.statement.VariableDefinition;
@@ -169,7 +169,14 @@ public class ParseStatements extends ParseCommand
     }
 
     @Override
-    public void visit(ReturnStatement returnStatement) {
+    public void visit(com.vietage.lang17.lexer.lexeme.ReturnStatement returnLexeme) {
+        ReturnStatement returnStatement = new ReturnStatement();
 
+        commandQueue.add(new ParseExpression(
+                returnLexeme.getExpression(),
+                returnStatement::setExpression
+        ));
+
+        action.doAction(returnStatement);
     }
 }
