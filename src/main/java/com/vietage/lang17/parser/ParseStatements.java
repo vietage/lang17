@@ -7,6 +7,8 @@ import com.vietage.lang17.lexer.lexeme.LoopOp;
 import com.vietage.lang17.lexer.lexeme.ReturnStatement;
 import com.vietage.lang17.lexer.lexeme.StatementAndWhitespace;
 import com.vietage.lang17.lexer.lexeme.VarDefinition;
+import com.vietage.lang17.parser.ast.statement.BreakStatement;
+import com.vietage.lang17.parser.ast.statement.ContinueStatement;
 import com.vietage.lang17.parser.ast.statement.IfStatement;
 import com.vietage.lang17.parser.ast.statement.Statement;
 import com.vietage.lang17.parser.ast.statement.VariableAssignment;
@@ -124,7 +126,12 @@ public class ParseStatements extends ParseCommand
 
     @Override
     public void visit(LoopOp loopOp) {
-
+        if (loopOp.isBreak()) {
+            action.doAction(new BreakStatement());
+        }
+        if (loopOp.isContinue()) {
+            action.doAction(new ContinueStatement());
+        }
     }
 
     @Override

@@ -8,16 +8,30 @@ package com.vietage.lang17.lexer.lexeme;
  */
 public class LoopOp extends Choice implements Statement {
 
+    private Token breakToken;
+    private Token continueToken;
+
     @Override
     protected Element[] getElements() {
+        breakToken = new Token("break");
+        continueToken = new Token("continue");
+
         return new Element[]{
-                new Token("break"),
-                new Token("continue")
+                breakToken,
+                continueToken
         };
     }
 
     @Override
     public void accept(Visitor visitor) {
         visitor.visit(this);
+    }
+
+    public boolean isBreak() {
+        return getElement() == breakToken;
+    }
+
+    public boolean isContinue() {
+        return getElement() == continueToken;
     }
 }
