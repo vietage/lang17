@@ -7,11 +7,11 @@ import com.vietage.lang17.lexer.lexeme.LoopOp;
 import com.vietage.lang17.lexer.lexeme.ReturnStatement;
 import com.vietage.lang17.lexer.lexeme.StatementAndWhitespace;
 import com.vietage.lang17.lexer.lexeme.VarDefinition;
-import com.vietage.lang17.lexer.lexeme.WhileLoop;
 import com.vietage.lang17.parser.ast.statement.IfStatement;
 import com.vietage.lang17.parser.ast.statement.Statement;
 import com.vietage.lang17.parser.ast.statement.VariableAssignment;
 import com.vietage.lang17.parser.ast.statement.VariableDefinition;
+import com.vietage.lang17.parser.ast.statement.WhileLoop;
 
 import java.util.ArrayList;
 import java.util.Queue;
@@ -42,6 +42,7 @@ public class ParseStatements extends ParseCommand
                 varDefinition.getName().getResult()
         );
 
+        // parse right hand expression
         commandQueue.add(new ParseExpression(
                 varDefinition.getExpression(),
                 variableDefinition::setExpression
@@ -98,11 +99,27 @@ public class ParseStatements extends ParseCommand
                     statement -> ifStatement.getFalseStatements().add(statement)
             ));
         }
+
+        action.doAction(ifStatement);
     }
 
     @Override
-    public void visit(WhileLoop whileLoop) {
+    public void visit(com.vietage.lang17.lexer.lexeme.WhileLoop whileLexeme) {
+        WhileLoop whileLoop = new WhileLoop();
 
+        // parse condition
+        commandQueue.add(new ParseExpression(
+                whileLexeme.getBracketsExpression().getExpression(),
+                whileLoop::setCondition
+        ));
+
+        // parse statements
+        commandQueue.add(new ParseStatements(
+                whileLexeme.getBlock(),
+                statement -> whileLoop.getStatements().add(statement)
+        ));
+
+        action.doAction(whileLoop);
     }
 
     @Override
