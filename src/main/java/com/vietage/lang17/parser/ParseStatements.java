@@ -1,10 +1,19 @@
 package com.vietage.lang17.parser;
 
-import com.vietage.lang17.lexer.lexeme.*;
+import com.vietage.lang17.lexer.lexeme.Assignment;
+import com.vietage.lang17.lexer.lexeme.Block;
+import com.vietage.lang17.lexer.lexeme.Call;
+import com.vietage.lang17.lexer.lexeme.LoopOp;
+import com.vietage.lang17.lexer.lexeme.ReturnStatement;
+import com.vietage.lang17.lexer.lexeme.StatementAndWhitespace;
+import com.vietage.lang17.lexer.lexeme.VarDefinition;
+import com.vietage.lang17.lexer.lexeme.WhileLoop;
+import com.vietage.lang17.parser.ast.statement.IfStatement;
 import com.vietage.lang17.parser.ast.statement.Statement;
 import com.vietage.lang17.parser.ast.statement.VariableAssignment;
 import com.vietage.lang17.parser.ast.statement.VariableDefinition;
 
+import java.util.ArrayList;
 import java.util.Queue;
 
 public class ParseStatements extends ParseCommand
@@ -65,8 +74,30 @@ public class ParseStatements extends ParseCommand
     }
 
     @Override
-    public void visit(IfStatement ifStatement) {
+    public void visit(com.vietage.lang17.lexer.lexeme.IfStatement ifLexeme) {
+        IfStatement ifStatement = new IfStatement();
 
+        // parse condition
+        commandQueue.add(new ParseExpression(
+                ifLexeme.getBracketsExpression().getExpression(),
+                ifStatement::setCondition
+        ));
+
+        // parse true branch statements
+        commandQueue.add(new ParseStatements(
+                ifLexeme.getBlock(),
+                statement -> ifStatement.getTrueStatements().add(statement)
+        ));
+
+        // parse false branch statements
+        if (ifLexeme.getElseBlock().getResult()) {
+            ifStatement.setFalseStatements(new ArrayList<>());
+
+            commandQueue.add(new ParseStatements(
+                    ifLexeme.getElseBlock().getElement().getBlock(),
+                    statement -> ifStatement.getFalseStatements().add(statement)
+            ));
+        }
     }
 
     @Override
