@@ -8,16 +8,16 @@ import java.util.Queue;
 public abstract class ParseCommand<L extends Element, A extends ASTElement> {
 
     protected final L lexeme;
-    protected final ParseAction<A> action;
+    protected final ResultConsumer<A> resultConsumer;
 
-    protected ParseCommand(L lexeme, ParseAction<A> action) {
+    protected ParseCommand(L lexeme, ResultConsumer<A> resultConsumer) {
         this.lexeme = lexeme;
-        this.action = action;
+        this.resultConsumer = resultConsumer;
     }
 
     public abstract void parse(Queue<ParseCommand> commandQueue);
 
-    public ParseAction<A> getAction() {
-        return action;
+    public ResultConsumer<A> getResultConsumer() {
+        return resultConsumer;
     }
 }

@@ -11,7 +11,7 @@ import java.util.Queue;
 
 public class ParseFunction extends ParseCommand<FunctionAndWhitespace, Function> {
 
-    public ParseFunction(FunctionAndWhitespace lexeme, ParseAction<Function> action) {
+    public ParseFunction(FunctionAndWhitespace lexeme, ResultConsumer<Function> action) {
         super(lexeme, action);
     }
 
@@ -25,7 +25,7 @@ public class ParseFunction extends ParseCommand<FunctionAndWhitespace, Function>
         parseArguments(function);
         parseStatements(function, commandQueue);
 
-        action.doAction(function);
+        resultConsumer.consume(function);
     }
 
     private void parseArguments(Function function) {

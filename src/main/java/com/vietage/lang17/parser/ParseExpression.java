@@ -8,7 +8,7 @@ public class ParseExpression extends ParseCommand
         <com.vietage.lang17.lexer.lexeme.Expression, Expression> {
 
     public ParseExpression(com.vietage.lang17.lexer.lexeme.Expression lexeme,
-                           ParseAction<Expression> action) {
+                           ResultConsumer<Expression> action) {
         super(lexeme, action);
     }
 

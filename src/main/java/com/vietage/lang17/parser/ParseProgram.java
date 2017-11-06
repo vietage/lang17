@@ -8,7 +8,7 @@ import java.util.Queue;
 
 public class ParseProgram extends ParseCommand<Root, Program> {
 
-    public ParseProgram(Root lexeme, ParseAction<Program> action) {
+    public ParseProgram(Root lexeme, ResultConsumer<Program> action) {
         super(lexeme, action);
     }
 
@@ -22,6 +22,6 @@ public class ParseProgram extends ParseCommand<Root, Program> {
             }));
         }
 
-        action.doAction(program);
+        resultConsumer.consume(program);
     }
 }

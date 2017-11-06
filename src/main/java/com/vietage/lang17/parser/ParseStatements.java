@@ -28,7 +28,7 @@ public class ParseStatements extends ParseCommand
 
     private Queue<ParseCommand> commandQueue;
 
-    public ParseStatements(Block lexeme, ParseAction<Statement> action) {
+    public ParseStatements(Block lexeme, ResultConsumer<Statement> action) {
         super(lexeme, action);
     }
 
@@ -54,7 +54,7 @@ public class ParseStatements extends ParseCommand
                 variableDefinition::setExpression
         ));
 
-        action.doAction(variableDefinition);
+        resultConsumer.consume(variableDefinition);
     }
 
     @Override
@@ -77,7 +77,7 @@ public class ParseStatements extends ParseCommand
                 variableAssignment::setExpression
         ));
 
-        action.doAction(variableAssignment);
+        resultConsumer.consume(variableAssignment);
     }
 
     @Override
@@ -106,7 +106,7 @@ public class ParseStatements extends ParseCommand
             ));
         }
 
-        action.doAction(ifStatement);
+        resultConsumer.consume(ifStatement);
     }
 
     @Override
@@ -125,16 +125,16 @@ public class ParseStatements extends ParseCommand
                 statement -> whileLoop.getStatements().add(statement)
         ));
 
-        action.doAction(whileLoop);
+        resultConsumer.consume(whileLoop);
     }
 
     @Override
     public void visit(LoopOp loopOp) {
         if (loopOp.isBreak()) {
-            action.doAction(new BreakStatement());
+            resultConsumer.consume(new BreakStatement());
         }
         if (loopOp.isContinue()) {
-            action.doAction(new ContinueStatement());
+            resultConsumer.consume(new ContinueStatement());
         }
     }
 
@@ -165,7 +165,7 @@ public class ParseStatements extends ParseCommand
             }
         }
 
-        action.doAction(functionCall);
+        resultConsumer.consume(functionCall);
     }
 
     @Override
@@ -177,6 +177,6 @@ public class ParseStatements extends ParseCommand
                 returnStatement::setExpression
         ));
 
-        action.doAction(returnStatement);
+        resultConsumer.consume(returnStatement);
     }
 }
