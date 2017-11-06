@@ -7,5 +7,21 @@ import java.util.List;
 public class FunctionCall extends Statement {
 
     private final String name;
-    private final List<Expression> arguments;
+    private List<Expression> arguments;
+
+    public FunctionCall(String name) {
+        this.name = name;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public List<Expression> getArguments() {
+        return arguments;
+    }
+
+    public void setArguments(List<Expression> arguments) {
+        this.arguments = arguments;
+    }
 }

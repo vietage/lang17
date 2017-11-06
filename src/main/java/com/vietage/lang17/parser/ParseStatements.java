@@ -4,9 +4,12 @@ import com.vietage.lang17.lexer.lexeme.Assignment;
 import com.vietage.lang17.lexer.lexeme.Block;
 import com.vietage.lang17.lexer.lexeme.Call;
 import com.vietage.lang17.lexer.lexeme.LoopOp;
+import com.vietage.lang17.lexer.lexeme.RestExpressions;
 import com.vietage.lang17.lexer.lexeme.ReturnStatement;
 import com.vietage.lang17.lexer.lexeme.StatementAndWhitespace;
 import com.vietage.lang17.lexer.lexeme.VarDefinition;
+import com.vietage.lang17.parser.ast.expression.Expression;
+import com.vietage.lang17.parser.ast.expression.FunctionCall;
 import com.vietage.lang17.parser.ast.statement.BreakStatement;
 import com.vietage.lang17.parser.ast.statement.ContinueStatement;
 import com.vietage.lang17.parser.ast.statement.IfStatement;
@@ -16,6 +19,7 @@ import com.vietage.lang17.parser.ast.statement.VariableDefinition;
 import com.vietage.lang17.parser.ast.statement.WhileLoop;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Queue;
 
 public class ParseStatements extends ParseCommand
@@ -136,7 +140,32 @@ public class ParseStatements extends ParseCommand
 
     @Override
     public void visit(Call call) {
+        String name = call.getName().getResult();
 
+        FunctionCall functionCall = new FunctionCall(name);
+
+        // parse arguments
+        if (call.getExpressions().getResult()) {
+            List<Expression> arguments = new ArrayList<>();
+
+            functionCall.setArguments(arguments);
+
+            // parse the first argument
+            commandQueue.add(new ParseExpression(
+                    call.getExpressions().getElement().getExpression(),
+                    arguments::add
+            ));
+
+            // parse the rest arguments
+            for (RestExpressions restExpressions : call.getExpressions().getElement().getRestExpressions()) {
+                commandQueue.add(new ParseExpression(
+                        restExpressions.getExpression(),
+                        arguments::add
+                ));
+            }
+        }
+
+        action.doAction(functionCall);
     }
 
     @Override
