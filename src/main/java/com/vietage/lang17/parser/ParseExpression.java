@@ -1,8 +1,8 @@
 package com.vietage.lang17.parser;
 
 import com.vietage.lang17.lexer.lexeme.RestAndExpressions;
-import com.vietage.lang17.parser.ast.expression.AndExpression;
 import com.vietage.lang17.parser.ast.expression.Expression;
+import com.vietage.lang17.parser.ast.expression.OrExpression;
 
 import java.util.Queue;
 
@@ -24,23 +24,23 @@ public class ParseExpression extends ParseCommand
             ));
         } else {
             // several expressions exist, parse them all
-            AndExpression andExpression = new AndExpression();
+            OrExpression orExpression = new OrExpression();
 
             // parse the first and expression
             commandQueue.add(new ParseAndExpression(
                     lexeme.getAndExpression(),
-                    andExpression.getExpressions()::add
+                    orExpression.getExpressions()::add
             ));
 
             // parse the rest and expressions
             for (RestAndExpressions restAndExpressions : lexeme.getRestAndExpressions()) {
                 commandQueue.add(new ParseAndExpression(
                         restAndExpressions.getAndExpression(),
-                        andExpression.getExpressions()::add
+                        orExpression.getExpressions()::add
                 ));
             }
 
-            resultConsumer.consume(andExpression);
+            resultConsumer.consume(orExpression);
         }
     }
 }
