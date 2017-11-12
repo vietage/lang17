@@ -2,6 +2,8 @@ package com.vietage.lang17.parser;
 
 import com.vietage.lang17.lexer.lexeme.RelativeExpression;
 import com.vietage.lang17.parser.ast.expression.Expression;
+import com.vietage.lang17.parser.ast.expression.RelationalExpression;
+import com.vietage.lang17.parser.ast.expression.RelationalOperator;
 
 import java.util.Queue;
 
@@ -15,6 +17,31 @@ public class ParseRelationalExpression extends ParseCommand
 
     @Override
     public void parse(Queue<ParseCommand> commandQueue) {
+        if (!lexeme.getRightAddExpression().getResult()) {
+            // no right hand expression exists, just parse the left one
+            commandQueue.add(new ParseAdditionExpression(
+                    lexeme.getAddExpression(),
+                    resultConsumer
+            ));
+        } else {
+            RelationalOperator relationalOperator = lexeme.getRightAddExpression()
+                    .getElement().getRelativeOp().getRelationalOperator();
 
+            RelationalExpression relationalExpression = new RelationalExpression(relationalOperator);
+
+            // parse left hand expression
+            commandQueue.add(new ParseAdditionExpression(
+                    lexeme.getAddExpression(),
+                    relationalExpression::setLeftExpression
+            ));
+
+            // parse right hand expression
+            commandQueue.add(new ParseAdditionExpression(
+                    lexeme.getRightAddExpression().getElement().getAddExpression(),
+                    relationalExpression::setRightExpression
+            ));
+
+            resultConsumer.consume(relationalExpression);
+        }
     }
 }

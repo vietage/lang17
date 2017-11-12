@@ -9,17 +9,17 @@ package com.vietage.lang17.lexer.lexeme;
 public class RelativeExpression extends CompositeElement {
 
     private AddExpression addExpression;
-    private ZeroOrOne<RightAndExpression> rightAndExpression;
+    private ZeroOrOne<RightAddExpression> rightAddExpression;
 
     @Override
     protected Element[] getElements() {
         addExpression = new AddExpression();
-        rightAndExpression = new ZeroOrOne<>(new RightAndExpression());
+        rightAddExpression = new ZeroOrOne<>(new RightAddExpression());
 
         return new Element[]{
                 addExpression,
                 new OptionalWhitespace(),
-                rightAndExpression
+                rightAddExpression
         };
     }
 
@@ -27,7 +27,7 @@ public class RelativeExpression extends CompositeElement {
         return addExpression;
     }
 
-    public ZeroOrOne<RightAndExpression> getRightAndExpression() {
-        return rightAndExpression;
+    public ZeroOrOne<RightAddExpression> getRightAddExpression() {
+        return rightAddExpression;
     }
 }
