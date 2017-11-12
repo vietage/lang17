@@ -2,8 +2,6 @@ package com.vietage.lang17.lexer.lexeme;
 
 import com.vietage.lang17.parser.ast.Type;
 
-import java.util.Map;
-
 /**
  * EBNF:
  * <pre>
@@ -12,12 +10,12 @@ import java.util.Map;
  */
 public class BasicType extends Choice {
 
-    private static final Map<Integer, Type> TYPES = Map.ofEntries(
-            Map.entry(0, Type.INTEGER),
-            Map.entry(1, Type.FLOAT),
-            Map.entry(2, Type.BOOLEAN),
-            Map.entry(3, Type.STRING)
-    );
+    private static final Type[] TYPES = new Type[]{
+            Type.INTEGER,
+            Type.FLOAT,
+            Type.BOOLEAN,
+            Type.STRING
+    };
 
     @Override
     protected Element[] getElements() {
@@ -30,6 +28,6 @@ public class BasicType extends Choice {
     }
 
     public Type getType() {
-        return TYPES.get(getCurrentElement());
+        return TYPES[getCurrentElement()];
     }
 }
