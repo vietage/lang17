@@ -10,11 +10,6 @@ import com.vietage.lang17.parser.ast.expression.EqualityOperator;
  */
 public class EqualOp extends Choice {
 
-    private static final EqualityOperator[] OPERATORS = new EqualityOperator[]{
-            EqualityOperator.EQUAL,
-            EqualityOperator.NOT_EQUAL
-    };
-
     @Override
     protected Element[] getElements() {
         return new Element[]{
@@ -24,6 +19,6 @@ public class EqualOp extends Choice {
     }
 
     public EqualityOperator getEqualityOperator() {
-        return OPERATORS[getCurrentElement()];
+        return EqualityOperator.values()[getCurrentElement()];
     }
 }

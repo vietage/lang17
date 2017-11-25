@@ -10,13 +10,6 @@ import com.vietage.lang17.parser.ast.Type;
  */
 public class BasicType extends Choice {
 
-    private static final Type[] TYPES = new Type[]{
-            Type.INTEGER,
-            Type.FLOAT,
-            Type.BOOLEAN,
-            Type.STRING
-    };
-
     @Override
     protected Element[] getElements() {
         return new Element[]{
@@ -28,6 +21,6 @@ public class BasicType extends Choice {
     }
 
     public Type getType() {
-        return TYPES[getCurrentElement()];
+        return Type.values()[getCurrentElement()];
     }
 }

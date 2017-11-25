@@ -1,5 +1,7 @@
 package com.vietage.lang17.lexer.lexeme;
 
+import com.vietage.lang17.parser.ast.expression.AdditionOperator;
+
 /**
  * EBNF:
  * <pre>
@@ -14,5 +16,9 @@ public class AddKeyword extends Choice {
                 new Token("+"),
                 new Token("-")
         };
+    }
+
+    public AdditionOperator getAdditionOperator() {
+        return AdditionOperator.values()[getCurrentElement()];
     }
 }
