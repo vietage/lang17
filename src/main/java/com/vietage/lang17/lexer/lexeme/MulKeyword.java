@@ -1,5 +1,7 @@
 package com.vietage.lang17.lexer.lexeme;
 
+import com.vietage.lang17.parser.ast.expression.MultiplicationOperator;
+
 /**
  * EBNF:
  * <pre>
@@ -15,5 +17,9 @@ public class MulKeyword extends Choice {
                 new Token("/"),
                 new Token("%")
         };
+    }
+
+    public MultiplicationOperator getMultiplicationOperator() {
+        return MultiplicationOperator.values()[getCurrentElement()];
     }
 }
