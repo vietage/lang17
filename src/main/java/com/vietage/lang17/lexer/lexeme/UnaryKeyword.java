@@ -1,5 +1,7 @@
 package com.vietage.lang17.lexer.lexeme;
 
+import com.vietage.lang17.parser.ast.expression.UnaryOperator;
+
 /**
  * EBNF:
  * <pre>
@@ -14,5 +16,9 @@ public class UnaryKeyword extends Choice {
                 new Token("!"),
                 new Token("-")
         };
+    }
+
+    public UnaryOperator getUnaryOperator() {
+        return UnaryOperator.values()[getCurrentElement()];
     }
 }
