@@ -6,6 +6,10 @@ public class BooleanConstant extends ConstantExpression {
 
     private final boolean value;
 
+    public BooleanConstant(boolean value) {
+        this.value = value;
+    }
+
     @Override
     protected Type getType() {
         return Type.BOOLEAN;

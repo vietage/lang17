@@ -6,13 +6,27 @@ package com.vietage.lang17.lexer.lexeme;
  *     'true' | 'false'
  * </pre>
  */
-public class BooleanConstant extends Choice {
+public class BooleanConstant extends Choice implements ConstantElement {
+
+    private static final boolean[] BOOLEANS = new boolean[]{
+            false,
+            true
+    };
 
     @Override
     protected Element[] getElements() {
         return new Element[]{
-                new Token("true"),
-                new Token("false")
+                new Token("false"),
+                new Token("true")
         };
+    }
+
+    @Override
+    public void accept(Visitor visitor) {
+        visitor.visit(this);
+    }
+
+    public boolean getResult() {
+        return BOOLEANS[getCurrentElement()];
     }
 }

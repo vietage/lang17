@@ -6,7 +6,8 @@ package com.vietage.lang17.lexer.lexeme;
  *     '"' { STR_CHAR } '"'
  * </pre>
  */
-public class StringConstant extends CompositeElement {
+public class StringConstant extends CompositeElement
+        implements ConstantElement {
 
     private StringToken stringToken;
 
@@ -19,6 +20,11 @@ public class StringConstant extends CompositeElement {
                 stringToken,
                 new Token("\"")
         };
+    }
+
+    @Override
+    public void accept(Visitor visitor) {
+        visitor.visit(this);
     }
 
     public StringToken getStringToken() {

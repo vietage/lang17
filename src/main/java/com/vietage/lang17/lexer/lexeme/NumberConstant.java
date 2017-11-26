@@ -6,7 +6,8 @@ package com.vietage.lang17.lexer.lexeme;
  *     INT_PART [ '.' INT_PART ]
  * </pre>
  */
-public class NumberConstant extends CompositeElement {
+public class NumberConstant extends CompositeElement
+        implements ConstantElement {
 
     private IntegerPart integerPart;
     private ZeroOrOne<FractionPart> fractionPart;
@@ -20,6 +21,11 @@ public class NumberConstant extends CompositeElement {
                 integerPart,
                 fractionPart
         };
+    }
+
+    @Override
+    public void accept(Visitor visitor) {
+        visitor.visit(this);
     }
 
     public IntegerPart getIntegerPart() {

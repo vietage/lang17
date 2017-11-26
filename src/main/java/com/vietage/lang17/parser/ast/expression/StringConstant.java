@@ -6,6 +6,10 @@ public class StringConstant extends ConstantExpression {
 
     private final String value;
 
+    public StringConstant(String value) {
+        this.value = value;
+    }
+
     @Override
     protected Type getType() {
         return Type.STRING;

@@ -4,7 +4,11 @@ import com.vietage.lang17.parser.ast.Type;
 
 public class IntegerConstant extends NumberConstant {
 
-    private final int value;
+    private final long value;
+
+    public IntegerConstant(long value) {
+        this.value = value;
+    }
 
     @Override
     protected Type getType() {

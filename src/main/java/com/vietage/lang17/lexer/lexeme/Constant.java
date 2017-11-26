@@ -8,25 +8,24 @@ package com.vietage.lang17.lexer.lexeme;
  */
 public class Constant extends Choice implements ValueExpressionElement {
 
-    private NumberConstant numberConstant;
-    private StringConstant stringConstant;
-    private BooleanConstant booleanConstant;
+    private ConstantElement[] constantElements;
 
     @Override
     protected Element[] getElements() {
-        numberConstant = new NumberConstant();
-        stringConstant = new StringConstant();
-        booleanConstant = new BooleanConstant();
-
-        return new Element[]{
-                numberConstant,
-                stringConstant,
-                booleanConstant
+        constantElements = new ConstantElement[]{
+                new NumberConstant(),
+                new StringConstant(),
+                new BooleanConstant()
         };
+        return constantElements;
     }
 
     @Override
     public void accept(Visitor visitor) {
         visitor.visit(this);
+    }
+
+    public ConstantElement getConstantElement() {
+        return constantElements[getCurrentElement()];
     }
 }
