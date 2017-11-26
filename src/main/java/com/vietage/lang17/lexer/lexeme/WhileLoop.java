@@ -8,7 +8,7 @@ package com.vietage.lang17.lexer.lexeme;
  *     { WHITESPACE } BLOCK
  * </pre>
  */
-public class WhileLoop extends CompositeElement implements Statement {
+public class WhileLoop extends CompositeElement implements StatementChoiceElement {
 
     private BracketsExpression bracketsExpression;
     private Block block;

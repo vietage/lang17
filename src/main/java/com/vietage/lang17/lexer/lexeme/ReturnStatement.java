@@ -6,7 +6,7 @@ package com.vietage.lang17.lexer.lexeme;
  *     'return' { WHITESPACE } EXPRESSION
  * </pre>
  */
-public class ReturnStatement extends CompositeElement implements Statement {
+public class ReturnStatement extends CompositeElement implements StatementChoiceElement {
 
     private Expression expression;
 

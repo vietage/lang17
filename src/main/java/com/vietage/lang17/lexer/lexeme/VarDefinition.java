@@ -9,7 +9,7 @@ package com.vietage.lang17.lexer.lexeme;
  *     { WHITESPACE } EXPRESSION
  * </pre>
  */
-public class VarDefinition extends CompositeElement implements Statement {
+public class VarDefinition extends CompositeElement implements StatementChoiceElement {
 
     private Type type;
     private Name name;

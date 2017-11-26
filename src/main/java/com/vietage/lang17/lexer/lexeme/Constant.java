@@ -6,7 +6,7 @@ package com.vietage.lang17.lexer.lexeme;
  *     NUMBER | STRING | BOOLEAN
  * </pre>
  */
-public class Constant extends Choice {
+public class Constant extends Choice implements ValueExpressionElement {
 
     private NumberConstant numberConstant;
     private StringConstant stringConstant;
@@ -23,5 +23,10 @@ public class Constant extends Choice {
                 stringConstant,
                 booleanConstant
         };
+    }
+
+    @Override
+    public void accept(Visitor visitor) {
+        visitor.visit(this);
     }
 }

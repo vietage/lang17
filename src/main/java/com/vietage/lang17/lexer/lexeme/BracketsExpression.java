@@ -6,7 +6,8 @@ package com.vietage.lang17.lexer.lexeme;
  *     '(' { WHITESPACE } EXPRESSION ')'
  * </pre>
  */
-public class BracketsExpression extends CompositeElement {
+public class BracketsExpression extends CompositeElement
+        implements ValueExpressionElement {
 
     private Expression expression;
 
@@ -20,6 +21,11 @@ public class BracketsExpression extends CompositeElement {
                 expression,
                 new Token(")")
         };
+    }
+
+    @Override
+    public void accept(Visitor visitor) {
+        visitor.visit(this);
     }
 
     public Expression getExpression() {

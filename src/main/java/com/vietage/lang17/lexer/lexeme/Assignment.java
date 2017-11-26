@@ -6,7 +6,7 @@ package com.vietage.lang17.lexer.lexeme;
  *     VAR_ACCESS { WHITESPACE } '=' { WHITESPACE } EXPRESSION
  * </pre>
  */
-public class Assignment extends CompositeElement implements Statement {
+public class Assignment extends CompositeElement implements StatementChoiceElement {
 
     private VarAccess varAccess;
     private Expression expression;

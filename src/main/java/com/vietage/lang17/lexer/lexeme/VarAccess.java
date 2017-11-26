@@ -6,7 +6,7 @@ package com.vietage.lang17.lexer.lexeme;
  *     NAME { WHITESPACE } [ INDEX_EXPR ]
  * </pre>
  */
-public class VarAccess extends CompositeElement {
+public class VarAccess extends CompositeElement implements ValueExpressionElement {
 
     private Name name;
     private ZeroOrOne<IndexExpression> indexExpression;
@@ -21,6 +21,11 @@ public class VarAccess extends CompositeElement {
                 new OptionalWhitespace(),
                 indexExpression
         };
+    }
+
+    @Override
+    public void accept(Visitor visitor) {
+        visitor.visit(this);
     }
 
     public Name getName() {

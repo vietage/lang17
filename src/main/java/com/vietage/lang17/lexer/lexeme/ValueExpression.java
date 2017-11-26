@@ -8,26 +8,21 @@ package com.vietage.lang17.lexer.lexeme;
  */
 public class ValueExpression extends Choice {
 
-    private BracketsExpression bracketsExpression;
-    private Constant constant;
-    private VarAccess varAccess;
-    private NewArray newArray;
-    private Call call;
+    private ValueExpressionElement[] valueExpressionElements;
 
     @Override
     protected Element[] getElements() {
-        bracketsExpression = new BracketsExpression();
-        constant = new Constant();
-        varAccess = new VarAccess();
-        newArray = new NewArray();
-        call = new Call();
-
-        return new Element[]{
-                bracketsExpression,
-                constant,
-                varAccess,
-                newArray,
-                call
+        valueExpressionElements = new ValueExpressionElement[]{
+                new BracketsExpression(),
+                new Constant(),
+                new VarAccess(),
+                new NewArray(),
+                new Call(),
         };
+        return valueExpressionElements;
+    }
+
+    public ValueExpressionElement getValueExpressionElement() {
+        return valueExpressionElements[getCurrentElement()];
     }
 }

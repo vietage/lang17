@@ -9,7 +9,7 @@ package com.vietage.lang17.lexer.lexeme;
  *     { WHITESPACE } [ ELSE_BLOCK ]
  * </pre>
  */
-public class IfStatement extends CompositeElement implements Statement {
+public class IfStatement extends CompositeElement implements StatementChoiceElement {
 
     private BracketsExpression bracketsExpression;
     private Block block;

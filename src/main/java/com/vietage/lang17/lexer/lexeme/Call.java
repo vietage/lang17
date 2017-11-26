@@ -6,7 +6,8 @@ package com.vietage.lang17.lexer.lexeme;
  *     NAME { WHITESPACE } '(' { WHITESPACE } [ EXPRESSIONS ] ')'
  * </pre>
  */
-public class Call extends CompositeElement implements Statement {
+public class Call extends CompositeElement
+        implements StatementChoiceElement, ValueExpressionElement {
 
     private Name name;
     private ZeroOrOne<Expressions> expressions;
@@ -27,7 +28,12 @@ public class Call extends CompositeElement implements Statement {
     }
 
     @Override
-    public void accept(Visitor visitor) {
+    public void accept(StatementChoiceElement.Visitor visitor) {
+        visitor.visit(this);
+    }
+
+    @Override
+    public void accept(ValueExpressionElement.Visitor visitor) {
         visitor.visit(this);
     }
 

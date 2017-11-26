@@ -6,7 +6,7 @@ package com.vietage.lang17.lexer.lexeme;
  *     'break' | 'continue'
  * </pre>
  */
-public class LoopOp extends Choice implements Statement {
+public class LoopOp extends Choice implements StatementChoiceElement {
 
     private Token breakToken;
     private Token continueToken;

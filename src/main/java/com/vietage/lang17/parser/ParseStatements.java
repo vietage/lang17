@@ -6,6 +6,7 @@ import com.vietage.lang17.lexer.lexeme.Call;
 import com.vietage.lang17.lexer.lexeme.LoopOp;
 import com.vietage.lang17.lexer.lexeme.RestExpressions;
 import com.vietage.lang17.lexer.lexeme.StatementAndWhitespace;
+import com.vietage.lang17.lexer.lexeme.StatementChoiceElement;
 import com.vietage.lang17.lexer.lexeme.VarDefinition;
 import com.vietage.lang17.parser.ast.expression.Expression;
 import com.vietage.lang17.parser.ast.expression.FunctionCall;
@@ -24,7 +25,7 @@ import java.util.Queue;
 
 public class ParseStatements extends ParseCommand
         <com.vietage.lang17.lexer.lexeme.Block, Statement>
-        implements com.vietage.lang17.lexer.lexeme.Statement.Visitor {
+        implements StatementChoiceElement.Visitor {
 
     private Queue<ParseCommand> commandQueue;
 
@@ -37,7 +38,7 @@ public class ParseStatements extends ParseCommand
         this.commandQueue = commandQueue;
 
         for (StatementAndWhitespace statementAndWhitespace : lexeme.getStatements()) {
-            statementAndWhitespace.getStatementChoice().getStatement().accept(this);
+            statementAndWhitespace.getStatementChoice().getStatementChoiceElement().accept(this);
         }
     }
 
