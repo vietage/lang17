@@ -1,6 +1,6 @@
 package com.vietage.lang17.parser.ast.expression;
 
-public class VariableRead extends Expression {
+public class VariableRead implements Expression {
 
     private final String name;
 

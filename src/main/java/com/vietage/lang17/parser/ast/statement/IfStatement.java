@@ -5,7 +5,7 @@ import com.vietage.lang17.parser.ast.expression.Expression;
 import java.util.ArrayList;
 import java.util.List;
 
-public class IfStatement extends Statement {
+public class IfStatement implements Statement {
 
     private Expression condition;
     private final List<Statement> trueStatements = new ArrayList<>();

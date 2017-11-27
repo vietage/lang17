@@ -1,6 +1,6 @@
 package com.vietage.lang17.parser.ast.expression;
 
-public class UnaryExpression extends Expression {
+public class UnaryExpression implements Expression {
 
     private final UnaryOperator operator;
     private Expression expression;

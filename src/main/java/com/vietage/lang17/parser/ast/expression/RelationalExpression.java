@@ -1,6 +1,6 @@
 package com.vietage.lang17.parser.ast.expression;
 
-public class RelationalExpression extends Expression {
+public class RelationalExpression implements Expression {
 
     private final RelationalOperator operator;
     private Expression leftExpression;

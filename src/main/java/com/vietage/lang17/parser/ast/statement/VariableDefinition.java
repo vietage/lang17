@@ -3,7 +3,7 @@ package com.vietage.lang17.parser.ast.statement;
 import com.vietage.lang17.parser.ast.Type;
 import com.vietage.lang17.parser.ast.expression.Expression;
 
-public class VariableDefinition extends Statement {
+public class VariableDefinition implements Statement {
 
     private final Type type;
     private final String name;

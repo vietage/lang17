@@ -1,5 +1,5 @@
 package com.vietage.lang17.parser.ast;
 
-public abstract class ASTElement {
+public interface ASTElement {
 
 }

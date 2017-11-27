@@ -1,6 +1,6 @@
 package com.vietage.lang17.parser.ast.expression;
 
-public class EqualityExpression extends Expression {
+public class EqualityExpression implements Expression {
 
     private final EqualityOperator operator;
     private Expression leftExpression;

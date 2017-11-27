@@ -1,6 +1,6 @@
 package com.vietage.lang17.parser.ast.expression;
 
-public class ArrayRead extends Expression {
+public class ArrayRead implements Expression {
 
     private final String name;
     private Expression indexExpression;

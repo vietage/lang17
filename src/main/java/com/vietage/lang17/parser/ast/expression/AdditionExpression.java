@@ -1,6 +1,6 @@
 package com.vietage.lang17.parser.ast.expression;
 
-public class AdditionExpression extends Expression {
+public class AdditionExpression implements Expression {
 
     private final AdditionOperator operator;
     private Expression leftExpression;

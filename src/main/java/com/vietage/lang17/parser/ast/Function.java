@@ -5,7 +5,7 @@ import com.vietage.lang17.parser.ast.statement.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Function extends ASTElement {
+public class Function implements ASTElement {
 
     private final String name;
     private final Type returnType;
