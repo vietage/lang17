@@ -43,8 +43,12 @@ public class ParseFunction extends ParseCommand<FunctionAndWhitespace, Function>
     }
 
     private void parseStatements(Function function, Queue<ParseCommand> commandQueue) {
-        commandQueue.add(new ParseStatements(lexeme.getFunction().getBlock(),
-                statement -> function.getStatements().add(statement)));
+        commandQueue.add(
+                new ParseStatements(
+                        lexeme.getFunction().getBlock(),
+                        statement -> function.getStatements().add(statement)
+                )
+        );
     }
 
     private Argument parseArgument(com.vietage.lang17.lexer.lexeme.Argument argument) {

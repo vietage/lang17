@@ -14,7 +14,12 @@ public class Parser {
     private Program program;
 
     public Program parse(Root root) {
-        commandQueue.add(new ParseProgram(root, this::setProgram));
+        commandQueue.add(
+                new ParseProgram(
+                        root,
+                        this::setProgram
+                )
+        );
 
         while (!commandQueue.isEmpty()) {
             ParseCommand parseCommand = commandQueue.remove();

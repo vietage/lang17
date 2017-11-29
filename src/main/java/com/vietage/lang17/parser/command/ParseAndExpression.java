@@ -18,26 +18,32 @@ public class ParseAndExpression extends ParseCommand
     public void parse(Queue<ParseCommand> commandQueue) {
         if (lexeme.getRestEqualExpressions().getLexemes().isEmpty()) {
             // one equality expression exist, skip creation of intermediate AndExpression
-            commandQueue.add(new ParseEqualityExpression(
-                    lexeme.getEqualExpression(),
-                    resultConsumer
-            ));
+            commandQueue.add(
+                    new ParseEqualityExpression(
+                            lexeme.getEqualExpression(),
+                            resultConsumer
+                    )
+            );
         } else {
             // parse several equality expressions and put them into AndExpression
             AndExpression andExpression = new AndExpression();
 
             // parse the first equality expression
-            commandQueue.add(new ParseEqualityExpression(
-                    lexeme.getEqualExpression(),
-                    andExpression.getExpressions()::add
-            ));
+            commandQueue.add(
+                    new ParseEqualityExpression(
+                            lexeme.getEqualExpression(),
+                            andExpression.getExpressions()::add
+                    )
+            );
 
             // parse the rest equality expressions
             for (RestEqualExpressions restEqualExpressions : lexeme.getRestEqualExpressions()) {
-                commandQueue.add(new ParseEqualityExpression(
-                        restEqualExpressions.getEqualExpression(),
-                        andExpression.getExpressions()::add
-                ));
+                commandQueue.add(
+                        new ParseEqualityExpression(
+                                restEqualExpressions.getEqualExpression(),
+                                andExpression.getExpressions()::add
+                        )
+                );
             }
 
             resultConsumer.consume(andExpression);

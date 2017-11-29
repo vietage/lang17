@@ -18,10 +18,12 @@ public class ParseRelationalExpression extends ParseCommand<RelativeExpression, 
     public void parse(Queue<ParseCommand> commandQueue) {
         if (!lexeme.getRightAddExpression().getResult()) {
             // no right hand expression exists, just parse the left one
-            commandQueue.add(new ParseAdditionExpression(
-                    lexeme.getAddExpression(),
-                    resultConsumer
-            ));
+            commandQueue.add(
+                    new ParseAdditionExpression(
+                            lexeme.getAddExpression(),
+                            resultConsumer
+                    )
+            );
         } else {
             RelationalOperator relationalOperator = lexeme.getRightAddExpression()
                     .getLexeme().getRelativeOp().getRelationalOperator();
@@ -29,16 +31,20 @@ public class ParseRelationalExpression extends ParseCommand<RelativeExpression, 
             RelationalExpression relationalExpression = new RelationalExpression(relationalOperator);
 
             // parse left hand expression
-            commandQueue.add(new ParseAdditionExpression(
-                    lexeme.getAddExpression(),
-                    relationalExpression::setLeftExpression
-            ));
+            commandQueue.add(
+                    new ParseAdditionExpression(
+                            lexeme.getAddExpression(),
+                            relationalExpression::setLeftExpression
+                    )
+            );
 
             // parse right hand expression
-            commandQueue.add(new ParseAdditionExpression(
-                    lexeme.getRightAddExpression().getLexeme().getAddExpression(),
-                    relationalExpression::setRightExpression
-            ));
+            commandQueue.add(
+                    new ParseAdditionExpression(
+                            lexeme.getRightAddExpression().getLexeme().getAddExpression(),
+                            relationalExpression::setRightExpression
+                    )
+            );
 
             resultConsumer.consume(relationalExpression);
         }

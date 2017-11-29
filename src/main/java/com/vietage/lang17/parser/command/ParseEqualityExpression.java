@@ -19,10 +19,12 @@ public class ParseEqualityExpression extends ParseCommand
     public void parse(Queue<ParseCommand> commandQueue) {
         if (!lexeme.getRightRelativeExpression().getResult()) {
             // no right hand expression exists, just parse the left expression
-            commandQueue.add(new ParseRelationalExpression(
-                    lexeme.getRelativeExpression(),
-                    resultConsumer
-            ));
+            commandQueue.add(
+                    new ParseRelationalExpression(
+                            lexeme.getRelativeExpression(),
+                            resultConsumer
+                    )
+            );
         } else {
             EqualityOperator equalityOperator = lexeme.getRightRelativeExpression()
                     .getLexeme().getEqualOp().getEqualityOperator();
@@ -30,16 +32,20 @@ public class ParseEqualityExpression extends ParseCommand
             EqualityExpression equalityExpression = new EqualityExpression(equalityOperator);
 
             // parse left hand expression
-            commandQueue.add(new ParseRelationalExpression(
-                    lexeme.getRelativeExpression(),
-                    equalityExpression::setLeftExpression
-            ));
+            commandQueue.add(
+                    new ParseRelationalExpression(
+                            lexeme.getRelativeExpression(),
+                            equalityExpression::setLeftExpression
+                    )
+            );
 
             // parse right hand expression
-            commandQueue.add(new ParseRelationalExpression(
-                    lexeme.getRightRelativeExpression().getLexeme().getRelativeExpression(),
-                    equalityExpression::setRightExpression
-            ));
+            commandQueue.add(
+                    new ParseRelationalExpression(
+                            lexeme.getRightRelativeExpression().getLexeme().getRelativeExpression(),
+                            equalityExpression::setRightExpression
+                    )
+            );
 
             resultConsumer.consume(equalityExpression);
         }

@@ -49,10 +49,12 @@ public class ParseStatements extends ParseCommand<Block, Statement>
         );
 
         // parse right hand expression
-        commandQueue.add(new ParseExpression(
-                varDefinition.getExpression(),
-                variableDefinition::setExpression
-        ));
+        commandQueue.add(
+                new ParseExpression(
+                        varDefinition.getExpression(),
+                        variableDefinition::setExpression
+                )
+        );
 
         resultConsumer.consume(variableDefinition);
     }
@@ -65,17 +67,21 @@ public class ParseStatements extends ParseCommand<Block, Statement>
 
         // parse array index expression
         if (assignment.getVarAccess().getIndexExpression().getResult()) {
-            commandQueue.add(new ParseExpression(
-                    assignment.getVarAccess().getIndexExpression().getLexeme().getExpression(),
-                    variableAssignment::setIndexExpression
-            ));
+            commandQueue.add(
+                    new ParseExpression(
+                            assignment.getVarAccess().getIndexExpression().getLexeme().getExpression(),
+                            variableAssignment::setIndexExpression
+                    )
+            );
         }
 
         // parse right hand expression
-        commandQueue.add(new ParseExpression(
-                assignment.getExpression(),
-                variableAssignment::setExpression
-        ));
+        commandQueue.add(
+                new ParseExpression(
+                        assignment.getExpression(),
+                        variableAssignment::setExpression
+                )
+        );
 
         resultConsumer.consume(variableAssignment);
     }
@@ -85,25 +91,31 @@ public class ParseStatements extends ParseCommand<Block, Statement>
         IfStatement ifStatement = new IfStatement();
 
         // parse condition
-        commandQueue.add(new ParseExpression(
-                ifLexeme.getBracketsExpression().getExpression(),
-                ifStatement::setCondition
-        ));
+        commandQueue.add(
+                new ParseExpression(
+                        ifLexeme.getBracketsExpression().getExpression(),
+                        ifStatement::setCondition
+                )
+        );
 
         // parse true branch statements
-        commandQueue.add(new ParseStatements(
-                ifLexeme.getBlock(),
-                statement -> ifStatement.getTrueStatements().add(statement)
-        ));
+        commandQueue.add(
+                new ParseStatements(
+                        ifLexeme.getBlock(),
+                        statement -> ifStatement.getTrueStatements().add(statement)
+                )
+        );
 
         // parse false branch statements
         if (ifLexeme.getElseBlock().getResult()) {
             ifStatement.setFalseStatements(new ArrayList<>());
 
-            commandQueue.add(new ParseStatements(
-                    ifLexeme.getElseBlock().getLexeme().getBlock(),
-                    statement -> ifStatement.getFalseStatements().add(statement)
-            ));
+            commandQueue.add(
+                    new ParseStatements(
+                            ifLexeme.getElseBlock().getLexeme().getBlock(),
+                            statement -> ifStatement.getFalseStatements().add(statement)
+                    )
+            );
         }
 
         resultConsumer.consume(ifStatement);
@@ -114,16 +126,20 @@ public class ParseStatements extends ParseCommand<Block, Statement>
         WhileLoop whileLoop = new WhileLoop();
 
         // parse condition
-        commandQueue.add(new ParseExpression(
-                whileLexeme.getBracketsExpression().getExpression(),
-                whileLoop::setCondition
-        ));
+        commandQueue.add(
+                new ParseExpression(
+                        whileLexeme.getBracketsExpression().getExpression(),
+                        whileLoop::setCondition
+                )
+        );
 
         // parse statements
-        commandQueue.add(new ParseStatements(
-                whileLexeme.getBlock(),
-                statement -> whileLoop.getStatements().add(statement)
-        ));
+        commandQueue.add(
+                new ParseStatements(
+                        whileLexeme.getBlock(),
+                        statement -> whileLoop.getStatements().add(statement)
+                )
+        );
 
         resultConsumer.consume(whileLoop);
     }
@@ -151,17 +167,21 @@ public class ParseStatements extends ParseCommand<Block, Statement>
             functionCall.setArguments(arguments);
 
             // parse the first argument
-            commandQueue.add(new ParseExpression(
-                    call.getExpressions().getLexeme().getExpression(),
-                    arguments::add
-            ));
+            commandQueue.add(
+                    new ParseExpression(
+                            call.getExpressions().getLexeme().getExpression(),
+                            arguments::add
+                    )
+            );
 
             // parse the rest arguments
             for (RestExpressions restExpressions : call.getExpressions().getLexeme().getRestExpressions()) {
-                commandQueue.add(new ParseExpression(
-                        restExpressions.getExpression(),
-                        arguments::add
-                ));
+                commandQueue.add(
+                        new ParseExpression(
+                                restExpressions.getExpression(),
+                                arguments::add
+                        )
+                );
             }
         }
 
@@ -172,10 +192,12 @@ public class ParseStatements extends ParseCommand<Block, Statement>
     public void visit(com.vietage.lang17.lexer.lexeme.ReturnStatement returnLexeme) {
         ReturnStatement returnStatement = new ReturnStatement();
 
-        commandQueue.add(new ParseExpression(
-                returnLexeme.getExpression(),
-                returnStatement::setExpression
-        ));
+        commandQueue.add(
+                new ParseExpression(
+                        returnLexeme.getExpression(),
+                        returnStatement::setExpression
+                )
+        );
 
         resultConsumer.consume(returnStatement);
     }
