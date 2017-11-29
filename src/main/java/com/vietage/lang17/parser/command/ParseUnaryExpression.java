@@ -1,4 +1,4 @@
-package com.vietage.lang17.parser;
+package com.vietage.lang17.parser.command;
 
 import com.vietage.lang17.parser.ast.expression.Expression;
 import com.vietage.lang17.parser.ast.expression.UnaryExpression;
@@ -6,8 +6,7 @@ import com.vietage.lang17.parser.ast.expression.UnaryOperator;
 
 import java.util.Queue;
 
-public class ParseUnaryExpression extends ParseCommand
-        <com.vietage.lang17.lexer.lexeme.UnaryExpression, Expression> {
+public class ParseUnaryExpression extends ParseCommand<com.vietage.lang17.lexer.lexeme.UnaryExpression, Expression> {
 
     public ParseUnaryExpression(com.vietage.lang17.lexer.lexeme.UnaryExpression lexeme,
                                 ResultConsumer<Expression> resultConsumer) {

@@ -1,4 +1,4 @@
-package com.vietage.lang17.parser;
+package com.vietage.lang17.parser.command;
 
 import com.vietage.lang17.lexer.lexeme.VarAccess;
 import com.vietage.lang17.parser.ast.expression.ArrayRead;
@@ -7,8 +7,7 @@ import com.vietage.lang17.parser.ast.expression.VariableRead;
 
 import java.util.Queue;
 
-public class ParseVariableRead extends ParseCommand
-        <VarAccess, Expression> {
+public class ParseVariableRead extends ParseCommand<VarAccess, Expression> {
 
     public ParseVariableRead(VarAccess lexeme,
                              ResultConsumer<Expression> resultConsumer) {

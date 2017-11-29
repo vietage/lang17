@@ -1,4 +1,4 @@
-package com.vietage.lang17.parser;
+package com.vietage.lang17.parser.command;
 
 import com.vietage.lang17.lexer.lexeme.Assignment;
 import com.vietage.lang17.lexer.lexeme.Block;
@@ -23,8 +23,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Queue;
 
-public class ParseStatements extends ParseCommand
-        <com.vietage.lang17.lexer.lexeme.Block, Statement>
+public class ParseStatements extends ParseCommand<Block, Statement>
         implements StatementChoiceElement.Visitor {
 
     private Queue<ParseCommand> commandQueue;

@@ -1,4 +1,4 @@
-package com.vietage.lang17.parser;
+package com.vietage.lang17.parser.command;
 
 import com.vietage.lang17.lexer.lexeme.RelativeExpression;
 import com.vietage.lang17.parser.ast.expression.Expression;
@@ -7,8 +7,7 @@ import com.vietage.lang17.parser.ast.expression.RelationalOperator;
 
 import java.util.Queue;
 
-public class ParseRelationalExpression extends ParseCommand
-        <RelativeExpression, Expression> {
+public class ParseRelationalExpression extends ParseCommand<RelativeExpression, Expression> {
 
     public ParseRelationalExpression(RelativeExpression lexeme,
                                      ResultConsumer<Expression> resultConsumer) {

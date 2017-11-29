@@ -1,4 +1,4 @@
-package com.vietage.lang17.parser;
+package com.vietage.lang17.parser.command;
 
 import com.vietage.lang17.lexer.lexeme.Element;
 import com.vietage.lang17.parser.ast.ASTElement;

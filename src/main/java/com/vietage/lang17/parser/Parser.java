@@ -2,6 +2,8 @@ package com.vietage.lang17.parser;
 
 import com.vietage.lang17.lexer.lexeme.Root;
 import com.vietage.lang17.parser.ast.Program;
+import com.vietage.lang17.parser.command.ParseCommand;
+import com.vietage.lang17.parser.command.ParseProgram;
 
 import java.util.ArrayDeque;
 import java.util.Queue;
