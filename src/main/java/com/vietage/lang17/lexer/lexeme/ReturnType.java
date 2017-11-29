@@ -8,6 +8,8 @@ package com.vietage.lang17.lexer.lexeme;
  */
 public class ReturnType extends Choice {
 
+    private static final int TYPE_INDEX = 1;
+
     private Type type;
 
     @Override
@@ -21,6 +23,6 @@ public class ReturnType extends Choice {
     }
 
     public Type getType() {
-        return getLexeme() == type ? type : null;
+        return getCurrentLexeme() == TYPE_INDEX ? type : null;
     }
 }

@@ -8,17 +8,14 @@ package com.vietage.lang17.lexer.lexeme;
  */
 public class LoopOp extends Choice implements StatementChoiceLexeme {
 
-    private Token breakToken;
-    private Token continueToken;
+    private static final int BREAK_INDEX = 0;
+    private static final int CONTINUE_INDEX = 1;
 
     @Override
     protected Lexeme[] getLexemes() {
-        breakToken = new Token("break");
-        continueToken = new Token("continue");
-
         return new Lexeme[]{
-                breakToken,
-                continueToken
+                new Token("break"),
+                new Token("continue")
         };
     }
 
@@ -28,10 +25,10 @@ public class LoopOp extends Choice implements StatementChoiceLexeme {
     }
 
     public boolean isBreak() {
-        return getLexeme() == breakToken;
+        return getCurrentLexeme() == BREAK_INDEX;
     }
 
     public boolean isContinue() {
-        return getLexeme() == continueToken;
+        return getCurrentLexeme() == CONTINUE_INDEX;
     }
 }

@@ -32,8 +32,4 @@ public abstract class Choice extends BaseLexeme {
     protected int getCurrentLexeme() {
         return currentLexeme;
     }
-
-    public Lexeme getLexeme() {
-        return lexemes[currentLexeme];
-    }
 }
