@@ -6,7 +6,7 @@ import com.vietage.lang17.lexer.lexeme.Call;
 import com.vietage.lang17.lexer.lexeme.LoopOp;
 import com.vietage.lang17.lexer.lexeme.RestExpressions;
 import com.vietage.lang17.lexer.lexeme.StatementAndWhitespace;
-import com.vietage.lang17.lexer.lexeme.StatementChoiceElement;
+import com.vietage.lang17.lexer.lexeme.StatementChoiceLexeme;
 import com.vietage.lang17.lexer.lexeme.VarDefinition;
 import com.vietage.lang17.parser.ast.expression.Expression;
 import com.vietage.lang17.parser.ast.expression.FunctionCall;
@@ -24,7 +24,7 @@ import java.util.List;
 import java.util.Queue;
 
 public class ParseStatements extends ParseCommand<Block, Statement>
-        implements StatementChoiceElement.Visitor {
+        implements StatementChoiceLexeme.Visitor {
 
     private Queue<ParseCommand> commandQueue;
 
@@ -66,7 +66,7 @@ public class ParseStatements extends ParseCommand<Block, Statement>
         // parse array index expression
         if (assignment.getVarAccess().getIndexExpression().getResult()) {
             commandQueue.add(new ParseExpression(
-                    assignment.getVarAccess().getIndexExpression().getElement().getExpression(),
+                    assignment.getVarAccess().getIndexExpression().getLexeme().getExpression(),
                     variableAssignment::setIndexExpression
             ));
         }
@@ -101,7 +101,7 @@ public class ParseStatements extends ParseCommand<Block, Statement>
             ifStatement.setFalseStatements(new ArrayList<>());
 
             commandQueue.add(new ParseStatements(
-                    ifLexeme.getElseBlock().getElement().getBlock(),
+                    ifLexeme.getElseBlock().getLexeme().getBlock(),
                     statement -> ifStatement.getFalseStatements().add(statement)
             ));
         }
@@ -152,12 +152,12 @@ public class ParseStatements extends ParseCommand<Block, Statement>
 
             // parse the first argument
             commandQueue.add(new ParseExpression(
-                    call.getExpressions().getElement().getExpression(),
+                    call.getExpressions().getLexeme().getExpression(),
                     arguments::add
             ));
 
             // parse the rest arguments
-            for (RestExpressions restExpressions : call.getExpressions().getElement().getRestExpressions()) {
+            for (RestExpressions restExpressions : call.getExpressions().getLexeme().getRestExpressions()) {
                 commandQueue.add(new ParseExpression(
                         restExpressions.getExpression(),
                         arguments::add

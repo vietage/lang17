@@ -1,6 +1,6 @@
 package com.vietage.lang17.lexer;
 
-import com.vietage.lang17.lexer.lexeme.Element;
+import com.vietage.lang17.lexer.lexeme.Lexeme;
 
 import java.util.ArrayDeque;
 import java.util.Deque;
@@ -8,10 +8,10 @@ import java.util.Iterator;
 
 public class ErrorChain {
 
-    private final Deque<Element> errorChain = new ArrayDeque<>();
+    private final Deque<Lexeme> errorChain = new ArrayDeque<>();
 
-    public void add(Element element) {
-        errorChain.add(element);
+    public void add(Lexeme lexeme) {
+        errorChain.add(lexeme);
     }
 
     public void clear() {
@@ -19,8 +19,8 @@ public class ErrorChain {
     }
 
     public String formatErrorMessage(SourceReader sourceReader) {
-        Iterator<Element> errors = errorChain.iterator();
-        Element root = errors.next();
+        Iterator<Lexeme> errors = errorChain.iterator();
+        Lexeme root = errors.next();
 
         int line = root.getStartPosition().getLine();
         int column = root.getStartPosition().getColumn();

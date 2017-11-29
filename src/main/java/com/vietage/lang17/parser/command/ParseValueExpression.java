@@ -5,14 +5,14 @@ import com.vietage.lang17.lexer.lexeme.Call;
 import com.vietage.lang17.lexer.lexeme.Constant;
 import com.vietage.lang17.lexer.lexeme.NewArray;
 import com.vietage.lang17.lexer.lexeme.ValueExpression;
-import com.vietage.lang17.lexer.lexeme.ValueExpressionElement;
+import com.vietage.lang17.lexer.lexeme.ValueExpressionLexeme;
 import com.vietage.lang17.lexer.lexeme.VarAccess;
 import com.vietage.lang17.parser.ast.expression.Expression;
 
 import java.util.Queue;
 
 public class ParseValueExpression extends ParseCommand<ValueExpression, Expression>
-        implements ValueExpressionElement.Visitor {
+        implements ValueExpressionLexeme.Visitor {
 
     private Queue<ParseCommand> commandQueue;
 

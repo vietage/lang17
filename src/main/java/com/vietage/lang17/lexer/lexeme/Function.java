@@ -10,7 +10,7 @@ package com.vietage.lang17.lexer.lexeme;
  *     { WHITESPACE } BLOCK
  * </pre>
  */
-public class Function extends CompositeElement {
+public class Function extends CompositeLexeme {
 
     private ReturnType returnType;
     private Name name;
@@ -18,13 +18,13 @@ public class Function extends CompositeElement {
     private Block block;
 
     @Override
-    protected Element[] getElements() {
+    protected Lexeme[] getLexemes() {
         returnType = new ReturnType();
         name = new Name();
         arguments = new ZeroOrOne<>(new Arguments());
         block = new Block();
 
-        return new Element[]{
+        return new Lexeme[]{
                 returnType,
                 new OptionalWhitespace(),
                 name,

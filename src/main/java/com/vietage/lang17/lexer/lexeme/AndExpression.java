@@ -6,17 +6,17 @@ package com.vietage.lang17.lexer.lexeme;
  *     EQUAL_EXPR { WHITESPACE } { REST_EQUAL_EXPRS }
  * </pre>
  */
-public class AndExpression extends CompositeElement {
+public class AndExpression extends CompositeLexeme {
 
     private EqualExpression equalExpression;
     private ZeroOrMore<RestEqualExpressions> restEqualExpressions;
 
     @Override
-    protected Element[] getElements() {
+    protected Lexeme[] getLexemes() {
         equalExpression = new EqualExpression();
         restEqualExpressions = new ZeroOrMore<>(RestEqualExpressions::new);
 
-        return new Element[]{
+        return new Lexeme[]{
                 equalExpression,
                 new OptionalWhitespace(),
                 restEqualExpressions

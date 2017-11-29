@@ -24,7 +24,7 @@ public class ParseVariableRead extends ParseCommand<VarAccess, Expression> {
 
             commandQueue.add(
                     new ParseExpression(
-                            lexeme.getIndexExpression().getElement().getExpression(),
+                            lexeme.getIndexExpression().getLexeme().getExpression(),
                             arrayRead::setIndexExpression
                     )
             );

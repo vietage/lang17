@@ -1,7 +1,7 @@
 package com.vietage.lang17.parser.command;
 
 import com.vietage.lang17.lexer.lexeme.Constant;
-import com.vietage.lang17.lexer.lexeme.ConstantElement;
+import com.vietage.lang17.lexer.lexeme.ConstantLexeme;
 import com.vietage.lang17.lexer.lexeme.NumberConstant;
 import com.vietage.lang17.parser.ast.expression.BooleanConstant;
 import com.vietage.lang17.parser.ast.expression.Expression;
@@ -12,7 +12,7 @@ import com.vietage.lang17.parser.ast.expression.StringConstant;
 import java.util.Queue;
 
 public class ParseConstantExpression extends ParseCommand<Constant, Expression>
-        implements ConstantElement.Visitor {
+        implements ConstantLexeme.Visitor {
 
     public ParseConstantExpression(Constant lexeme,
                                    ResultConsumer<Expression> resultConsumer) {
@@ -29,7 +29,7 @@ public class ParseConstantExpression extends ParseCommand<Constant, Expression>
         if (numberConstant.getFractionPart().getResult()) {
             // parse float constant
             long integerPart = numberConstant.getIntegerPart().getResult();
-            long fractionPart = numberConstant.getFractionPart().getElement().getIntegerPart().getResult();
+            long fractionPart = numberConstant.getFractionPart().getLexeme().getIntegerPart().getResult();
 
             double value = Double.valueOf(integerPart + "." + fractionPart);
 

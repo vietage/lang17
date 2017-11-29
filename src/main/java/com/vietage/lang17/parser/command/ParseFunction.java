@@ -30,13 +30,13 @@ public class ParseFunction extends ParseCommand<FunctionAndWhitespace, Function>
 
     private void parseArguments(Function function) {
         if (lexeme.getFunction().getArguments().getResult()) {
-            Arguments arguments = lexeme.getFunction().getArguments().getElement();
+            Arguments arguments = lexeme.getFunction().getArguments().getLexeme();
 
             // parse the first argument
             function.getArguments().add(parseArgument(arguments.getArgument()));
 
             // parse the rest arguments
-            for (RestArguments restArguments : arguments.getRestArguments().getElements()) {
+            for (RestArguments restArguments : arguments.getRestArguments().getLexemes()) {
                 function.getArguments().add(parseArgument(restArguments.getArgument()));
             }
         }

@@ -20,7 +20,7 @@ public class ParseAdditionExpression extends ParseCommand
 
     @Override
     public void parse(Queue<ParseCommand> commandQueue) {
-        if (lexeme.getRestMulExpressions().getElements().isEmpty()) {
+        if (lexeme.getRestMulExpressions().getLexemes().isEmpty()) {
             // no additions exist, just parse the next level
             commandQueue.add(
                     new ParseMultiplicationExpression(
@@ -30,7 +30,7 @@ public class ParseAdditionExpression extends ParseCommand
             );
         } else {
             MulExpression firstOperand = lexeme.getMulExpression();
-            Iterator<RestMulExpressions> restOperands = lexeme.getRestMulExpressions().getElements().iterator();
+            Iterator<RestMulExpressions> restOperands = lexeme.getRestMulExpressions().getLexemes().iterator();
 
             // parse first addition
             AdditionExpression addition = parseFirstAddition(commandQueue, firstOperand, restOperands);

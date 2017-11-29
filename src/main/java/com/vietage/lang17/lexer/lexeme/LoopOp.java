@@ -6,17 +6,17 @@ package com.vietage.lang17.lexer.lexeme;
  *     'break' | 'continue'
  * </pre>
  */
-public class LoopOp extends Choice implements StatementChoiceElement {
+public class LoopOp extends Choice implements StatementChoiceLexeme {
 
     private Token breakToken;
     private Token continueToken;
 
     @Override
-    protected Element[] getElements() {
+    protected Lexeme[] getLexemes() {
         breakToken = new Token("break");
         continueToken = new Token("continue");
 
-        return new Element[]{
+        return new Lexeme[]{
                 breakToken,
                 continueToken
         };
@@ -28,10 +28,10 @@ public class LoopOp extends Choice implements StatementChoiceElement {
     }
 
     public boolean isBreak() {
-        return getElement() == breakToken;
+        return getLexeme() == breakToken;
     }
 
     public boolean isContinue() {
-        return getElement() == continueToken;
+        return getLexeme() == continueToken;
     }
 }

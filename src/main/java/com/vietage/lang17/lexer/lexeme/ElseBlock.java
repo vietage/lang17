@@ -6,15 +6,15 @@ package com.vietage.lang17.lexer.lexeme;
  *     'else' { WHITESPACE } BLOCK
  * </pre>
  */
-public class ElseBlock extends CompositeElement {
+public class ElseBlock extends CompositeLexeme {
 
     private Block block;
 
     @Override
-    protected Element[] getElements() {
+    protected Lexeme[] getLexemes() {
         block = new Block();
 
-        return new Element[]{
+        return new Lexeme[]{
                 new Token("else"),
                 new OptionalWhitespace(),
                 block

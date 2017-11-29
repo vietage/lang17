@@ -6,15 +6,15 @@ package com.vietage.lang17.lexer.lexeme;
  *     'return' { WHITESPACE } EXPRESSION
  * </pre>
  */
-public class ReturnStatement extends CompositeElement implements StatementChoiceElement {
+public class ReturnStatement extends CompositeLexeme implements StatementChoiceLexeme {
 
     private Expression expression;
 
     @Override
-    protected Element[] getElements() {
+    protected Lexeme[] getLexemes() {
         expression = new Expression();
 
-        return new Element[]{
+        return new Lexeme[]{
                 new Token("return"),
                 new OptionalWhitespace(),
                 expression

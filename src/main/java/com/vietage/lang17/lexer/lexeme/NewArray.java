@@ -6,17 +6,17 @@ package com.vietage.lang17.lexer.lexeme;
  *     BASIC_TYPE { WHITESPACE } INDEX_EXPR
  * </pre>
  */
-public class NewArray extends CompositeElement implements ValueExpressionElement {
+public class NewArray extends CompositeLexeme implements ValueExpressionLexeme {
 
     private BasicType basicType;
     private IndexExpression indexExpression;
 
     @Override
-    protected Element[] getElements() {
+    protected Lexeme[] getLexemes() {
         basicType = new BasicType();
         indexExpression = new IndexExpression();
 
-        return new Element[]{
+        return new Lexeme[]{
                 basicType,
                 new OptionalWhitespace(),
                 indexExpression

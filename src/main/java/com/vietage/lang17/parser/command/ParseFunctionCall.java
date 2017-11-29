@@ -28,13 +28,13 @@ public class ParseFunctionCall extends ParseCommand
             // parse the first argument expression
             commandQueue.add(
                     new ParseExpression(
-                            lexeme.getExpressions().getElement().getExpression(),
+                            lexeme.getExpressions().getLexeme().getExpression(),
                             arguments::add
                     )
             );
 
             // parse the rest argument expressions
-            for (RestExpressions restExpressions : lexeme.getExpressions().getElement().getRestExpressions()) {
+            for (RestExpressions restExpressions : lexeme.getExpressions().getLexeme().getRestExpressions()) {
                 commandQueue.add(
                         new ParseExpression(
                                 restExpressions.getExpression(),

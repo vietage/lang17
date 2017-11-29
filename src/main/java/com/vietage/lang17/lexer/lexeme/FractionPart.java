@@ -6,15 +6,15 @@ package com.vietage.lang17.lexer.lexeme;
  *     '.' INT_PART
  * </pre>
  */
-public class FractionPart extends CompositeElement {
+public class FractionPart extends CompositeLexeme {
 
     private IntegerPart integerPart;
 
     @Override
-    protected Element[] getElements() {
+    protected Lexeme[] getLexemes() {
         integerPart = new IntegerPart();
 
-        return new Element[]{
+        return new Lexeme[]{
                 new Token("."),
                 integerPart
         };

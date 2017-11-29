@@ -7,11 +7,11 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.function.Supplier;
 
-public class ZeroOrMore<T extends Element> extends BaseElement
+public class ZeroOrMore<T extends Lexeme> extends BaseLexeme
         implements Iterable<T> {
 
     private final Supplier<T> supplier;
-    private final List<T> elements = new ArrayList<>();
+    private final List<T> lexemes = new ArrayList<>();
     private T element;
 
     public ZeroOrMore(Supplier<T> supplier) {
@@ -22,7 +22,7 @@ public class ZeroOrMore<T extends Element> extends BaseElement
     public boolean parse(Context context) {
         if (context.getLastResult()) {
             if (element != null) {
-                elements.add(element);
+                lexemes.add(element);
             }
             element = supplier.get();
             context.enter(element);
@@ -32,12 +32,12 @@ public class ZeroOrMore<T extends Element> extends BaseElement
         return true;
     }
 
-    public List<T> getElements() {
-        return elements;
+    public List<T> getLexemes() {
+        return lexemes;
     }
 
     @Override
     public Iterator<T> iterator() {
-        return elements.iterator();
+        return lexemes.iterator();
     }
 }

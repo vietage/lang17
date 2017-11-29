@@ -11,14 +11,14 @@ import com.vietage.lang17.parser.ast.expression.EqualityOperator;
 public class EqualOp extends Choice {
 
     @Override
-    protected Element[] getElements() {
-        return new Element[]{
+    protected Lexeme[] getLexemes() {
+        return new Lexeme[]{
                 new Token("=="),
                 new Token("!=")
         };
     }
 
     public EqualityOperator getEqualityOperator() {
-        return EqualityOperator.values()[getCurrentElement()];
+        return EqualityOperator.values()[getCurrentLexeme()];
     }
 }

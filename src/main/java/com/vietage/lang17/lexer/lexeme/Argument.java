@@ -6,17 +6,17 @@ package com.vietage.lang17.lexer.lexeme;
  *     TYPE { WHITESPACE } NAME
  * </pre>
  */
-public class Argument extends CompositeElement {
+public class Argument extends CompositeLexeme {
 
     private Type type;
     private Name name;
 
     @Override
-    protected Element[] getElements() {
+    protected Lexeme[] getLexemes() {
         type = new Type();
         name = new Name();
 
-        return new Element[]{
+        return new Lexeme[]{
                 type,
                 new OptionalWhitespace(),
                 name

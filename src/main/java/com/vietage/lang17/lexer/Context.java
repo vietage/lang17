@@ -1,6 +1,6 @@
 package com.vietage.lang17.lexer;
 
-import com.vietage.lang17.lexer.lexeme.Element;
+import com.vietage.lang17.lexer.lexeme.Lexeme;
 
 import java.util.Deque;
 import java.util.LinkedList;
@@ -8,7 +8,7 @@ import java.util.LinkedList;
 public class Context {
 
     private final SourceReader sourceReader;
-    private final Deque<Element> stack = new LinkedList<>();
+    private final Deque<Lexeme> stack = new LinkedList<>();
     private boolean lastResult;
 
     public Context(SourceReader sourceReader) {
@@ -19,12 +19,12 @@ public class Context {
         return sourceReader;
     }
 
-    public void enter(Element element) {
-        element.setStartPosition(sourceReader.getPosition());
-        stack.push(element);
+    public void enter(Lexeme lexeme) {
+        lexeme.setStartPosition(sourceReader.getPosition());
+        stack.push(lexeme);
     }
 
-    public Element current() {
+    public Lexeme current() {
         return stack.peek();
     }
 

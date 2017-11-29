@@ -6,18 +6,18 @@ package com.vietage.lang17.lexer.lexeme;
  *     NAME { WHITESPACE } '(' { WHITESPACE } [ EXPRESSIONS ] ')'
  * </pre>
  */
-public class Call extends CompositeElement
-        implements StatementChoiceElement, ValueExpressionElement {
+public class Call extends CompositeLexeme
+        implements StatementChoiceLexeme, ValueExpressionLexeme {
 
     private Name name;
     private ZeroOrOne<Expressions> expressions;
 
     @Override
-    protected Element[] getElements() {
+    protected Lexeme[] getLexemes() {
         name = new Name();
         expressions = new ZeroOrOne<>(new Expressions());
 
-        return new Element[]{
+        return new Lexeme[]{
                 name,
                 new OptionalWhitespace(),
                 new Token("("),
@@ -28,12 +28,12 @@ public class Call extends CompositeElement
     }
 
     @Override
-    public void accept(StatementChoiceElement.Visitor visitor) {
+    public void accept(StatementChoiceLexeme.Visitor visitor) {
         visitor.visit(this);
     }
 
     @Override
-    public void accept(ValueExpressionElement.Visitor visitor) {
+    public void accept(ValueExpressionLexeme.Visitor visitor) {
         visitor.visit(this);
     }
 

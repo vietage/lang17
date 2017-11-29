@@ -6,13 +6,13 @@ package com.vietage.lang17.lexer.lexeme;
  *     NUMBER | STRING | BOOLEAN
  * </pre>
  */
-public class Constant extends Choice implements ValueExpressionElement {
+public class Constant extends Choice implements ValueExpressionLexeme {
 
-    private ConstantElement[] constantElements;
+    private ConstantLexeme[] constantElements;
 
     @Override
-    protected Element[] getElements() {
-        constantElements = new ConstantElement[]{
+    protected Lexeme[] getLexemes() {
+        constantElements = new ConstantLexeme[]{
                 new NumberConstant(),
                 new StringConstant(),
                 new BooleanConstant()
@@ -25,7 +25,7 @@ public class Constant extends Choice implements ValueExpressionElement {
         visitor.visit(this);
     }
 
-    public ConstantElement getConstantElement() {
-        return constantElements[getCurrentElement()];
+    public ConstantLexeme getConstantElement() {
+        return constantElements[getCurrentLexeme()];
     }
 }

@@ -6,17 +6,17 @@ package com.vietage.lang17.lexer.lexeme;
  *     EQUAL_OP { WHITESPACE } REL_EXPR
  * </pre>
  */
-public class RightRelativeExpression extends CompositeElement {
+public class RightRelativeExpression extends CompositeLexeme {
 
     private EqualOp equalOp;
     private RelativeExpression relativeExpression;
 
     @Override
-    protected Element[] getElements() {
+    protected Lexeme[] getLexemes() {
         equalOp = new EqualOp();
         relativeExpression = new RelativeExpression();
 
-        return new Element[]{
+        return new Lexeme[]{
                 equalOp,
                 new OptionalWhitespace(),
                 relativeExpression

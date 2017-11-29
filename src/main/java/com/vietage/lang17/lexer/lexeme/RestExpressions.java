@@ -6,15 +6,15 @@ package com.vietage.lang17.lexer.lexeme;
  *     ',' { WHITESPACE } EXPRESSION { WHITESPACE }
  * </pre>
  */
-public class RestExpressions extends CompositeElement {
+public class RestExpressions extends CompositeLexeme {
 
     private Expression expression;
 
     @Override
-    protected Element[] getElements() {
+    protected Lexeme[] getLexemes() {
         expression = new Expression();
 
-        return new Element[]{
+        return new Lexeme[]{
                 new Token(","),
                 new OptionalWhitespace(),
                 expression,

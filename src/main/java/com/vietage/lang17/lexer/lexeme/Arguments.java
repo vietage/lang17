@@ -6,17 +6,17 @@ package com.vietage.lang17.lexer.lexeme;
  *     ARGUMENT { WHITESPACE } { ',' { WHITESPACE } ARGUMENT { WHITESPACE } }
  * </pre>
  */
-public class Arguments extends CompositeElement {
+public class Arguments extends CompositeLexeme {
 
     private Argument argument;
     private ZeroOrMore<RestArguments> restArguments;
 
     @Override
-    protected Element[] getElements() {
+    protected Lexeme[] getLexemes() {
         argument = new Argument();
         restArguments = new ZeroOrMore<>(RestArguments::new);
 
-        return new Element[]{
+        return new Lexeme[]{
                 argument,
                 new OptionalWhitespace(),
                 restArguments

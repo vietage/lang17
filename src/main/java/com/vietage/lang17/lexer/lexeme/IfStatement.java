@@ -9,19 +9,19 @@ package com.vietage.lang17.lexer.lexeme;
  *     { WHITESPACE } [ ELSE_BLOCK ]
  * </pre>
  */
-public class IfStatement extends CompositeElement implements StatementChoiceElement {
+public class IfStatement extends CompositeLexeme implements StatementChoiceLexeme {
 
     private BracketsExpression bracketsExpression;
     private Block block;
     private ZeroOrOne<ElseBlock> elseBlock;
 
     @Override
-    protected Element[] getElements() {
+    protected Lexeme[] getLexemes() {
         bracketsExpression = new BracketsExpression();
         block = new Block();
         elseBlock = new ZeroOrOne<>(new ElseBlock());
 
-        return new Element[]{
+        return new Lexeme[]{
                 new Token("if"),
                 new OptionalWhitespace(),
                 bracketsExpression,

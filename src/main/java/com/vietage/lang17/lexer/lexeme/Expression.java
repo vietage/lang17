@@ -6,17 +6,17 @@ package com.vietage.lang17.lexer.lexeme;
  *     AND_EXPR { WHITESPACE } { REST_AND_EXPRS }
  * </pre>
  */
-public class Expression extends CompositeElement {
+public class Expression extends CompositeLexeme {
 
     private AndExpression andExpression;
     private ZeroOrMore<RestAndExpressions> restAndExpressions;
 
     @Override
-    protected Element[] getElements() {
+    protected Lexeme[] getLexemes() {
         andExpression = new AndExpression();
         restAndExpressions = new ZeroOrMore<>(RestAndExpressions::new);
 
-        return new Element[]{
+        return new Lexeme[]{
                 andExpression,
                 new OptionalWhitespace(),
                 restAndExpressions

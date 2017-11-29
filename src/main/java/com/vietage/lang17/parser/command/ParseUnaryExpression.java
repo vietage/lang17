@@ -24,7 +24,7 @@ public class ParseUnaryExpression extends ParseCommand<com.vietage.lang17.lexer.
                     )
             );
         } else {
-            UnaryOperator operator = lexeme.getUnaryKeyword().getElement().getUnaryOperator();
+            UnaryOperator operator = lexeme.getUnaryKeyword().getLexeme().getUnaryOperator();
 
             UnaryExpression unaryExpression = new UnaryExpression(operator);
 

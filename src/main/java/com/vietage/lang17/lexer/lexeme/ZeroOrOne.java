@@ -2,20 +2,20 @@ package com.vietage.lang17.lexer.lexeme;
 
 import com.vietage.lang17.lexer.Context;
 
-public class ZeroOrOne<T extends Element> extends BaseElement {
+public class ZeroOrOne<T extends Lexeme> extends BaseLexeme {
 
-    private final T element;
+    private final T lexeme;
     private Boolean result;
 
-    public ZeroOrOne(T element) {
-        this.element = element;
+    public ZeroOrOne(T lexeme) {
+        this.lexeme = lexeme;
     }
 
     @Override
     public boolean parse(Context context) {
         if (result == null) {
             result = true;
-            context.enter(element);
+            context.enter(lexeme);
         } else {
             result = context.getLastResult();
             context.exit();
@@ -28,7 +28,7 @@ public class ZeroOrOne<T extends Element> extends BaseElement {
         return result;
     }
 
-    public T getElement() {
-        return element;
+    public T getLexeme() {
+        return lexeme;
     }
 }

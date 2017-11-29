@@ -1,6 +1,6 @@
 package com.vietage.lang17.lexer.lexeme;
 
-public interface ConstantElement extends Element {
+public interface ConstantLexeme extends Lexeme {
 
     void accept(Visitor visitor);
 

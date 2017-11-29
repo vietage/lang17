@@ -6,15 +6,15 @@ package com.vietage.lang17.lexer.lexeme;
  *     STATEMENT { WHITESPACE }
  * </pre>
  */
-public class StatementAndWhitespace extends CompositeElement {
+public class StatementAndWhitespace extends CompositeLexeme {
 
     private StatementChoice statementChoice;
 
     @Override
-    protected Element[] getElements() {
+    protected Lexeme[] getLexemes() {
         statementChoice = new StatementChoice();
 
-        return new Element[]{
+        return new Lexeme[]{
                 statementChoice,
                 new OptionalWhitespace()
         };

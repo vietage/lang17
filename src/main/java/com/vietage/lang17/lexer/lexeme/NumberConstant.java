@@ -6,18 +6,18 @@ package com.vietage.lang17.lexer.lexeme;
  *     INT_PART [ '.' INT_PART ]
  * </pre>
  */
-public class NumberConstant extends CompositeElement
-        implements ConstantElement {
+public class NumberConstant extends CompositeLexeme
+        implements ConstantLexeme {
 
     private IntegerPart integerPart;
     private ZeroOrOne<FractionPart> fractionPart;
 
     @Override
-    protected Element[] getElements() {
+    protected Lexeme[] getLexemes() {
         integerPart = new IntegerPart();
         fractionPart = new ZeroOrOne<>(new FractionPart());
 
-        return new Element[]{
+        return new Lexeme[]{
                 integerPart,
                 fractionPart
         };

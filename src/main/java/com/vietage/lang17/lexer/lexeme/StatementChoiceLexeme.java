@@ -1,6 +1,6 @@
 package com.vietage.lang17.lexer.lexeme;
 
-public interface StatementChoiceElement extends Element {
+public interface StatementChoiceLexeme extends Lexeme {
 
     void accept(Visitor visitor);
 

@@ -6,15 +6,15 @@ package com.vietage.lang17.lexer.lexeme;
  *     '{' { WHITESPACE } { STATEMENT { WHITESPACE } } '}'
  * </pre>
  */
-public class Block extends CompositeElement {
+public class Block extends CompositeLexeme {
 
     private ZeroOrMore<StatementAndWhitespace> statements;
 
     @Override
-    protected Element[] getElements() {
+    protected Lexeme[] getLexemes() {
         statements = new ZeroOrMore<>(StatementAndWhitespace::new);
 
-        return new Element[]{
+        return new Lexeme[]{
                 new Token("{"),
                 new OptionalWhitespace(),
                 statements,

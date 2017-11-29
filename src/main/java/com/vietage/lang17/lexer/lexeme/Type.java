@@ -6,17 +6,17 @@ package com.vietage.lang17.lexer.lexeme;
  *     BASIC_TYPE [ '[]' ]
  * </pre>
  */
-public class Type extends CompositeElement {
+public class Type extends CompositeLexeme {
 
     private BasicType basicType;
     private ZeroOrOne<Token> arrayModifier;
 
     @Override
-    protected Element[] getElements() {
+    protected Lexeme[] getLexemes() {
         basicType = new BasicType();
         arrayModifier = new ZeroOrOne<>(new Token("[]"));
 
-        return new Element[]{
+        return new Lexeme[]{
                 basicType,
                 arrayModifier
         };

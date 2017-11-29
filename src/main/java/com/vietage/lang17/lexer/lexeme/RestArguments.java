@@ -6,15 +6,15 @@ package com.vietage.lang17.lexer.lexeme;
  *     ',' { WHITESPACE } ARGUMENT { WHITESPACE }
  * </pre>
  */
-public class RestArguments extends CompositeElement {
+public class RestArguments extends CompositeLexeme {
 
     private Argument argument;
 
     @Override
-    protected Element[] getElements() {
+    protected Lexeme[] getLexemes() {
         argument = new Argument();
 
-        return new Element[]{
+        return new Lexeme[]{
                 new Token(","),
                 new OptionalWhitespace(),
                 argument,

@@ -20,7 +20,7 @@ public class ParseMultiplicationExpression extends ParseCommand
 
     @Override
     public void parse(Queue<ParseCommand> commandQueue) {
-        if (lexeme.getRestUnaryExpressions().getElements().isEmpty()) {
+        if (lexeme.getRestUnaryExpressions().getLexemes().isEmpty()) {
             // no multiplications exist, just parse the next level
             commandQueue.add(
                     new ParseUnaryExpression(
@@ -30,7 +30,7 @@ public class ParseMultiplicationExpression extends ParseCommand
             );
         } else {
             UnaryExpression firstOperand = lexeme.getUnaryExpression();
-            Iterator<RestUnaryExpressions> restOperands = lexeme.getRestUnaryExpressions().getElements().iterator();
+            Iterator<RestUnaryExpressions> restOperands = lexeme.getRestUnaryExpressions().getLexemes().iterator();
 
             // parse first multiplication
             MultiplicationExpression multiplication = parseFirstMultiplication(

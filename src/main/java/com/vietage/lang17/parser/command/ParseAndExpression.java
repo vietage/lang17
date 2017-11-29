@@ -16,7 +16,7 @@ public class ParseAndExpression extends ParseCommand
 
     @Override
     public void parse(Queue<ParseCommand> commandQueue) {
-        if (lexeme.getRestEqualExpressions().getElements().isEmpty()) {
+        if (lexeme.getRestEqualExpressions().getLexemes().isEmpty()) {
             // one equality expression exist, skip creation of intermediate AndExpression
             commandQueue.add(new ParseEqualityExpression(
                     lexeme.getEqualExpression(),

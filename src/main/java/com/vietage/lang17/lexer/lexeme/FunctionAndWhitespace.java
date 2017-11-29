@@ -6,15 +6,15 @@ package com.vietage.lang17.lexer.lexeme;
  *     FUNCTION { WHITESPACE }
  * </pre>
  */
-public class FunctionAndWhitespace extends CompositeElement {
+public class FunctionAndWhitespace extends CompositeLexeme {
 
     private Function function;
 
     @Override
-    protected Element[] getElements() {
+    protected Lexeme[] getLexemes() {
         function = new Function();
 
-        return new Element[]{
+        return new Lexeme[]{
                 function,
                 new OptionalWhitespace()
         };

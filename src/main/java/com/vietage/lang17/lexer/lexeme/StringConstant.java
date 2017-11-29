@@ -6,16 +6,16 @@ package com.vietage.lang17.lexer.lexeme;
  *     '"' { STR_CHAR } '"'
  * </pre>
  */
-public class StringConstant extends CompositeElement
-        implements ConstantElement {
+public class StringConstant extends CompositeLexeme
+        implements ConstantLexeme {
 
     private StringToken stringToken;
 
     @Override
-    protected Element[] getElements() {
+    protected Lexeme[] getLexemes() {
         stringToken = new StringToken();
 
-        return new Element[]{
+        return new Lexeme[]{
                 new Token("\""),
                 stringToken,
                 new Token("\"")

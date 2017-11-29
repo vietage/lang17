@@ -11,14 +11,14 @@ import com.vietage.lang17.parser.ast.expression.AdditionOperator;
 public class AddKeyword extends Choice {
 
     @Override
-    protected Element[] getElements() {
-        return new Element[]{
+    protected Lexeme[] getLexemes() {
+        return new Lexeme[]{
                 new Token("+"),
                 new Token("-")
         };
     }
 
     public AdditionOperator getAdditionOperator() {
-        return AdditionOperator.values()[getCurrentElement()];
+        return AdditionOperator.values()[getCurrentLexeme()];
     }
 }

@@ -11,14 +11,14 @@ import com.vietage.lang17.parser.ast.expression.UnaryOperator;
 public class UnaryKeyword extends Choice {
 
     @Override
-    protected Element[] getElements() {
-        return new Element[]{
+    protected Lexeme[] getLexemes() {
+        return new Lexeme[]{
                 new Token("!"),
                 new Token("-")
         };
     }
 
     public UnaryOperator getUnaryOperator() {
-        return UnaryOperator.values()[getCurrentElement()];
+        return UnaryOperator.values()[getCurrentLexeme()];
     }
 }

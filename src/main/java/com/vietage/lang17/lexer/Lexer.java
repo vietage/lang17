@@ -1,6 +1,6 @@
 package com.vietage.lang17.lexer;
 
-import com.vietage.lang17.lexer.lexeme.Element;
+import com.vietage.lang17.lexer.lexeme.Lexeme;
 import com.vietage.lang17.lexer.lexeme.Root;
 
 import java.io.IOException;
@@ -15,12 +15,12 @@ public class Lexer {
         Root root = new Root();
         context.enter(root);
 
-        Element element;
-        while ((element = context.current()) != null) {
-            context.setLastResult(element.parse(context));
+        Lexeme lexeme;
+        while ((lexeme = context.current()) != null) {
+            context.setLastResult(lexeme.parse(context));
             if (!context.getLastResult()) {
-                sourceReader.reset(element.getStartPosition());
-                errorChain.add(element);
+                sourceReader.reset(lexeme.getStartPosition());
+                errorChain.add(lexeme);
             } else {
                 errorChain.clear();
             }

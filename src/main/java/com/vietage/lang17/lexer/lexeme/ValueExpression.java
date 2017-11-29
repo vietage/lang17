@@ -8,11 +8,11 @@ package com.vietage.lang17.lexer.lexeme;
  */
 public class ValueExpression extends Choice {
 
-    private ValueExpressionElement[] valueExpressionElements;
+    private ValueExpressionLexeme[] valueExpressionElements;
 
     @Override
-    protected Element[] getElements() {
-        valueExpressionElements = new ValueExpressionElement[]{
+    protected Lexeme[] getLexemes() {
+        valueExpressionElements = new ValueExpressionLexeme[]{
                 new BracketsExpression(),
                 new Constant(),
                 new VarAccess(),
@@ -22,7 +22,7 @@ public class ValueExpression extends Choice {
         return valueExpressionElements;
     }
 
-    public ValueExpressionElement getValueExpressionElement() {
-        return valueExpressionElements[getCurrentElement()];
+    public ValueExpressionLexeme getValueExpressionElement() {
+        return valueExpressionElements[getCurrentLexeme()];
     }
 }

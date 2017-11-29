@@ -8,11 +8,11 @@ package com.vietage.lang17.lexer.lexeme;
  */
 public class StatementChoice extends Choice {
 
-    private StatementChoiceElement[] statementChoiceElements;
+    private StatementChoiceLexeme[] statementChoiceElements;
 
     @Override
-    protected Element[] getElements() {
-        statementChoiceElements = new StatementChoiceElement[]{
+    protected Lexeme[] getLexemes() {
+        statementChoiceElements = new StatementChoiceLexeme[]{
                 new VarDefinition(),
                 new Assignment(),
                 new IfStatement(),
@@ -24,7 +24,7 @@ public class StatementChoice extends Choice {
         return statementChoiceElements;
     }
 
-    public StatementChoiceElement getStatementChoiceElement() {
-        return statementChoiceElements[getCurrentElement()];
+    public StatementChoiceLexeme getStatementChoiceElement() {
+        return statementChoiceElements[getCurrentLexeme()];
     }
 }

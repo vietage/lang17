@@ -6,17 +6,17 @@ package com.vietage.lang17.lexer.lexeme;
  *     MUL_OP { WHITESPACE } UNARY_EXPR { WHITESPACE }
  * </pre>
  */
-public class RestUnaryExpressions extends CompositeElement {
+public class RestUnaryExpressions extends CompositeLexeme {
 
     private MulKeyword mulKeyword;
     private UnaryExpression unaryExpression;
 
     @Override
-    protected Element[] getElements() {
+    protected Lexeme[] getLexemes() {
         mulKeyword = new MulKeyword();
         unaryExpression = new UnaryExpression();
 
-        return new Element[]{
+        return new Lexeme[]{
                 mulKeyword,
                 new OptionalWhitespace(),
                 unaryExpression,

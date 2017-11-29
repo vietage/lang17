@@ -11,16 +11,16 @@ public class ReturnType extends Choice {
     private Type type;
 
     @Override
-    protected Element[] getElements() {
+    protected Lexeme[] getLexemes() {
         type = new Type();
 
-        return new Element[]{
+        return new Lexeme[]{
                 new Token("void"),
                 type
         };
     }
 
     public Type getType() {
-        return getElement() == type ? type : null;
+        return getLexeme() == type ? type : null;
     }
 }

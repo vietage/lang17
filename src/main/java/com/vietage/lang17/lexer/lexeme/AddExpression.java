@@ -6,17 +6,17 @@ package com.vietage.lang17.lexer.lexeme;
  *     MUL_EXPR { WHITESPACE } { REST_MUL_EXPRS }
  * </pre>
  */
-public class AddExpression extends CompositeElement {
+public class AddExpression extends CompositeLexeme {
 
     private MulExpression mulExpression;
     private ZeroOrMore<RestMulExpressions> restMulExpressions;
 
     @Override
-    protected Element[] getElements() {
+    protected Lexeme[] getLexemes() {
         mulExpression = new MulExpression();
         restMulExpressions = new ZeroOrMore<>(RestMulExpressions::new);
 
-        return new Element[]{
+        return new Lexeme[]{
                 mulExpression,
                 new OptionalWhitespace(),
                 restMulExpressions

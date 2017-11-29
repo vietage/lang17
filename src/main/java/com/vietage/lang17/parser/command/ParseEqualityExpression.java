@@ -25,7 +25,7 @@ public class ParseEqualityExpression extends ParseCommand
             ));
         } else {
             EqualityOperator equalityOperator = lexeme.getRightRelativeExpression()
-                    .getElement().getEqualOp().getEqualityOperator();
+                    .getLexeme().getEqualOp().getEqualityOperator();
 
             EqualityExpression equalityExpression = new EqualityExpression(equalityOperator);
 
@@ -37,7 +37,7 @@ public class ParseEqualityExpression extends ParseCommand
 
             // parse right hand expression
             commandQueue.add(new ParseRelationalExpression(
-                    lexeme.getRightRelativeExpression().getElement().getRelativeExpression(),
+                    lexeme.getRightRelativeExpression().getLexeme().getRelativeExpression(),
                     equalityExpression::setRightExpression
             ));
 

@@ -8,17 +8,17 @@ package com.vietage.lang17.lexer.lexeme;
  *     { WHITESPACE } BLOCK
  * </pre>
  */
-public class WhileLoop extends CompositeElement implements StatementChoiceElement {
+public class WhileLoop extends CompositeLexeme implements StatementChoiceLexeme {
 
     private BracketsExpression bracketsExpression;
     private Block block;
 
     @Override
-    protected Element[] getElements() {
+    protected Lexeme[] getLexemes() {
         bracketsExpression = new BracketsExpression();
         block = new Block();
 
-        return new Element[]{
+        return new Lexeme[]{
                 new Token("while"),
                 new OptionalWhitespace(),
                 bracketsExpression,

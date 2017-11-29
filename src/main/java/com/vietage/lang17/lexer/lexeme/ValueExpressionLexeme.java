@@ -1,6 +1,6 @@
 package com.vietage.lang17.lexer.lexeme;
 
-public interface ValueExpressionElement extends Element {
+public interface ValueExpressionLexeme extends Lexeme {
 
     void accept(Visitor visitor);
 

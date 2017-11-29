@@ -16,7 +16,7 @@ public class ParseExpression extends ParseCommand
 
     @Override
     public void parse(Queue<ParseCommand> commandQueue) {
-        if (lexeme.getRestAndExpressions().getElements().isEmpty()) {
+        if (lexeme.getRestAndExpressions().getLexemes().isEmpty()) {
             // just one expression exists, do not create intermediate AndExpression
             commandQueue.add(new ParseAndExpression(
                     lexeme.getAndExpression(),

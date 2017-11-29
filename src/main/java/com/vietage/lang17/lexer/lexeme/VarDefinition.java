@@ -9,7 +9,7 @@ package com.vietage.lang17.lexer.lexeme;
  *     { WHITESPACE } EXPRESSION
  * </pre>
  */
-public class VarDefinition extends CompositeElement implements StatementChoiceElement {
+public class VarDefinition extends CompositeLexeme implements StatementChoiceLexeme {
 
     private Type type;
     private Name name;
@@ -17,13 +17,13 @@ public class VarDefinition extends CompositeElement implements StatementChoiceEl
     private Expression expression;
 
     @Override
-    protected Element[] getElements() {
+    protected Lexeme[] getLexemes() {
         type = new Type();
         name = new Name();
         equalsSign = new Token("=");
         expression = new Expression();
 
-        return new Element[]{
+        return new Lexeme[]{
                 type,
                 new OptionalWhitespace(),
                 name,

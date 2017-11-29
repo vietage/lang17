@@ -11,8 +11,8 @@ import com.vietage.lang17.parser.ast.Type;
 public class BasicType extends Choice {
 
     @Override
-    protected Element[] getElements() {
-        return new Element[]{
+    protected Lexeme[] getLexemes() {
+        return new Lexeme[]{
                 new Token("int"),
                 new Token("float"),
                 new Token("boolean"),
@@ -21,6 +21,6 @@ public class BasicType extends Choice {
     }
 
     public Type getType() {
-        return Type.values()[getCurrentElement()];
+        return Type.values()[getCurrentLexeme()];
     }
 }

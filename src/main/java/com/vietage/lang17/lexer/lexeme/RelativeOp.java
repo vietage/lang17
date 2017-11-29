@@ -11,8 +11,8 @@ import com.vietage.lang17.parser.ast.expression.RelationalOperator;
 public class RelativeOp extends Choice {
 
     @Override
-    protected Element[] getElements() {
-        return new Element[]{
+    protected Lexeme[] getLexemes() {
+        return new Lexeme[]{
                 new Token("<"),
                 new Token("<="),
                 new Token(">"),
@@ -21,6 +21,6 @@ public class RelativeOp extends Choice {
     }
 
     public RelationalOperator getRelationalOperator() {
-        return RelationalOperator.values()[getCurrentElement()];
+        return RelationalOperator.values()[getCurrentLexeme()];
     }
 }

@@ -2,26 +2,26 @@ package com.vietage.lang17.lexer.lexeme;
 
 import com.vietage.lang17.lexer.Context;
 
-public abstract class Choice extends BaseElement {
+public abstract class Choice extends BaseLexeme {
 
     private static final int INIT_STATE = -1;
 
-    private Element[] elements;
-    private int currentElement = INIT_STATE;
+    private Lexeme[] lexemes;
+    private int currentLexeme = INIT_STATE;
 
-    protected abstract Element[] getElements();
+    protected abstract Lexeme[] getLexemes();
 
     @Override
     public boolean parse(Context context) {
-        if (currentElement == INIT_STATE) {
-            elements = getElements();
+        if (currentLexeme == INIT_STATE) {
+            lexemes = getLexemes();
         } else if (context.getLastResult()) {
             context.exit();
             return true;
         }
-        currentElement++;
-        if (currentElement < elements.length) {
-            context.enter(elements[currentElement]);
+        currentLexeme++;
+        if (currentLexeme < lexemes.length) {
+            context.enter(lexemes[currentLexeme]);
             return true;
         } else {
             context.exit();
@@ -29,11 +29,11 @@ public abstract class Choice extends BaseElement {
         }
     }
 
-    protected int getCurrentElement() {
-        return currentElement;
+    protected int getCurrentLexeme() {
+        return currentLexeme;
     }
 
-    public Element getElement() {
-        return elements[currentElement];
+    public Lexeme getLexeme() {
+        return lexemes[currentLexeme];
     }
 }

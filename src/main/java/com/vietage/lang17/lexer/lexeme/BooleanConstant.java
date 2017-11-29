@@ -6,7 +6,7 @@ package com.vietage.lang17.lexer.lexeme;
  *     'true' | 'false'
  * </pre>
  */
-public class BooleanConstant extends Choice implements ConstantElement {
+public class BooleanConstant extends Choice implements ConstantLexeme {
 
     private static final boolean[] BOOLEANS = new boolean[]{
             false,
@@ -14,8 +14,8 @@ public class BooleanConstant extends Choice implements ConstantElement {
     };
 
     @Override
-    protected Element[] getElements() {
-        return new Element[]{
+    protected Lexeme[] getLexemes() {
+        return new Lexeme[]{
                 new Token("false"),
                 new Token("true")
         };
@@ -27,6 +27,6 @@ public class BooleanConstant extends Choice implements ConstantElement {
     }
 
     public boolean getResult() {
-        return BOOLEANS[getCurrentElement()];
+        return BOOLEANS[getCurrentLexeme()];
     }
 }
