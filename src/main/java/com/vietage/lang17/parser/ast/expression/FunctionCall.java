@@ -13,6 +13,11 @@ public class FunctionCall implements Statement, Expression {
         this.name = name;
     }
 
+    @Override
+    public void visit(Visitor visitor) {
+        visitor.visit(this);
+    }
+
     public String getName() {
         return name;
     }

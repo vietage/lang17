@@ -1,5 +1,6 @@
 package com.vietage.lang17.parser;
 
+import com.vietage.lang17.formatter.Formatter;
 import com.vietage.lang17.lexer.Lexer;
 import com.vietage.lang17.lexer.lexeme.Root;
 import com.vietage.lang17.parser.ast.Program;
@@ -15,6 +16,7 @@ public class Main {
         Parser parser = new Parser();
         Program program = parser.parse(root);
 
-        System.out.println(program);
+        Formatter formatter = new Formatter();
+        formatter.format(program, System.out);
     }
 }

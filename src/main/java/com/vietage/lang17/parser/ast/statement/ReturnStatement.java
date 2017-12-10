@@ -6,6 +6,11 @@ public class ReturnStatement implements Statement {
 
     private Expression expression;
 
+    @Override
+    public void visit(Visitor visitor) {
+        visitor.visit(this);
+    }
+
     public Expression getExpression() {
         return expression;
     }

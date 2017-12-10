@@ -11,6 +11,11 @@ public class IfStatement implements Statement {
     private final List<Statement> trueStatements = new ArrayList<>();
     private List<Statement> falseStatements;
 
+    @Override
+    public void visit(Visitor visitor) {
+        visitor.visit(this);
+    }
+
     public Expression getCondition() {
         return condition;
     }

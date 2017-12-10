@@ -14,6 +14,11 @@ public class VariableDefinition implements Statement {
         this.name = name;
     }
 
+    @Override
+    public void visit(Visitor visitor) {
+        visitor.visit(this);
+    }
+
     public Type getType() {
         return type;
     }

@@ -10,6 +10,11 @@ public class WhileLoop implements Statement {
     private Expression condition;
     private final List<Statement> statements = new ArrayList<>();
 
+    @Override
+    public void visit(Visitor visitor) {
+        visitor.visit(this);
+    }
+
     public Expression getCondition() {
         return condition;
     }

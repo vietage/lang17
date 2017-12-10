@@ -12,6 +12,11 @@ public class VariableAssignment implements Statement {
         this.name = name;
     }
 
+    @Override
+    public void visit(Visitor visitor) {
+        visitor.visit(this);
+    }
+
     public String getName() {
         return name;
     }
