@@ -16,6 +16,25 @@ public class FormatIfStatement extends FormatCommand {
 
     @Override
     public void format(IndentPrintStream out, Deque<FormatCommand> commands) {
+        out.print("if (", indent);
 
+        if (ifStatement.getFalseStatements() != null) {
+            commands.push(new InsertLineFeed(indent));
+            commands.push(new InsertText(indent, "}"));
+            commands.push(new FormatStatements(indent + 4, ifStatement.getFalseStatements()));
+            commands.push(new InsertText(indent, "{"));
+            commands.push(new InsertLineFeed(indent));
+            commands.push(new InsertText(indent, "} else"));
+        } else {
+            commands.push(new InsertLineFeed(indent));
+            commands.push(new InsertText(indent, "}"));
+        }
+
+        commands.push(new FormatStatements(indent + 4, ifStatement.getTrueStatements()));
+        commands.push(new InsertLineFeed(indent));
+        commands.push(new InsertText(indent, "{"));
+        commands.push(new InsertLineFeed(indent));
+        commands.push(new InsertText(indent, ")"));
+        commands.push(new FormatExpression(indent, ifStatement.getCondition()));
     }
 }
