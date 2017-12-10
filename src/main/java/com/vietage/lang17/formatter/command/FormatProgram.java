@@ -27,7 +27,7 @@ public class FormatProgram extends FormatCommand {
         // push format commands in reverse order to the command stack
         while (it.hasNext()) {
             if (!first) {
-                commands.push(new InsertEmptyLine(indent));
+                commands.push(new InsertLineFeed(indent));
             }
             first = false;
 

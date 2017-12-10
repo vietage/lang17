@@ -25,7 +25,6 @@ public class FormatFunction extends FormatCommand {
     );
 
     private final Function function;
-    private boolean firstTime = true;
 
     protected FormatFunction(int indent, Function function) {
         super(indent);
@@ -34,24 +33,19 @@ public class FormatFunction extends FormatCommand {
 
     @Override
     public void format(IndentPrintStream out, Deque<FormatCommand> commands) {
-        if (firstTime) {
-            firstTime = false;
-            commands.push(this);
+        out.print(formatReturnType(function.getReturnType()), indent);
+        out.print(" ", indent);
+        out.print(function.getName(), indent);
+        out.print("(", indent);
 
-            out.print(formatReturnType(function.getReturnType()), indent);
-            out.print(" ", indent);
-            out.print(function.getName(), indent);
-            out.print("(", indent);
+        formatArguments(out);
 
-            formatArguments(out);
+        out.println(")", indent);
+        out.println("{", indent);
 
-            out.println(")", indent);
-            out.println("{", indent);
-
-            commands.push(new FormatStatements(indent + 4, function.getStatements()));
-        } else {
-            out.println("}", indent);
-        }
+        commands.push(new InsertLineFeed(indent));
+        commands.push(new InsertText(indent, "}"));
+        commands.push(new FormatStatements(indent + 4, function.getStatements()));
     }
 
     private void formatArguments(IndentPrintStream out) {
