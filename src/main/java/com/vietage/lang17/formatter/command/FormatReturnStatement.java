@@ -16,6 +16,9 @@ public class FormatReturnStatement extends FormatCommand {
 
     @Override
     public void format(IndentPrintStream out, Deque<FormatCommand> commands) {
+        out.print("return ", indent);
 
+        commands.push(new InsertLineFeed(indent));
+        commands.push(new FormatExpression(indent, returnStatement.getExpression()));
     }
 }
