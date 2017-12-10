@@ -43,12 +43,12 @@ public class FormatStatements extends FormatCommand implements Statement.Visitor
 
     @Override
     public void visit(ContinueStatement continueStatement) {
-        commands.push(new FormatContinueStatement(indent, continueStatement));
+        commands.push(new FormatContinueStatement(indent));
     }
 
     @Override
     public void visit(BreakStatement breakStatement) {
-        commands.push(new FormatBreakStatement(indent, breakStatement));
+        commands.push(new FormatBreakStatement(indent));
     }
 
     @Override
