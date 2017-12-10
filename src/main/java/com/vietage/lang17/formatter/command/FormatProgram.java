@@ -20,15 +20,23 @@ public class FormatProgram extends FormatCommand {
     @Override
     public void format(IndentPrintStream out, Deque<FormatCommand> commands) {
         // reverse the order of functions
-        Deque<Function> reverseFunctions = new ArrayDeque<>(program.getFunctions().values());
+        Iterator<Function> it = getReverseIterator();
 
-        Iterator<Function> it = reverseFunctions.descendingIterator();
+        boolean first = true;
 
         // push format commands in reverse order to the command stack
         while (it.hasNext()) {
-            Function function = it.next();
+            if (!first) {
+                commands.push(new InsertEmptyLine(indent));
+            }
+            first = false;
 
+            Function function = it.next();
             commands.push(new FormatFunction(indent, function));
         }
+    }
+
+    private Iterator<Function> getReverseIterator() {
+        return new ArrayDeque<>(program.getFunctions().values()).descendingIterator();
     }
 }

@@ -53,6 +53,7 @@ public class FormatStatements extends FormatCommand implements Statement.Visitor
 
     @Override
     public void visit(FunctionCall functionCall) {
+        commands.push(new InsertLineFeed(indent));
         commands.push(new FormatFunctionCall(indent, functionCall));
     }
 
