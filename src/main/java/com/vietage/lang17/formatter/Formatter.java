@@ -12,12 +12,17 @@ public class Formatter {
 
     public void format(Program program, PrintStream out) {
         IndentPrintStream indentPrintStream = new IndentPrintStream(out);
-        Deque<FormatCommand> commands = new ArrayDeque<>();
+        Deque<FormatCommand> commandStack = new ArrayDeque<>();
+        Deque<FormatCommand> commandQueue = new ArrayDeque<>();
 
-        commands.push(new FormatProgram(0, program));
+        commandStack.push(new FormatProgram(0, program));
 
-        while (!commands.isEmpty()) {
-            commands.pop().format(indentPrintStream, commands);
+        while (!commandStack.isEmpty()) {
+            commandStack.pop().format(indentPrintStream, commandQueue);
+
+            while (!commandQueue.isEmpty()) {
+                commandStack.push(commandQueue.removeLast());
+            }
         }
     }
 }

@@ -32,7 +32,7 @@ public class FormatFunction extends FormatCommand {
     }
 
     @Override
-    public void format(IndentPrintStream out, Deque<FormatCommand> commands) {
+    public void format(IndentPrintStream out, Deque<FormatCommand> commandQueue) {
         out.print(formatReturnType(function.getReturnType()), indent);
         out.print(" ", indent);
         out.print(function.getName(), indent);
@@ -43,9 +43,9 @@ public class FormatFunction extends FormatCommand {
         out.println(")", indent);
         out.println("{", indent);
 
-        commands.push(new InsertLineFeed(indent));
-        commands.push(new InsertText(indent, "}"));
-        commands.push(new FormatStatements(indent + 4, function.getStatements()));
+        commandQueue.add(new FormatStatements(indent + 4, function.getStatements()));
+        commandQueue.add(new InsertText(indent, "}"));
+        commandQueue.add(new InsertLineFeed(indent));
     }
 
     private void formatArguments(IndentPrintStream out) {

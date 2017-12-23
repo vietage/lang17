@@ -11,7 +11,7 @@ public class InsertCommaSeparator extends FormatCommand {
     }
 
     @Override
-    public void format(IndentPrintStream out, Deque<FormatCommand> commands) {
+    public void format(IndentPrintStream out, Deque<FormatCommand> commandQueue) {
         out.print(", ", indent);
     }
 }

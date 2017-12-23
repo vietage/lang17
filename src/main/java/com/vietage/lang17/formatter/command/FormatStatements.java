@@ -11,9 +11,7 @@ import com.vietage.lang17.parser.ast.statement.VariableAssignment;
 import com.vietage.lang17.parser.ast.statement.VariableDefinition;
 import com.vietage.lang17.parser.ast.statement.WhileLoop;
 
-import java.util.ArrayDeque;
 import java.util.Deque;
-import java.util.Iterator;
 import java.util.List;
 
 public class FormatStatements extends FormatCommand implements Statement.Visitor {
@@ -27,58 +25,52 @@ public class FormatStatements extends FormatCommand implements Statement.Visitor
     }
 
     @Override
-    public void format(IndentPrintStream out, Deque<FormatCommand> commands) {
-        this.commands = commands;
+    public void format(IndentPrintStream out, Deque<FormatCommand> commandQueue) {
+        this.commands = commandQueue;
 
-        Iterator<Statement> it = getReverseIterator();
-
-        while (it.hasNext()) {
-            it.next().visit(this);
+        for (Statement statement : statements) {
+            statement.visit(this);
         }
-    }
-
-    private Iterator<Statement> getReverseIterator() {
-        return new ArrayDeque<>(statements).descendingIterator();
     }
 
     @Override
     public void visit(ContinueStatement continueStatement) {
-        commands.push(new FormatContinueStatement(indent));
+        commands.add(new FormatContinueStatement(indent));
     }
 
     @Override
     public void visit(BreakStatement breakStatement) {
-        commands.push(new FormatBreakStatement(indent));
+        commands.add(new FormatBreakStatement(indent));
     }
 
     @Override
     public void visit(FunctionCall functionCall) {
-        commands.push(new InsertLineFeed(indent));
-        commands.push(new FormatFunctionCall(indent, functionCall));
+        commands.add(new FormatFunctionCall(indent, functionCall));
+        commands.add(new InsertLineFeed(indent));
     }
 
     @Override
     public void visit(WhileLoop whileLoop) {
-        commands.push(new FormatWhileLoop(indent, whileLoop));
+        commands.add(new FormatWhileLoop(indent, whileLoop));
     }
 
     @Override
     public void visit(ReturnStatement returnStatement) {
-        commands.push(new FormatReturnStatement(indent, returnStatement));
+        commands.add(new FormatReturnStatement(indent, returnStatement));
     }
 
     @Override
     public void visit(IfStatement ifStatement) {
-        commands.push(new FormatIfStatement(indent, ifStatement));
+        commands.add(new FormatIfStatement(indent, ifStatement));
     }
 
     @Override
     public void visit(VariableDefinition variableDefinition) {
-        commands.push(new FormatVariableDefinition(indent, variableDefinition));
+        commands.add(new FormatVariableDefinition(indent, variableDefinition));
     }
 
     @Override
     public void visit(VariableAssignment variableAssignment) {
-        commands.push(new FormatVariableAssignment(indent, variableAssignment));
+        commands.add(new FormatVariableAssignment(indent, variableAssignment));
     }
 }

@@ -15,10 +15,10 @@ public class FormatReturnStatement extends FormatCommand {
     }
 
     @Override
-    public void format(IndentPrintStream out, Deque<FormatCommand> commands) {
+    public void format(IndentPrintStream out, Deque<FormatCommand> commandQueue) {
         out.print("return ", indent);
 
-        commands.push(new InsertLineFeed(indent));
-        commands.push(new FormatExpression(indent, returnStatement.getExpression()));
+        commandQueue.add(new FormatExpression(indent, returnStatement.getExpression()));
+        commandQueue.add(new InsertLineFeed(indent));
     }
 }

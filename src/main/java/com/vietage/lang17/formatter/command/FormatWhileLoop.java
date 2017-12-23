@@ -15,16 +15,16 @@ public class FormatWhileLoop extends FormatCommand {
     }
 
     @Override
-    public void format(IndentPrintStream out, Deque<FormatCommand> commands) {
+    public void format(IndentPrintStream out, Deque<FormatCommand> commandQueue) {
         out.print("while (", indent);
 
-        commands.push(new InsertLineFeed(indent));
-        commands.push(new InsertText(indent, "}"));
-        commands.push(new FormatStatements(indent + 4, whileLoop.getStatements()));
-        commands.push(new InsertLineFeed(indent));
-        commands.push(new InsertText(indent, "{"));
-        commands.push(new InsertLineFeed(indent));
-        commands.push(new InsertText(indent, ")"));
-        commands.push(new FormatExpression(indent, whileLoop.getCondition()));
+        commandQueue.add(new FormatExpression(indent, whileLoop.getCondition()));
+        commandQueue.add(new InsertText(indent, ")"));
+        commandQueue.add(new InsertLineFeed(indent));
+        commandQueue.add(new InsertText(indent, "{"));
+        commandQueue.add(new InsertLineFeed(indent));
+        commandQueue.add(new FormatStatements(indent + 4, whileLoop.getStatements()));
+        commandQueue.add(new InsertText(indent, "}"));
+        commandQueue.add(new InsertLineFeed(indent));
     }
 }

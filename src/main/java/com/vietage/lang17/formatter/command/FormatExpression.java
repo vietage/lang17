@@ -15,7 +15,7 @@ public class FormatExpression extends FormatCommand {
     }
 
     @Override
-    public void format(IndentPrintStream out, Deque<FormatCommand> commands) {
+    public void format(IndentPrintStream out, Deque<FormatCommand> commandQueue) {
 
     }
 }

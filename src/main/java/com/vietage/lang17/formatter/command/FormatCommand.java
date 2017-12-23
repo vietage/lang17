@@ -12,5 +12,5 @@ public abstract class FormatCommand {
         this.indent = indent;
     }
 
-    public abstract void format(IndentPrintStream out, Deque<FormatCommand> commands);
+    public abstract void format(IndentPrintStream out, Deque<FormatCommand> commandQueue);
 }

@@ -15,13 +15,13 @@ public class FormatFunctionCall extends FormatCommand {
     }
 
     @Override
-    public void format(IndentPrintStream out, Deque<FormatCommand> commands) {
+    public void format(IndentPrintStream out, Deque<FormatCommand> commandQueue) {
         out.print(functionCall.getName(), indent);
         out.print("(", indent);
 
         if (!functionCall.getArguments().isEmpty()) {
-            commands.push(new InsertText(indent, ")"));
-            commands.push(new FormatArguments(indent, functionCall.getArguments()));
+            commandQueue.add(new FormatArguments(indent, functionCall.getArguments()));
+            commandQueue.add(new InsertText(indent, ")"));
         } else {
             out.print(")", indent);
         }

@@ -3,9 +3,7 @@ package com.vietage.lang17.formatter.command;
 import com.vietage.lang17.formatter.IndentPrintStream;
 import com.vietage.lang17.parser.ast.expression.Expression;
 
-import java.util.ArrayDeque;
 import java.util.Deque;
-import java.util.Iterator;
 import java.util.List;
 
 public class FormatArguments extends FormatCommand {
@@ -18,23 +16,16 @@ public class FormatArguments extends FormatCommand {
     }
 
     @Override
-    public void format(IndentPrintStream out, Deque<FormatCommand> commands) {
-        Iterator<Expression> it = getReverseIterator();
-
+    public void format(IndentPrintStream out, Deque<FormatCommand> commandQueue) {
         boolean first = true;
 
-        while (it.hasNext()) {
+        for (Expression argument : arguments) {
             if (!first) {
-                commands.push(new InsertCommaSeparator(indent));
+                commandQueue.add(new InsertCommaSeparator(indent));
             }
             first = false;
 
-            Expression expression = it.next();
-            commands.push(new FormatExpression(indent, expression));
+            commandQueue.add(new FormatExpression(indent, argument));
         }
-    }
-
-    public Iterator<Expression> getReverseIterator() {
-        return new ArrayDeque<>(arguments).descendingIterator();
     }
 }
