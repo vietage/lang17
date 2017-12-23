@@ -29,7 +29,7 @@ public class FormatStatements extends FormatCommand implements Statement.Visitor
         this.commands = commandQueue;
 
         for (Statement statement : statements) {
-            statement.visit(this);
+            statement.accept(this);
         }
     }
 

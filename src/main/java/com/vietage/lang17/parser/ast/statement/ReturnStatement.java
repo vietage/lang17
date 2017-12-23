@@ -7,7 +7,7 @@ public class ReturnStatement implements Statement {
     private Expression expression;
 
     @Override
-    public void visit(Visitor visitor) {
+    public void accept(Visitor visitor) {
         visitor.visit(this);
     }
 

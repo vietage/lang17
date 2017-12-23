@@ -14,7 +14,7 @@ public class FunctionCall implements Statement, Expression {
     }
 
     @Override
-    public void visit(Visitor visitor) {
+    public void accept(Visitor visitor) {
         visitor.visit(this);
     }
 

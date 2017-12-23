@@ -12,7 +12,7 @@ public class IfStatement implements Statement {
     private List<Statement> falseStatements;
 
     @Override
-    public void visit(Visitor visitor) {
+    public void accept(Visitor visitor) {
         visitor.visit(this);
     }
 

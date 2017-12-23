@@ -5,7 +5,7 @@ import com.vietage.lang17.parser.ast.expression.FunctionCall;
 
 public interface Statement extends ASTElement {
 
-    void visit(Visitor visitor);
+    void accept(Visitor visitor);
 
     interface Visitor {
 

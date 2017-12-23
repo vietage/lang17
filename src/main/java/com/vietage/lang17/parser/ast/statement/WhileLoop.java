@@ -11,7 +11,7 @@ public class WhileLoop implements Statement {
     private final List<Statement> statements = new ArrayList<>();
 
     @Override
-    public void visit(Visitor visitor) {
+    public void accept(Visitor visitor) {
         visitor.visit(this);
     }
 
