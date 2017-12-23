@@ -16,6 +16,18 @@ public class FormatVariableAssignment extends FormatCommand {
 
     @Override
     public void format(IndentPrintStream out, Deque<FormatCommand> commandQueue) {
+        out.print(variableAssignment.getName(), indent);
 
+        if (variableAssignment.getIndexExpression() != null) {
+            out.print("[", indent);
+
+            commandQueue.add(new FormatExpression(indent, variableAssignment.getIndexExpression()));
+            commandQueue.add(new InsertText(indent, "] = "));
+        } else {
+            out.print(" = ", indent);
+        }
+
+        commandQueue.add(new FormatExpression(indent, variableAssignment.getExpression()));
+        commandQueue.add(new InsertLineFeed(indent));
     }
 }
