@@ -19,4 +19,8 @@ public class IntegerConstant extends NumberConstant {
     public void accept(Visitor visitor) {
         visitor.visit(this);
     }
+
+    public long getValue() {
+        return value;
+    }
 }
