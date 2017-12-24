@@ -14,4 +14,9 @@ public class BooleanConstant extends ConstantExpression {
     protected Type getType() {
         return Type.BOOLEAN;
     }
+
+    @Override
+    public void accept(Visitor visitor) {
+        visitor.visit(this);
+    }
 }

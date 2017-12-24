@@ -9,6 +9,11 @@ public class ArrayRead implements Expression {
         this.name = name;
     }
 
+    @Override
+    public void accept(Visitor visitor) {
+        visitor.visit(this);
+    }
+
     public String getName() {
         return name;
     }

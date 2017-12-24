@@ -10,6 +10,11 @@ public class MultiplicationExpression implements Expression {
         this.operator = operator;
     }
 
+    @Override
+    public void accept(Visitor visitor) {
+        visitor.visit(this);
+    }
+
     public MultiplicationOperator getOperator() {
         return operator;
     }

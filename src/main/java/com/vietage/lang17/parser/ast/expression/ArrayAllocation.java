@@ -11,6 +11,11 @@ public class ArrayAllocation implements Expression {
         this.type = type;
     }
 
+    @Override
+    public void accept(Visitor visitor) {
+        visitor.visit(this);
+    }
+
     public Type getType() {
         return type;
     }

@@ -14,7 +14,12 @@ public class FunctionCall implements Statement, Expression {
     }
 
     @Override
-    public void accept(Visitor visitor) {
+    public void accept(Statement.Visitor visitor) {
+        visitor.visit(this);
+    }
+
+    @Override
+    public void accept(Expression.Visitor visitor) {
         visitor.visit(this);
     }
 

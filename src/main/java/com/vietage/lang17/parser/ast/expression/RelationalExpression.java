@@ -10,6 +10,11 @@ public class RelationalExpression implements Expression {
         this.operator = operator;
     }
 
+    @Override
+    public void accept(Visitor visitor) {
+        visitor.visit(this);
+    }
+
     public RelationalOperator getOperator() {
         return operator;
     }

@@ -14,4 +14,9 @@ public class IntegerConstant extends NumberConstant {
     protected Type getType() {
         return Type.INTEGER;
     }
+
+    @Override
+    public void accept(Visitor visitor) {
+        visitor.visit(this);
+    }
 }

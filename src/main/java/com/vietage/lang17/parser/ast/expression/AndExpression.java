@@ -10,4 +10,9 @@ public class AndExpression implements Expression {
     public List<Expression> getExpressions() {
         return expressions;
     }
+
+    @Override
+    public void accept(Visitor visitor) {
+        visitor.visit(this);
+    }
 }

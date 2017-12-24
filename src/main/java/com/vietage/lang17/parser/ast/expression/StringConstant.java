@@ -14,4 +14,9 @@ public class StringConstant extends ConstantExpression {
     protected Type getType() {
         return Type.STRING;
     }
+
+    @Override
+    public void accept(Visitor visitor) {
+        visitor.visit(this);
+    }
 }

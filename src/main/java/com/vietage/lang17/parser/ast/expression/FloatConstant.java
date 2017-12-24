@@ -14,4 +14,9 @@ public class FloatConstant extends NumberConstant {
     protected Type getType() {
         return Type.FLOAT;
     }
+
+    @Override
+    public void accept(Visitor visitor) {
+
+    }
 }

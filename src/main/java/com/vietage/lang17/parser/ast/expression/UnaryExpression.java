@@ -9,6 +9,11 @@ public class UnaryExpression implements Expression {
         this.operator = operator;
     }
 
+    @Override
+    public void accept(Visitor visitor) {
+        visitor.visit(this);
+    }
+
     public UnaryOperator getOperator() {
         return operator;
     }

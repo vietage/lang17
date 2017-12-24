@@ -10,6 +10,11 @@ public class EqualityExpression implements Expression {
         this.operator = operator;
     }
 
+    @Override
+    public void accept(Visitor visitor) {
+        visitor.visit(this);
+    }
+
     public EqualityOperator getOperator() {
         return operator;
     }

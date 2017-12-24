@@ -10,6 +10,11 @@ public class AdditionExpression implements Expression {
         this.operator = operator;
     }
 
+    @Override
+    public void accept(Visitor visitor) {
+        visitor.visit(this);
+    }
+
     public AdditionOperator getOperator() {
         return operator;
     }
