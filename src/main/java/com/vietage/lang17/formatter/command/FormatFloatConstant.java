@@ -7,12 +7,15 @@ import java.util.Queue;
 
 public class FormatFloatConstant extends FormatCommand {
 
+    private final FloatConstant floatConstant;
+
     public FormatFloatConstant(int indent, FloatConstant floatConstant) {
         super(indent);
+        this.floatConstant = floatConstant;
     }
 
     @Override
     public void format(IndentPrintStream out, Queue<FormatCommand> commandQueue) {
-
+        out.print(Double.toString(floatConstant.getValue()), indent);
     }
 }

@@ -17,6 +17,10 @@ public class FloatConstant extends NumberConstant {
 
     @Override
     public void accept(Visitor visitor) {
+        visitor.visit(this);
+    }
 
+    public double getValue() {
+        return value;
     }
 }
