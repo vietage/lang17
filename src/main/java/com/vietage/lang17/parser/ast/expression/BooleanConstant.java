@@ -19,4 +19,8 @@ public class BooleanConstant extends ConstantExpression {
     public void accept(Visitor visitor) {
         visitor.visit(this);
     }
+
+    public boolean isValue() {
+        return value;
+    }
 }
