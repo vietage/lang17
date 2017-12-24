@@ -19,4 +19,8 @@ public class StringConstant extends ConstantExpression {
     public void accept(Visitor visitor) {
         visitor.visit(this);
     }
+
+    public String getValue() {
+        return value;
+    }
 }
