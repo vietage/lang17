@@ -3,8 +3,8 @@ package com.vietage.lang17.formatter.command;
 import com.vietage.lang17.formatter.IndentPrintStream;
 import com.vietage.lang17.parser.ast.expression.Expression;
 
-import java.util.Deque;
 import java.util.List;
+import java.util.Queue;
 
 public class FormatArguments extends FormatCommand {
 
@@ -16,7 +16,7 @@ public class FormatArguments extends FormatCommand {
     }
 
     @Override
-    public void format(IndentPrintStream out, Deque<FormatCommand> commandQueue) {
+    public void format(IndentPrintStream out, Queue<FormatCommand> commandQueue) {
         boolean first = true;
 
         for (Expression argument : arguments) {

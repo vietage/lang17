@@ -5,9 +5,9 @@ import com.vietage.lang17.parser.ast.Argument;
 import com.vietage.lang17.parser.ast.Function;
 import com.vietage.lang17.parser.ast.Type;
 
-import java.util.Deque;
 import java.util.EnumMap;
 import java.util.Map;
+import java.util.Queue;
 
 public class FormatFunction extends FormatCommand {
 
@@ -32,7 +32,7 @@ public class FormatFunction extends FormatCommand {
     }
 
     @Override
-    public void format(IndentPrintStream out, Deque<FormatCommand> commandQueue) {
+    public void format(IndentPrintStream out, Queue<FormatCommand> commandQueue) {
         out.print(formatReturnType(function.getReturnType()), indent);
         out.print(" ", indent);
         out.print(function.getName(), indent);

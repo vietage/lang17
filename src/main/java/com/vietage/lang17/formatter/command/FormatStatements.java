@@ -2,22 +2,15 @@ package com.vietage.lang17.formatter.command;
 
 import com.vietage.lang17.formatter.IndentPrintStream;
 import com.vietage.lang17.parser.ast.expression.FunctionCall;
-import com.vietage.lang17.parser.ast.statement.BreakStatement;
-import com.vietage.lang17.parser.ast.statement.ContinueStatement;
-import com.vietage.lang17.parser.ast.statement.IfStatement;
-import com.vietage.lang17.parser.ast.statement.ReturnStatement;
-import com.vietage.lang17.parser.ast.statement.Statement;
-import com.vietage.lang17.parser.ast.statement.VariableAssignment;
-import com.vietage.lang17.parser.ast.statement.VariableDefinition;
-import com.vietage.lang17.parser.ast.statement.WhileLoop;
+import com.vietage.lang17.parser.ast.statement.*;
 
-import java.util.Deque;
 import java.util.List;
+import java.util.Queue;
 
 public class FormatStatements extends FormatCommand implements Statement.Visitor {
 
     private final List<Statement> statements;
-    private Deque<FormatCommand> commands;
+    private Queue<FormatCommand> commands;
 
     public FormatStatements(int indent, List<Statement> statements) {
         super(indent);
@@ -25,7 +18,7 @@ public class FormatStatements extends FormatCommand implements Statement.Visitor
     }
 
     @Override
-    public void format(IndentPrintStream out, Deque<FormatCommand> commandQueue) {
+    public void format(IndentPrintStream out, Queue<FormatCommand> commandQueue) {
         this.commands = commandQueue;
 
         for (Statement statement : statements) {

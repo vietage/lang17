@@ -3,7 +3,7 @@ package com.vietage.lang17.formatter.command;
 import com.vietage.lang17.formatter.IndentPrintStream;
 import com.vietage.lang17.parser.ast.statement.IfStatement;
 
-import java.util.Deque;
+import java.util.Queue;
 
 public class FormatIfStatement extends FormatCommand {
 
@@ -15,7 +15,7 @@ public class FormatIfStatement extends FormatCommand {
     }
 
     @Override
-    public void format(IndentPrintStream out, Deque<FormatCommand> commandQueue) {
+    public void format(IndentPrintStream out, Queue<FormatCommand> commandQueue) {
         out.print("if (", indent);
 
         commandQueue.add(new FormatExpression(indent, ifStatement.getCondition()));

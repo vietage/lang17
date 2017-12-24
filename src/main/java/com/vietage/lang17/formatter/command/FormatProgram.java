@@ -4,7 +4,7 @@ import com.vietage.lang17.formatter.IndentPrintStream;
 import com.vietage.lang17.parser.ast.Function;
 import com.vietage.lang17.parser.ast.Program;
 
-import java.util.Deque;
+import java.util.Queue;
 
 public class FormatProgram extends FormatCommand {
 
@@ -16,7 +16,7 @@ public class FormatProgram extends FormatCommand {
     }
 
     @Override
-    public void format(IndentPrintStream out, Deque<FormatCommand> commandQueue) {
+    public void format(IndentPrintStream out, Queue<FormatCommand> commandQueue) {
         boolean first = true;
 
         for (Function function : program.getFunctions().values()) {

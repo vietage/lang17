@@ -2,7 +2,7 @@ package com.vietage.lang17.formatter.command;
 
 import com.vietage.lang17.formatter.IndentPrintStream;
 
-import java.util.Deque;
+import java.util.Queue;
 
 public class FormatContinueStatement extends FormatCommand {
 
@@ -11,7 +11,7 @@ public class FormatContinueStatement extends FormatCommand {
     }
 
     @Override
-    public void format(IndentPrintStream out, Deque<FormatCommand> commandQueue) {
+    public void format(IndentPrintStream out, Queue<FormatCommand> commandQueue) {
         out.println("continue", indent);
     }
 }

@@ -2,7 +2,7 @@ package com.vietage.lang17.formatter.command;
 
 import com.vietage.lang17.formatter.IndentPrintStream;
 
-import java.util.Deque;
+import java.util.Queue;
 
 public abstract class FormatCommand {
 
@@ -12,5 +12,5 @@ public abstract class FormatCommand {
         this.indent = indent;
     }
 
-    public abstract void format(IndentPrintStream out, Deque<FormatCommand> commandQueue);
+    public abstract void format(IndentPrintStream out, Queue<FormatCommand> commandQueue);
 }
