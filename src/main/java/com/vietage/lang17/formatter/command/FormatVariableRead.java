@@ -7,12 +7,15 @@ import java.util.Queue;
 
 public class FormatVariableRead extends FormatCommand {
 
+    private final VariableRead variableRead;
+
     public FormatVariableRead(int indent, VariableRead variableRead) {
         super(indent);
+        this.variableRead = variableRead;
     }
 
     @Override
     public void format(IndentPrintStream out, Queue<FormatCommand> commandQueue) {
-
+        out.print(variableRead.getName(), indent);
     }
 }
