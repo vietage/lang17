@@ -15,4 +15,9 @@ public class OrExpression implements Expression {
     public void accept(Visitor visitor) {
         visitor.visit(this);
     }
+
+    @Override
+    public OperatorPrecedence getOperatorPrecedence() {
+        return OperatorPrecedence.OR;
+    }
 }

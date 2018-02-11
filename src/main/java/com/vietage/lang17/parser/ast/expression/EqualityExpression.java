@@ -15,6 +15,11 @@ public class EqualityExpression implements Expression {
         visitor.visit(this);
     }
 
+    @Override
+    public OperatorPrecedence getOperatorPrecedence() {
+        return OperatorPrecedence.EQUAL;
+    }
+
     public EqualityOperator getOperator() {
         return operator;
     }

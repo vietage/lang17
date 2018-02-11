@@ -15,6 +15,11 @@ public class MultiplicationExpression implements Expression {
         visitor.visit(this);
     }
 
+    @Override
+    public OperatorPrecedence getOperatorPrecedence() {
+        return OperatorPrecedence.MUL;
+    }
+
     public MultiplicationOperator getOperator() {
         return operator;
     }

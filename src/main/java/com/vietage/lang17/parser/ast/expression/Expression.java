@@ -6,6 +6,8 @@ public interface Expression extends ASTElement {
 
     void accept(Visitor visitor);
 
+    OperatorPrecedence getOperatorPrecedence();
+
     interface Visitor {
 
         void visit(FunctionCall functionCall);

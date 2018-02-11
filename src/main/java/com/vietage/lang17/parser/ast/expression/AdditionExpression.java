@@ -15,6 +15,11 @@ public class AdditionExpression implements Expression {
         visitor.visit(this);
     }
 
+    @Override
+    public OperatorPrecedence getOperatorPrecedence() {
+        return OperatorPrecedence.ADD;
+    }
+
     public AdditionOperator getOperator() {
         return operator;
     }

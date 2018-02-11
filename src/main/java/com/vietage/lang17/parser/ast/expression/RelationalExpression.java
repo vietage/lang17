@@ -15,6 +15,11 @@ public class RelationalExpression implements Expression {
         visitor.visit(this);
     }
 
+    @Override
+    public OperatorPrecedence getOperatorPrecedence() {
+        return OperatorPrecedence.REL;
+    }
+
     public RelationalOperator getOperator() {
         return operator;
     }

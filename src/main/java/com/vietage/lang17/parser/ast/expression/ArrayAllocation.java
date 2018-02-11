@@ -16,6 +16,11 @@ public class ArrayAllocation implements Expression {
         visitor.visit(this);
     }
 
+    @Override
+    public OperatorPrecedence getOperatorPrecedence() {
+        return OperatorPrecedence.VAL;
+    }
+
     public Type getType() {
         return type;
     }

@@ -14,6 +14,11 @@ public class UnaryExpression implements Expression {
         visitor.visit(this);
     }
 
+    @Override
+    public OperatorPrecedence getOperatorPrecedence() {
+        return OperatorPrecedence.NOT;
+    }
+
     public UnaryOperator getOperator() {
         return operator;
     }

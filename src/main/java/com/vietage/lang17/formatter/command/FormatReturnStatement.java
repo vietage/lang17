@@ -18,7 +18,7 @@ public class FormatReturnStatement extends FormatCommand {
     public void format(IndentPrintStream out, Queue<FormatCommand> commandQueue) {
         out.print("return ", indent);
 
-        commandQueue.add(new FormatExpression(indent, returnStatement.getExpression()));
+        commandQueue.add(new FormatExpression(indent, returnStatement.getExpression(), parentOperatorPrecedence));
         commandQueue.add(new InsertLineFeed(indent));
     }
 }

@@ -2,12 +2,14 @@ package com.vietage.lang17.formatter.command;
 
 import com.vietage.lang17.formatter.IndentPrintStream;
 import com.vietage.lang17.parser.ast.expression.EqualityExpression;
+import com.vietage.lang17.parser.ast.expression.OperatorPrecedence;
 
 import java.util.Queue;
 
-public class FormatEqualityExpression extends FormatCommand {
+public class FormatEqualityExpression extends FormatOperatorExpression {
 
-    public FormatEqualityExpression(int indent, EqualityExpression equalityExpression) {
+    public FormatEqualityExpression(int indent, EqualityExpression equalityExpression,
+                                    OperatorPrecedence parentOperatorPrecedence) {
         super(indent);
     }
 

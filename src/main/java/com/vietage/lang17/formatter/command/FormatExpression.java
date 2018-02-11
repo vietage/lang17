@@ -8,12 +8,14 @@ import java.util.Queue;
 public class FormatExpression extends FormatCommand implements Expression.Visitor {
 
     private final Expression expression;
+    private final OperatorPrecedence parentOperatorPrecedence;
 
     private Queue<FormatCommand> commandQueue;
 
-    public FormatExpression(int indent, Expression expression) {
+    public FormatExpression(int indent, Expression expression, OperatorPrecedence parentOperatorPrecedence) {
         super(indent);
         this.expression = expression;
+        this.parentOperatorPrecedence = parentOperatorPrecedence;
     }
 
     @Override
@@ -30,7 +32,7 @@ public class FormatExpression extends FormatCommand implements Expression.Visito
 
     @Override
     public void visit(UnaryExpression unaryExpression) {
-        commandQueue.add(new FormatUnaryExpression(indent, unaryExpression));
+        commandQueue.add(new FormatUnaryExpression(indent, unaryExpression, parentOperatorPrecedence));
     }
 
     @Override
@@ -60,27 +62,28 @@ public class FormatExpression extends FormatCommand implements Expression.Visito
 
     @Override
     public void visit(MultiplicationExpression multiplicationExpression) {
-        commandQueue.add(new FormatMultiplicationExpression(indent, multiplicationExpression));
+        commandQueue.add(new FormatMultiplicationExpression(
+                indent, multiplicationExpression, parentOperatorPrecedence));
     }
 
     @Override
     public void visit(OrExpression orExpression) {
-        commandQueue.add(new FormatOrExpression(indent, orExpression));
+        commandQueue.add(new FormatOrExpression(indent, orExpression, parentOperatorPrecedence));
     }
 
     @Override
     public void visit(AdditionExpression additionExpression) {
-        commandQueue.add(new FormatAdditionExpression(indent, additionExpression));
+        commandQueue.add(new FormatAdditionExpression(indent, additionExpression, parentOperatorPrecedence));
     }
 
     @Override
     public void visit(RelationalExpression relationalExpression) {
-        commandQueue.add(new FormatRelationalExpression(indent, relationalExpression));
+        commandQueue.add(new FormatRelationalExpression(indent, relationalExpression, parentOperatorPrecedence));
     }
 
     @Override
     public void visit(EqualityExpression equalityExpression) {
-        commandQueue.add(new FormatEqualityExpression(indent, equalityExpression));
+        commandQueue.add(new FormatEqualityExpression(indent, equalityExpression, parentOperatorPrecedence));
     }
 
     @Override
@@ -95,6 +98,6 @@ public class FormatExpression extends FormatCommand implements Expression.Visito
 
     @Override
     public void visit(AndExpression andExpression) {
-        commandQueue.add(new FormatAndExpression(indent, andExpression));
+        commandQueue.add(new FormatAndExpression(indent, andExpression, parentOperatorPrecedence));
     }
 }

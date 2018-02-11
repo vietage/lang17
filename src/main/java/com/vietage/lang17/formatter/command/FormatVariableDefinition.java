@@ -18,6 +18,6 @@ public class FormatVariableDefinition extends FormatCommand {
     public void format(IndentPrintStream out, Queue<FormatCommand> commandQueue) {
         commandQueue.add(new FormatType(indent, variableDefinition.getType()));
         commandQueue.add(new InsertText(indent, variableDefinition.getName() + " = "));
-        commandQueue.add(new FormatExpression(indent, variableDefinition.getExpression()));
+        commandQueue.add(new FormatExpression(indent, variableDefinition.getExpression(), parentOperatorPrecedence));
     }
 }

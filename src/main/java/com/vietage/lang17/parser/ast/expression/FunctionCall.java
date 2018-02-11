@@ -23,6 +23,11 @@ public class FunctionCall implements Statement, Expression {
         visitor.visit(this);
     }
 
+    @Override
+    public OperatorPrecedence getOperatorPrecedence() {
+        return OperatorPrecedence.VAL;
+    }
+
     public String getName() {
         return name;
     }
