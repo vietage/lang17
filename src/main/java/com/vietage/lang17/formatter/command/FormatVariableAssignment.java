@@ -21,13 +21,13 @@ public class FormatVariableAssignment extends FormatCommand {
         if (variableAssignment.getIndexExpression() != null) {
             out.print("[", indent);
 
-            commandQueue.add(new FormatExpression(indent, variableAssignment.getIndexExpression(), parentOperatorPrecedence));
+            commandQueue.add(new FormatExpression(indent, variableAssignment.getIndexExpression()));
             commandQueue.add(new InsertText(indent, "] = "));
         } else {
             out.print(" = ", indent);
         }
 
-        commandQueue.add(new FormatExpression(indent, variableAssignment.getExpression(), parentOperatorPrecedence));
+        commandQueue.add(new FormatExpression(indent, variableAssignment.getExpression()));
         commandQueue.add(new InsertLineFeed(indent));
     }
 }

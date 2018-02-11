@@ -25,7 +25,7 @@ public class FormatArguments extends FormatCommand {
             }
             first = false;
 
-            commandQueue.add(new FormatExpression(indent, argument, parentOperatorPrecedence));
+            commandQueue.add(new FormatExpression(indent, argument));
         }
     }
 }

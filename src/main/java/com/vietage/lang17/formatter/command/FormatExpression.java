@@ -1,7 +1,23 @@
 package com.vietage.lang17.formatter.command;
 
 import com.vietage.lang17.formatter.IndentPrintStream;
-import com.vietage.lang17.parser.ast.expression.*;
+import com.vietage.lang17.parser.ast.expression.AdditionExpression;
+import com.vietage.lang17.parser.ast.expression.AndExpression;
+import com.vietage.lang17.parser.ast.expression.ArrayAllocation;
+import com.vietage.lang17.parser.ast.expression.ArrayRead;
+import com.vietage.lang17.parser.ast.expression.BooleanConstant;
+import com.vietage.lang17.parser.ast.expression.EqualityExpression;
+import com.vietage.lang17.parser.ast.expression.Expression;
+import com.vietage.lang17.parser.ast.expression.FloatConstant;
+import com.vietage.lang17.parser.ast.expression.FunctionCall;
+import com.vietage.lang17.parser.ast.expression.IntegerConstant;
+import com.vietage.lang17.parser.ast.expression.MultiplicationExpression;
+import com.vietage.lang17.parser.ast.expression.OperatorPrecedence;
+import com.vietage.lang17.parser.ast.expression.OrExpression;
+import com.vietage.lang17.parser.ast.expression.RelationalExpression;
+import com.vietage.lang17.parser.ast.expression.StringConstant;
+import com.vietage.lang17.parser.ast.expression.UnaryExpression;
+import com.vietage.lang17.parser.ast.expression.VariableRead;
 
 import java.util.Queue;
 
@@ -16,6 +32,12 @@ public class FormatExpression extends FormatCommand implements Expression.Visito
         super(indent);
         this.expression = expression;
         this.parentOperatorPrecedence = parentOperatorPrecedence;
+    }
+
+    public FormatExpression(int indent, Expression expression) {
+        super(indent);
+        this.expression = expression;
+        this.parentOperatorPrecedence = OperatorPrecedence.OR;
     }
 
     @Override

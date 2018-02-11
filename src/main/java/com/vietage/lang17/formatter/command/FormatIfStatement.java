@@ -18,7 +18,7 @@ public class FormatIfStatement extends FormatCommand {
     public void format(IndentPrintStream out, Queue<FormatCommand> commandQueue) {
         out.print("if (", indent);
 
-        commandQueue.add(new FormatExpression(indent, ifStatement.getCondition(), parentOperatorPrecedence));
+        commandQueue.add(new FormatExpression(indent, ifStatement.getCondition()));
         commandQueue.add(new InsertText(indent, ")"));
         commandQueue.add(new InsertLineFeed(indent));
         commandQueue.add(new InsertText(indent, "{"));
