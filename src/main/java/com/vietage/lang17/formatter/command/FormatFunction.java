@@ -41,7 +41,7 @@ public class FormatFunction extends FormatCommand {
             first = false;
 
             commandQueue.add(new FormatType(indent, argument.getType()));
-            commandQueue.add(new InsertText(indent, argument.getName()));
+            commandQueue.add(new InsertText(indent, " " + argument.getName()));
         }
     }
 }
