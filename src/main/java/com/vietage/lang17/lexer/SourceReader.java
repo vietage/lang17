@@ -53,7 +53,7 @@ public class SourceReader {
 
 
     public void reset(Position newPosition) {
-        if (newPosition.getLine() >= lines.size() - 1 ||
+        if (newPosition.getLine() >= lines.size() ||
                 newPosition.getColumn() > lines.get(newPosition.getLine()).length()) {
             throw new IllegalArgumentException("Illegal position: " + newPosition);
         }
