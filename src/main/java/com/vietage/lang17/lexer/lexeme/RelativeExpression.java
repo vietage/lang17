@@ -3,7 +3,7 @@ package com.vietage.lang17.lexer.lexeme;
 /**
  * EBNF:
  * <pre>
- *     ADD_EXPR { WHITESPACE } [ RIGHT_AND_EXPRESSION ]
+ *     ADD_EXPR { WHITESPACE } [ RIGHT_ADD_EXPRESSION ]
  * </pre>
  */
 public class RelativeExpression extends CompositeLexeme {

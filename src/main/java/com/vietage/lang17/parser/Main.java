@@ -12,6 +12,8 @@ public class Main {
     public static void main(String[] args) throws IOException {
         format("examples/formatterTest1");
         format("examples/formatterTest2");
+        format("examples/formatterTest3");
+        format("examples/formatterTest4");
     }
 
     private static void format(String sourceFile) throws IOException {

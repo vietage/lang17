@@ -1,0 +1,10 @@
+float func1 (int t1, float t2, string t3) {
+    a = t1 + t2
+    b = "abc " + t3
+    println("!")
+    if (a < 10) {
+        c = int[1000]
+
+        return a+b*c/(15 % (1 - (2 + 3))) + 1
+    }
+}

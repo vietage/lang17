@@ -13,10 +13,10 @@ public class RelativeOp extends Choice {
     @Override
     protected Lexeme[] getLexemes() {
         return new Lexeme[]{
-                new Token("<"),
                 new Token("<="),
-                new Token(">"),
-                new Token(">=")
+                new Token(">="),
+                new Token("<"),
+                new Token(">")
         };
     }
 
