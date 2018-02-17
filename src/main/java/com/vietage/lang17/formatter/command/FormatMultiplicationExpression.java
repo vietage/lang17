@@ -1,6 +1,6 @@
 package com.vietage.lang17.formatter.command;
 
-import com.vietage.lang17.formatter.IndentPrintStream;
+import com.vietage.lang17.parser.ast.expression.Expression;
 import com.vietage.lang17.parser.ast.expression.MultiplicationExpression;
 import com.vietage.lang17.parser.ast.expression.MultiplicationOperator;
 import com.vietage.lang17.parser.ast.expression.OperatorPrecedence;
@@ -18,17 +18,12 @@ public class FormatMultiplicationExpression extends FormatOperatorExpression {
     }
 
     @Override
-    public void format(IndentPrintStream out, Queue<FormatCommand> commandQueue) {
-        if (multiplicationExpression.getOperatorPrecedence().less(parentOperatorPrecedence)) {
-            commandQueue.add(new InsertText(indent, "("));
-            addFormatCommands(commandQueue);
-            commandQueue.add(new InsertText(indent, ")"));
-        } else {
-            addFormatCommands(commandQueue);
-        }
+    protected Expression getExpression() {
+        return multiplicationExpression;
     }
 
-    private void addFormatCommands(Queue<FormatCommand> commandQueue) {
+    @Override
+    protected void addFormatCommands(Queue<FormatCommand> commandQueue) {
         commandQueue.add(new FormatExpression(
                 indent,
                 multiplicationExpression.getLeftExpression(),
@@ -53,6 +48,8 @@ public class FormatMultiplicationExpression extends FormatOperatorExpression {
                 return " / ";
             case MODULO:
                 return " % ";
+            default:
+                throw new RuntimeException("Unsupported multiplication operator: " + multiplicationOperator);
         }
     }
 }
