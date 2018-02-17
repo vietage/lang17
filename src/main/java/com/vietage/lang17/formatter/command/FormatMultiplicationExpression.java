@@ -27,7 +27,7 @@ public class FormatMultiplicationExpression extends FormatOperatorExpression {
         commandQueue.add(new FormatExpression(
                 indent,
                 multiplicationExpression.getLeftExpression(),
-                parentOperatorPrecedence
+                multiplicationExpression.getOperatorPrecedence()
         ));
         commandQueue.add(new InsertText(
                 indent,
@@ -36,12 +36,12 @@ public class FormatMultiplicationExpression extends FormatOperatorExpression {
         commandQueue.add(new FormatExpression(
                 indent,
                 multiplicationExpression.getRightExpression(),
-                parentOperatorPrecedence
+                multiplicationExpression.getOperatorPrecedence()
         ));
     }
 
-    private String formatMultiplicationOperator(MultiplicationOperator multiplicationOperator) {
-        switch (multiplicationOperator) {
+    private String formatMultiplicationOperator(MultiplicationOperator operator) {
+        switch (operator) {
             case MULTIPLICATION:
                 return " * ";
             case DIVISION:
@@ -49,7 +49,7 @@ public class FormatMultiplicationExpression extends FormatOperatorExpression {
             case MODULO:
                 return " % ";
             default:
-                throw new RuntimeException("Unsupported multiplication operator: " + multiplicationOperator);
+                throw new RuntimeException("Unsupported multiplication operator: " + operator);
         }
     }
 }
