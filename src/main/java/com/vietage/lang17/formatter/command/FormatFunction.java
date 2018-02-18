@@ -27,6 +27,7 @@ public class FormatFunction extends FormatCommand {
         commandQueue.add(new InsertText(indent, "{"));
         commandQueue.add(new InsertLineFeed(indent));
         commandQueue.add(new FormatStatements(indent + 4, function.getStatements()));
+        commandQueue.add(new InsertLineFeed(indent));
         commandQueue.add(new InsertText(indent, "}"));
         commandQueue.add(new InsertLineFeed(indent));
     }

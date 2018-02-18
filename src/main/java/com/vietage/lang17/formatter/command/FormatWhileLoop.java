@@ -24,7 +24,7 @@ public class FormatWhileLoop extends FormatCommand {
         commandQueue.add(new InsertText(indent, "{"));
         commandQueue.add(new InsertLineFeed(indent));
         commandQueue.add(new FormatStatements(indent + 4, whileLoop.getStatements()));
-        commandQueue.add(new InsertText(indent, "}"));
         commandQueue.add(new InsertLineFeed(indent));
+        commandQueue.add(new InsertText(indent, "}"));
     }
 }

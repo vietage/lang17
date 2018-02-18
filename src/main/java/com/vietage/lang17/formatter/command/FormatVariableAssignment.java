@@ -28,6 +28,5 @@ public class FormatVariableAssignment extends FormatCommand {
         }
 
         commandQueue.add(new FormatExpression(indent, variableAssignment.getExpression()));
-        commandQueue.add(new InsertLineFeed(indent));
     }
 }

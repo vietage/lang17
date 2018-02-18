@@ -17,7 +17,7 @@ public class FormatVariableDefinition extends FormatCommand {
     @Override
     public void format(IndentPrintStream out, Queue<FormatCommand> commandQueue) {
         commandQueue.add(new FormatType(indent, variableDefinition.getType()));
-        commandQueue.add(new InsertText(indent, variableDefinition.getName() + " = "));
+        commandQueue.add(new InsertText(indent, " " + variableDefinition.getName() + " = "));
         commandQueue.add(new FormatExpression(indent, variableDefinition.getExpression()));
     }
 }

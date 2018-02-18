@@ -24,16 +24,18 @@ public class FormatIfStatement extends FormatCommand {
         commandQueue.add(new InsertText(indent, "{"));
         commandQueue.add(new InsertLineFeed(indent));
         commandQueue.add(new FormatStatements(indent + 4, ifStatement.getTrueStatements()));
-        commandQueue.add(new InsertText(indent, "}"));
         commandQueue.add(new InsertLineFeed(indent));
+        commandQueue.add(new InsertText(indent, "}"));
 
         if (ifStatement.getFalseStatements() != null) {
+            commandQueue.add(new InsertLineFeed(indent));
             commandQueue.add(new InsertText(indent, "else"));
             commandQueue.add(new InsertLineFeed(indent));
             commandQueue.add(new InsertText(indent, "{"));
-            commandQueue.add(new FormatStatements(indent + 4, ifStatement.getFalseStatements()));
-            commandQueue.add(new InsertText(indent, "}"));
             commandQueue.add(new InsertLineFeed(indent));
+            commandQueue.add(new FormatStatements(indent + 4, ifStatement.getFalseStatements()));
+            commandQueue.add(new InsertLineFeed(indent));
+            commandQueue.add(new InsertText(indent, "}"));
         }
     }
 }

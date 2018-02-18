@@ -2,7 +2,14 @@ package com.vietage.lang17.formatter.command;
 
 import com.vietage.lang17.formatter.IndentPrintStream;
 import com.vietage.lang17.parser.ast.expression.FunctionCall;
-import com.vietage.lang17.parser.ast.statement.*;
+import com.vietage.lang17.parser.ast.statement.BreakStatement;
+import com.vietage.lang17.parser.ast.statement.ContinueStatement;
+import com.vietage.lang17.parser.ast.statement.IfStatement;
+import com.vietage.lang17.parser.ast.statement.ReturnStatement;
+import com.vietage.lang17.parser.ast.statement.Statement;
+import com.vietage.lang17.parser.ast.statement.VariableAssignment;
+import com.vietage.lang17.parser.ast.statement.VariableDefinition;
+import com.vietage.lang17.parser.ast.statement.WhileLoop;
 
 import java.util.List;
 import java.util.Queue;
@@ -21,7 +28,14 @@ public class FormatStatements extends FormatCommand implements Statement.Visitor
     public void format(IndentPrintStream out, Queue<FormatCommand> commandQueue) {
         this.commands = commandQueue;
 
+        boolean first = true;
+
         for (Statement statement : statements) {
+            if (!first) {
+                commands.add(new InsertLineFeed(indent));
+            }
+            first = false;
+
             statement.accept(this);
         }
     }
@@ -39,7 +53,6 @@ public class FormatStatements extends FormatCommand implements Statement.Visitor
     @Override
     public void visit(FunctionCall functionCall) {
         commands.add(new FormatFunctionCall(indent, functionCall));
-        commands.add(new InsertLineFeed(indent));
     }
 
     @Override
