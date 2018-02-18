@@ -13,11 +13,11 @@ public class ValueExpression extends Choice {
     @Override
     protected Lexeme[] getLexemes() {
         valueExpressionElements = new ValueExpressionLexeme[]{
+                new Call(),
+                new VarAccess(),
                 new BracketsExpression(),
                 new Constant(),
-                new VarAccess(),
-                new NewArray(),
-                new Call(),
+                new NewArray()
         };
         return valueExpressionElements;
     }
