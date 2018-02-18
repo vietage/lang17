@@ -1,0 +1,104 @@
+void main()
+{
+    int arrSize = getArraySize()
+    int[] array = int[arraySize]
+
+    fillRandom(array)
+
+    println("Random generated array:")
+    printArray(array)
+
+    quickSort(array)
+
+    println("Sorted array:")
+    printArray(array)
+}
+
+int getArraySize()
+{
+    int arrSize = 0
+
+    while (true)
+    {
+        println("Please enter the array size:")
+        arrSize = readInt()
+        if (isOk())
+        {
+            if (arrSize <= 0)
+            {
+                println("Array size must be greater than zero! You entered: " + arrSize)
+            }
+            else
+            {
+                return arrSize
+            }
+        }
+        else
+        {
+            println("Unrecognized value")
+        }
+    }
+}
+
+void fillRandom(int[] arr)
+{
+    int i = 0
+
+    while (i < size(arr))
+    {
+        arr[i] = random(100)
+        i = i + 1
+    }
+}
+
+void printArray(int[] arr)
+{
+    int i = 0
+
+    while (i < size(arr))
+    {
+        print(arr[i] + " ")
+        i = i + 1
+    }
+    println()
+}
+
+void quickSort(int[] arr)
+{
+    qsort(arr, 0, size(arr) - 1)
+}
+
+void qsort(int[] arr, int i, int j)
+{
+    int l = i
+    int r = j
+    int piv = arr[(r + l) / 2]
+
+    while (l <= r)
+    {
+        while (arr[l] < piv)
+        {
+            l = l + 1
+        }
+        while (arr[r] > piv)
+        {
+            r = r - 1
+        }
+        if (l <= r)
+        {
+            int temp = arr[l]
+            arr[l] = arr[r]
+            arr[r] = temp
+            l = l + 1
+            r = r - 1
+        }
+    }
+    if (i > r)
+    {
+        qsort(arr, i, r)
+    }
+    if (j > l)
+    {
+        qsort(arr, l, j)
+    }
+}

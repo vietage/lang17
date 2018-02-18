@@ -1,29 +1,25 @@
 package com.vietage.lang17.lexer;
 
-import com.vietage.lang17.lexer.lexeme.Lexeme;
+import java.util.Comparator;
 
-import java.util.ArrayDeque;
-import java.util.Deque;
-import java.util.Iterator;
+public class ErrorFormatter {
 
-public class ErrorChain {
+    private final Comparator<Position> COMPARATOR = Comparator.comparingInt(Position::getLine)
+            .thenComparingInt(Position::getColumn);
 
-    private final Deque<Lexeme> errorChain = new ArrayDeque<>();
+    private Position lastSuccessPosition = new Position();
 
-    public void add(Lexeme lexeme) {
-        errorChain.add(lexeme);
+    public void updateLastSuccessPosition(Position position) {
+        lastSuccessPosition = max(lastSuccessPosition, position);
     }
 
-    public void clear() {
-        errorChain.clear();
+    private Position max(Position p1, Position p2) {
+        return COMPARATOR.compare(p1, p2) >= 0 ? p1 : p2;
     }
 
-    public String formatErrorMessage(SourceReader sourceReader) {
-        Iterator<Lexeme> errors = errorChain.iterator();
-        Lexeme root = errors.next();
-
-        int line = root.getStartPosition().getLine();
-        int column = root.getStartPosition().getColumn();
+    public String format(SourceReader sourceReader) {
+        int line = lastSuccessPosition.getLine();
+        int column = lastSuccessPosition.getColumn();
 
         StringBuilder sb = new StringBuilder();
 

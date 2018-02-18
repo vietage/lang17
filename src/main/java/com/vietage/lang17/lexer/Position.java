@@ -5,6 +5,11 @@ public class Position {
     private int line;
     private int column;
 
+    public Position() {
+        this.line = 0;
+        this.column = 0;
+    }
+
     public Position(int line, int column) {
         this.line = line;
         this.column = column;

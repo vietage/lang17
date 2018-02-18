@@ -10,7 +10,7 @@ public class Lexer {
     public Root read(String file) throws IOException {
         SourceReader sourceReader = new SourceReader(file);
         Context context = new Context(sourceReader);
-        ErrorChain errorChain = new ErrorChain();
+        ErrorFormatter errorFormatter = new ErrorFormatter();
 
         Root root = new Root();
         context.enter(root);
@@ -18,16 +18,16 @@ public class Lexer {
         Lexeme lexeme;
         while ((lexeme = context.current()) != null) {
             context.setLastResult(lexeme.parse(context));
-            if (!context.getLastResult()) {
-                sourceReader.reset(lexeme.getStartPosition());
-                errorChain.add(lexeme);
+
+            if (context.getLastResult()) {
+                errorFormatter.updateLastSuccessPosition(sourceReader.getPosition());
             } else {
-                errorChain.clear();
+                sourceReader.reset(lexeme.getStartPosition());
             }
         }
 
         if (!context.getLastResult()) {
-            throw new LexerException(errorChain.formatErrorMessage(sourceReader));
+            throw new LexerException(errorFormatter.format(sourceReader));
         }
 
         return root;
