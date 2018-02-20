@@ -1,7 +1,8 @@
-package com.vietage.lang17.parser;
+package com.vietage.lang17.interpreter;
 
 import com.vietage.lang17.lexer.Lexer;
 import com.vietage.lang17.lexer.lexeme.Root;
+import com.vietage.lang17.parser.Parser;
 import com.vietage.lang17.parser.ast.Program;
 
 import java.io.IOException;
@@ -15,6 +16,7 @@ public class Main {
         Parser parser = new Parser();
         Program program = parser.parse(root);
 
-        System.out.println(program);
+        Interpreter interpreter = new Interpreter();
+        interpreter.interpret(program);
     }
 }
