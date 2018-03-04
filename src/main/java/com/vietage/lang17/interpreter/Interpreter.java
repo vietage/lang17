@@ -21,9 +21,8 @@ public class Interpreter {
 
         commands.push(new Invoke(main));
 
-        Command command;
-        while ((command = commands.pop()) != null) {
-            command.run(commands);
+        while (commands.isEmpty()) {
+            commands.pop().run(commands);
         }
     }
 }
