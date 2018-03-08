@@ -1,28 +1,19 @@
 package com.vietage.lang17.interpreter;
 
-import com.vietage.lang17.parser.ast.Function;
+import com.vietage.lang17.interpreter.state.Invoke;
 import com.vietage.lang17.parser.ast.Program;
-
-import java.util.ArrayDeque;
-import java.util.Deque;
 
 public class Interpreter {
 
     private static final String MAIN_FUNCTION = "main";
 
     public void interpret(Program program) {
-        Function main = program.getFunctions().get(MAIN_FUNCTION);
+        Runtime runtime = new Runtime(program.getFunctions());
 
-        if (main == null) {
-            throw new InterpreterException("`" + MAIN_FUNCTION + "` function not found");
-        }
+        runtime.enterState(new Invoke(runtime.getGlobalContext(), MAIN_FUNCTION));
 
-        Deque<Command> commands = new ArrayDeque<>();
-
-        commands.push(new Invoke(main));
-
-        while (commands.isEmpty()) {
-            commands.pop().run(commands);
+        while (runtime.hasState()) {
+            runtime.getState().run(runtime);
         }
     }
 }
