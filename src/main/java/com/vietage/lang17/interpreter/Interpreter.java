@@ -1,6 +1,7 @@
 package com.vietage.lang17.interpreter;
 
-import com.vietage.lang17.interpreter.state.Invoke;
+import com.vietage.lang17.interpreter.state.FunctionInvocation;
+import com.vietage.lang17.parser.ast.Function;
 import com.vietage.lang17.parser.ast.Program;
 
 public class Interpreter {
@@ -10,7 +11,10 @@ public class Interpreter {
     public void interpret(Program program) {
         Runtime runtime = new Runtime(program.getFunctions());
 
-        runtime.enterState(new Invoke(runtime.getGlobalContext(), MAIN_FUNCTION));
+        Function main = runtime.getFunction(MAIN_FUNCTION);
+        Context mainContext = new Context(runtime.getGlobalContext());
+
+        runtime.enterState(new FunctionInvocation(main, mainContext));
 
         while (runtime.hasState()) {
             runtime.getState().run(runtime);

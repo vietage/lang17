@@ -38,6 +38,12 @@ public class Runtime {
     }
 
     public Function getFunction(String name) {
-        return functions.get(name);
+        Function function = functions.get(name);
+
+        if (function == null) {
+            throw new InterpreterException(String.format("FunctionInvocation `%s` not found", name));
+        }
+
+        return function;
     }
 }
