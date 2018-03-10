@@ -57,7 +57,7 @@ public class Block implements State, Statement.Visitor {
 
     @Override
     public void visit(IfStatement ifStatement) {
-
+        runtime.enterState(new If(ifStatement, context));
     }
 
     @Override
