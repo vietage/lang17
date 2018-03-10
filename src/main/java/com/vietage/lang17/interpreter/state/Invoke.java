@@ -17,6 +17,9 @@ public class Invoke implements State {
     private final Context context;
     private final Consumer<Result> resultConsumer;
 
+    private boolean init = true;
+    private Result result;
+
     public Invoke(FunctionCall functionCall, Context context) {
         this(functionCall, context, null);
     }
@@ -29,26 +32,39 @@ public class Invoke implements State {
 
     @Override
     public void run(Runtime runtime) {
-        runtime.exitState();
+        if (init) {
+            // compute arguments and then interpret block statements
+            init = false;
 
-        Function function = runtime.getFunction(functionCall.getName());
+            Function function = runtime.getFunction(functionCall.getName());
 
-        Context functionContext = new Context(runtime.getGlobalContext());
-        runtime.enterState(new FunctionReturn(resultConsumer));
-        runtime.enterState(new Block(functionContext, function.getStatements().iterator()));
+            Context functionContext = new Context(runtime.getGlobalContext());
+            runtime.enterState(new Block(functionContext, function.getStatements().iterator()));
 
-        ExpressionStateFactory factory = new ExpressionStateFactory();
+            ExpressionStateFactory factory = new ExpressionStateFactory();
 
-        Iterator<Argument> arguments = function.getArguments().iterator();
-        Iterator<Expression> expressions = functionCall.getArguments().iterator();
+            Iterator<Argument> arguments = function.getArguments().iterator();
+            Iterator<Expression> expressions = functionCall.getArguments().iterator();
 
-        while (arguments.hasNext() && expressions.hasNext()) {
-            Argument argument = arguments.next();
-            Expression expression = expressions.next();
+            while (arguments.hasNext() && expressions.hasNext()) {
+                Argument argument = arguments.next();
+                Expression expression = expressions.next();
 
-            Consumer<Result> consumer = result -> functionContext.set(argument.getName(), result);
+                Consumer<Result> consumer = result -> functionContext.set(argument.getName(), result);
 
-            runtime.enterState(factory.get(expression, context, consumer));
+                runtime.enterState(factory.get(expression, context, consumer));
+            }
+        } else {
+            // return result from the function
+            runtime.exitState();
+
+            if (result != null && resultConsumer != null) {
+                resultConsumer.accept(result);
+            }
         }
+    }
+
+    public void setResult(Result result) {
+        this.result = result;
     }
 }
