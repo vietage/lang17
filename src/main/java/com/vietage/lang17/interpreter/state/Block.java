@@ -62,7 +62,7 @@ public class Block implements State, Statement.Visitor {
 
     @Override
     public void visit(VariableDefinition variableDefinition) {
-
+        runtime.enterState(new DefineVariable(variableDefinition, context));
     }
 
     @Override
