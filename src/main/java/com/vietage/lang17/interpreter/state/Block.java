@@ -2,50 +2,31 @@ package com.vietage.lang17.interpreter.state;
 
 import com.vietage.lang17.interpreter.Context;
 import com.vietage.lang17.interpreter.Runtime;
-import com.vietage.lang17.interpreter.result.Result;
-import com.vietage.lang17.parser.ast.Function;
 import com.vietage.lang17.parser.ast.expression.FunctionCall;
 import com.vietage.lang17.parser.ast.statement.*;
 
 import java.util.Iterator;
-import java.util.function.Consumer;
 
-public class FunctionInvocation implements State, Statement.Visitor {
+public class Block implements State, Statement.Visitor {
 
-    private final Function function;
     private final Context context;
-    private final Consumer<Result> resultConsumer;
+    private final Iterator<Statement> statements;
 
     private Runtime runtime;
-    private Iterator<Statement> statements;
-    private Result result;
 
-    public FunctionInvocation(Function function, Context context) {
-        this(function, context, null);
-    }
-
-    public FunctionInvocation(Function function, Context context, Consumer<Result> resultConsumer) {
-        this.function = function;
+    public Block(Context context, Iterator<Statement> statements) {
         this.context = context;
-        this.resultConsumer = resultConsumer;
+        this.statements = statements;
     }
 
     @Override
     public void run(Runtime runtime) {
         this.runtime = runtime;
 
-        if (statements == null) {
-            statements = function.getStatements().iterator();
-        }
-
         if (statements.hasNext()) {
             statements.next().accept(this);
         } else {
             runtime.exitState();
-
-            if (result != null && resultConsumer != null) {
-                resultConsumer.accept(result);
-            }
         }
     }
 
@@ -66,7 +47,7 @@ public class FunctionInvocation implements State, Statement.Visitor {
 
     @Override
     public void visit(WhileLoop whileLoop) {
-
+        runtime.enterState(new While(whileLoop, context));
     }
 
     @Override
@@ -87,9 +68,5 @@ public class FunctionInvocation implements State, Statement.Visitor {
     @Override
     public void visit(VariableAssignment variableAssignment) {
 
-    }
-
-    public void setResult(Result result) {
-        this.result = result;
     }
 }

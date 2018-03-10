@@ -34,7 +34,8 @@ public class Invoke implements State {
         Function function = runtime.getFunction(functionCall.getName());
 
         Context functionContext = new Context(runtime.getGlobalContext());
-        runtime.enterState(new FunctionInvocation(function, functionContext, resultConsumer));
+        runtime.enterState(new FunctionReturn(resultConsumer));
+        runtime.enterState(new Block(functionContext, function.getStatements().iterator()));
 
         ExpressionStateFactory factory = new ExpressionStateFactory();
 

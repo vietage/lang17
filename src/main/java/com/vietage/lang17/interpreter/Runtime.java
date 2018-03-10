@@ -41,7 +41,7 @@ public class Runtime {
         Function function = functions.get(name);
 
         if (function == null) {
-            throw new InterpreterException(String.format("FunctionInvocation `%s` not found", name));
+            throw new InterpreterException(String.format("FunctionReturn `%s` not found", name));
         }
 
         return function;
