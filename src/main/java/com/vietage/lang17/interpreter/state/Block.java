@@ -52,7 +52,7 @@ public class Block implements State, Statement.Visitor {
 
     @Override
     public void visit(ReturnStatement returnStatement) {
-
+        runtime.enterState(new Return(returnStatement, context));
     }
 
     @Override
