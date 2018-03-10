@@ -67,6 +67,6 @@ public class Block implements State, Statement.Visitor {
 
     @Override
     public void visit(VariableAssignment variableAssignment) {
-
+        runtime.enterState(new AssignVariable(variableAssignment, context));
     }
 }
