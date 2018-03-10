@@ -4,10 +4,10 @@ import com.vietage.lang17.parser.ast.Type;
 
 public class IntegerResult extends Result {
 
-    private final int value;
+    private int value;
 
-    public IntegerResult(Type type, int value) {
-        super(type);
+    public IntegerResult(int value) {
+        super(Type.INTEGER);
         this.value = value;
     }
 

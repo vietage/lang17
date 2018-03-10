@@ -6,8 +6,8 @@ public class IntegerArrayResult extends Result {
 
     private final int[] value;
 
-    public IntegerArrayResult(Type type, int[] value) {
-        super(type);
+    public IntegerArrayResult(int[] value) {
+        super(Type.INTEGER_ARRAY);
         this.value = value;
     }
 

@@ -6,8 +6,8 @@ public class FloatResult extends Result {
 
     private final double value;
 
-    public FloatResult(Type type, double value) {
-        super(type);
+    public FloatResult(double value) {
+        super(Type.FLOAT);
         this.value = value;
     }
 

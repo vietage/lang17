@@ -6,8 +6,8 @@ public class FloatArrayResult extends Result {
 
     private final double[] value;
 
-    public FloatArrayResult(Type type, double[] value) {
-        super(type);
+    public FloatArrayResult(double[] value) {
+        super(Type.FLOAT_ARRAY);
         this.value = value;
     }
 

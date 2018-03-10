@@ -6,8 +6,8 @@ public class StringArrayResult extends Result {
 
     private final String[] value;
 
-    public StringArrayResult(Type type, String[] value) {
-        super(type);
+    public StringArrayResult(String[] value) {
+        super(Type.STRING_ARRAY);
         this.value = value;
     }
 

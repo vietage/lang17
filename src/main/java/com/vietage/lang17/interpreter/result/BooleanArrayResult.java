@@ -6,8 +6,8 @@ public class BooleanArrayResult extends Result {
 
     private final boolean[] value;
 
-    public BooleanArrayResult(Type type, boolean[] value) {
-        super(type);
+    public BooleanArrayResult(boolean[] value) {
+        super(Type.BOOLEAN_ARRAY);
         this.value = value;
     }
 

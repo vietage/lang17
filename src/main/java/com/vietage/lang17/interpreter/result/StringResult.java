@@ -6,8 +6,8 @@ public class StringResult extends Result {
 
     private final String value;
 
-    public StringResult(Type type, String value) {
-        super(type);
+    public StringResult(String value) {
+        super(Type.STRING);
         this.value = value;
     }
 

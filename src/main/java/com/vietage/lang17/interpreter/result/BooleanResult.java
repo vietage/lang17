@@ -6,8 +6,8 @@ public class BooleanResult extends Result {
 
     private final boolean value;
 
-    public BooleanResult(Type type, boolean value) {
-        super(type);
+    public BooleanResult(boolean value) {
+        super(Type.BOOLEAN);
         this.value = value;
     }
 
