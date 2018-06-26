@@ -11,6 +11,8 @@ public abstract class Result {
         this.type = type;
     }
 
+    public abstract void accept(Visitor visitor);
+
     public Type getType() {
         return type;
     }
@@ -49,5 +51,40 @@ public abstract class Result {
 
     private String getMessage(Type desiredType) {
         return String.format("Illegal try to get %s, while Result contains %s", desiredType, type);
+    }
+
+    public interface Visitor {
+
+        default void visit(IntegerResult integerResult) {
+            throw new InterpreterException("Not implemented");
+        }
+
+        default void visit(FloatResult floatResult) {
+            throw new InterpreterException("Not implemented");
+        }
+
+        default void visit(BooleanResult booleanResult) {
+            throw new InterpreterException("Not implemented");
+        }
+
+        default void visit(StringResult stringResult) {
+            throw new InterpreterException("Not implemented");
+        }
+
+        default void visit(IntegerArrayResult integerArrayResult) {
+            throw new InterpreterException("Not implemented");
+        }
+
+        default void visit(FloatArrayResult floatArrayResult) {
+            throw new InterpreterException("Not implemented");
+        }
+
+        default void visit(BooleanArrayResult booleanArrayResult) {
+            throw new InterpreterException("Not implemented");
+        }
+
+        default void visit(StringArrayResult stringArrayResult) {
+            throw new InterpreterException("Not implemented");
+        }
     }
 }

@@ -12,6 +12,11 @@ public class IntegerArrayResult extends Result {
     }
 
     @Override
+    public void accept(Visitor visitor) {
+        visitor.visit(this);
+    }
+
+    @Override
     public int[] getIntegerArray() {
         return value;
     }

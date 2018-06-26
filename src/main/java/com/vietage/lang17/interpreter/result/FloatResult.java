@@ -12,6 +12,11 @@ public class FloatResult extends Result {
     }
 
     @Override
+    public void accept(Visitor visitor) {
+        visitor.visit(this);
+    }
+
+    @Override
     public double getFloat() {
         return value;
     }

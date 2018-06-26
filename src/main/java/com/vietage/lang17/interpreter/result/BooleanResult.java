@@ -12,6 +12,11 @@ public class BooleanResult extends Result {
     }
 
     @Override
+    public void accept(Visitor visitor) {
+        visitor.visit(this);
+    }
+
+    @Override
     public boolean getBoolean() {
         return value;
     }

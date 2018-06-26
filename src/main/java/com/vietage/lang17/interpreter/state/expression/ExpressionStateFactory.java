@@ -1,7 +1,8 @@
-package com.vietage.lang17.interpreter.state;
+package com.vietage.lang17.interpreter.state.expression;
 
 import com.vietage.lang17.interpreter.Context;
 import com.vietage.lang17.interpreter.result.Result;
+import com.vietage.lang17.interpreter.state.State;
 import com.vietage.lang17.parser.ast.expression.*;
 
 import java.util.function.Consumer;
@@ -35,7 +36,7 @@ public class ExpressionStateFactory {
 
         @Override
         public void visit(UnaryExpression unaryExpression) {
-
+            result = new UnaryOperation(unaryExpression, context, consumer);
         }
 
         @Override

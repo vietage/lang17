@@ -1,6 +1,6 @@
 package com.vietage.lang17.interpreter;
 
-import com.vietage.lang17.interpreter.state.Invoke;
+import com.vietage.lang17.interpreter.state.expression.Invoke;
 import com.vietage.lang17.parser.ast.Program;
 import com.vietage.lang17.parser.ast.expression.FunctionCall;
 

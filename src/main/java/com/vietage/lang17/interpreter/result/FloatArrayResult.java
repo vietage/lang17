@@ -12,6 +12,11 @@ public class FloatArrayResult extends Result {
     }
 
     @Override
+    public void accept(Visitor visitor) {
+        visitor.visit(this);
+    }
+
+    @Override
     public double[] getFloatArray() {
         return value;
     }

@@ -12,6 +12,11 @@ public class IntegerResult extends Result {
     }
 
     @Override
+    public void accept(Visitor visitor) {
+        visitor.visit(this);
+    }
+
+    @Override
     public int getInteger() {
         return value;
     }
