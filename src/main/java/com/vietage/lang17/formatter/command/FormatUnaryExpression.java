@@ -27,7 +27,7 @@ public class FormatUnaryExpression extends FormatCommand {
     }
 
     private String formatUnaryOperator(UnaryOperator operator) {
-        switch (unaryExpression.getOperator()) {
+        switch (operator) {
             case NOT:
                 return "!";
             case MINUS:
