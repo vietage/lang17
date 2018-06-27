@@ -41,7 +41,7 @@ public class ExpressionStateFactory {
 
         @Override
         public void visit(BooleanConstant booleanConstant) {
-
+            result = new ReturnBoolean(booleanConstant, consumer);
         }
 
         @Override
