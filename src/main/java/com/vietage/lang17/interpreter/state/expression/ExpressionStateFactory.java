@@ -61,7 +61,7 @@ public class ExpressionStateFactory {
 
         @Override
         public void visit(VariableRead variableRead) {
-
+            result = new ReadVariable(variableRead, context, consumer);
         }
 
         @Override
