@@ -56,7 +56,7 @@ public class ExpressionStateFactory {
 
         @Override
         public void visit(FloatConstant floatConstant) {
-
+            result = new ReturnFloat(floatConstant, consumer);
         }
 
         @Override
