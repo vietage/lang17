@@ -34,7 +34,7 @@ public class Context {
 
         switch (result.getType()) {
             case INTEGER_ARRAY:
-                int[] ints = result.getIntegerArray();
+                long[] ints = result.getIntegerArray();
                 checkArrayBounds(name, ints.length, index);
                 return new IntegerResult(ints[index]);
             case FLOAT_ARRAY:
@@ -68,7 +68,7 @@ public class Context {
 
         switch (result.getType()) {
             case INTEGER_ARRAY:
-                int[] ints = result.getIntegerArray();
+                long[] ints = result.getIntegerArray();
                 checkArrayBounds(name, ints.length, index);
                 ints[index] = variable.getInteger();
                 break;

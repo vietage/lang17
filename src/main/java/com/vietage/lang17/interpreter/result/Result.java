@@ -17,7 +17,7 @@ public abstract class Result {
         return type;
     }
 
-    public int getInteger() {
+    public long getInteger() {
         throw new InterpreterException(getMessage(Type.INTEGER));
     }
 
@@ -33,7 +33,7 @@ public abstract class Result {
         throw new InterpreterException(getMessage(Type.STRING));
     }
 
-    public int[] getIntegerArray() {
+    public long[] getIntegerArray() {
         throw new InterpreterException(getMessage(Type.INTEGER_ARRAY));
     }
 

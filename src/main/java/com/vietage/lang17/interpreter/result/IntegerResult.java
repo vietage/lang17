@@ -4,9 +4,9 @@ import com.vietage.lang17.parser.ast.Type;
 
 public class IntegerResult extends Result {
 
-    private int value;
+    private long value;
 
-    public IntegerResult(int value) {
+    public IntegerResult(long value) {
         super(Type.INTEGER);
         this.value = value;
     }
@@ -17,7 +17,7 @@ public class IntegerResult extends Result {
     }
 
     @Override
-    public int getInteger() {
+    public long getInteger() {
         return value;
     }
 }

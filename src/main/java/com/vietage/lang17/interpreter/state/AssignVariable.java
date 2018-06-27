@@ -36,7 +36,7 @@ public class AssignVariable implements State {
             runtime.enterState(factory.get(variableAssignment.getExpression(), context, valueConsumer));
 
             // compute index
-            Consumer<Result> indexConsumer = result -> this.setIndex(result.getInteger());
+            Consumer<Result> indexConsumer = result -> this.setIndex((int) result.getInteger());
             runtime.enterState(factory.get(variableAssignment.getIndexExpression(), context, indexConsumer));
         } else {
             // simple variable assignment - just compute the value and assign it to the variable

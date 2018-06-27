@@ -51,7 +51,7 @@ public class ExpressionStateFactory {
 
         @Override
         public void visit(IntegerConstant integerConstant) {
-
+            result = new ReturnInteger(integerConstant, consumer);
         }
 
         @Override

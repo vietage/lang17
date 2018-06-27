@@ -4,9 +4,9 @@ import com.vietage.lang17.parser.ast.Type;
 
 public class IntegerArrayResult extends Result {
 
-    private final int[] value;
+    private final long[] value;
 
-    public IntegerArrayResult(int[] value) {
+    public IntegerArrayResult(long[] value) {
         super(Type.INTEGER_ARRAY);
         this.value = value;
     }
@@ -17,7 +17,7 @@ public class IntegerArrayResult extends Result {
     }
 
     @Override
-    public int[] getIntegerArray() {
+    public long[] getIntegerArray() {
         return value;
     }
 }
