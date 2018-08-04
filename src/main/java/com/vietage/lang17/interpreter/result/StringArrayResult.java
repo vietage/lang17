@@ -2,6 +2,8 @@ package com.vietage.lang17.interpreter.result;
 
 import com.vietage.lang17.parser.ast.Type;
 
+import java.util.Arrays;
+
 public class StringArrayResult extends Result {
 
     private final String[] value;
@@ -17,7 +19,19 @@ public class StringArrayResult extends Result {
     }
 
     @Override
+    public boolean isStringArray() {
+        return true;
+    }
+
+    @Override
     public String[] getStringArray() {
         return value;
+    }
+
+    @Override
+    public String toString() {
+        return "StringArrayResult{" +
+                "value=" + Arrays.toString(value) +
+                '}';
     }
 }

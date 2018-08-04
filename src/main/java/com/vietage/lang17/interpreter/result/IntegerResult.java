@@ -17,7 +17,19 @@ public class IntegerResult extends Result {
     }
 
     @Override
+    public boolean isInteger() {
+        return true;
+    }
+
+    @Override
     public long getInteger() {
         return value;
+    }
+
+    @Override
+    public String toString() {
+        return "IntegerResult{" +
+                "value=" + value +
+                '}';
     }
 }

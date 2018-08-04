@@ -17,6 +17,38 @@ public abstract class Result {
         return type;
     }
 
+    public boolean isInteger() {
+        return false;
+    }
+
+    public boolean isFloat() {
+        return false;
+    }
+
+    public boolean isBoolean() {
+        return false;
+    }
+
+    public boolean isString() {
+        return false;
+    }
+
+    public boolean isIntegerArray() {
+        return false;
+    }
+
+    public boolean isFloatArray() {
+        return false;
+    }
+
+    public boolean isBooleanArray() {
+        return false;
+    }
+
+    public boolean isStringArray() {
+        return false;
+    }
+
     public long getInteger() {
         throw new InterpreterException(getMessage(Type.INTEGER));
     }

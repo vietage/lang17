@@ -17,7 +17,19 @@ public class BooleanResult extends Result {
     }
 
     @Override
+    public boolean isBoolean() {
+        return true;
+    }
+
+    @Override
     public boolean getBoolean() {
         return value;
+    }
+
+    @Override
+    public String toString() {
+        return "BooleanResult{" +
+                "value=" + value +
+                '}';
     }
 }

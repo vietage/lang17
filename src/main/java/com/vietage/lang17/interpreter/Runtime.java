@@ -12,6 +12,7 @@ public class Runtime {
     private final Map<String, Function> functions;
     private final Context globalContext = new Context();
     private final Deque<State> states = new ArrayDeque<>();
+    private final Arithmetic arithmetic = new Arithmetic();
 
     public Runtime(Map<String, Function> functions) {
         this.functions = functions;
@@ -45,5 +46,9 @@ public class Runtime {
         }
 
         return function;
+    }
+
+    public Arithmetic getArithmetic() {
+        return arithmetic;
     }
 }

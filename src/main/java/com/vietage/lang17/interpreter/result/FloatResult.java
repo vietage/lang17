@@ -17,7 +17,19 @@ public class FloatResult extends Result {
     }
 
     @Override
+    public boolean isFloat() {
+        return true;
+    }
+
+    @Override
     public double getFloat() {
         return value;
+    }
+
+    @Override
+    public String toString() {
+        return "FloatResult{" +
+                "value=" + value +
+                '}';
     }
 }

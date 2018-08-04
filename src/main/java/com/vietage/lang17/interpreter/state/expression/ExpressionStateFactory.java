@@ -66,7 +66,7 @@ public class ExpressionStateFactory {
 
         @Override
         public void visit(MultiplicationExpression multiplicationExpression) {
-
+            result = new MultiplicationOperation(multiplicationExpression, context, consumer);
         }
 
         @Override

@@ -17,7 +17,19 @@ public class StringResult extends Result {
     }
 
     @Override
+    public boolean isString() {
+        return true;
+    }
+
+    @Override
     public String getString() {
         return value;
+    }
+
+    @Override
+    public String toString() {
+        return "StringResult{" +
+                "value='" + value + '\'' +
+                '}';
     }
 }
