@@ -86,7 +86,7 @@ public class ExpressionStateFactory {
 
         @Override
         public void visit(EqualityExpression equalityExpression) {
-
+            result = new EqualityOperation(equalityExpression, context, consumer);
         }
 
         @Override

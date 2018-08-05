@@ -47,7 +47,7 @@ public class UnaryOperation implements State {
     }
 
     private Result not(Result result) {
-        if (result instanceof BooleanResult) {
+        if (result.isBoolean()) {
             return new BooleanResult(!result.getBoolean());
         }
         throw new InterpreterException(String.format("Unable to take not operation on %s type", result.getType()));

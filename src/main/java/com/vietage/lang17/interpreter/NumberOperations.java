@@ -17,6 +17,7 @@ public class NumberOperations {
     private static final Operation GREATER_OR_EQUAL = new GreaterOrEqual();
     private static final Operation LESS = new Less();
     private static final Operation GREATER = new Greater();
+    private static final Operation EQUAL = new Equal();
 
     public Result multiply(Result op1, Result op2) {
         return applyOperation(MULTIPLICATION, op1, op2);
@@ -52,6 +53,10 @@ public class NumberOperations {
 
     public Result greater(Result op1, Result op2) {
         return applyOperation(GREATER, op1, op2);
+    }
+
+    public Result equal(Result op1, Result op2) {
+        return applyOperation(EQUAL, op1, op2);
     }
 
     private Result applyOperation(Operation operation, Result op1, Result op2) {
@@ -195,6 +200,19 @@ public class NumberOperations {
         @Override
         public Result apply(IntegerResult op1, IntegerResult op2) {
             return new BooleanResult(op1.getInteger() < op2.getInteger());
+        }
+    }
+
+    private static class Equal implements Operation {
+
+        @Override
+        public Result apply(FloatResult op1, FloatResult op2) {
+            return new BooleanResult(op1.getFloat() == op2.getFloat());
+        }
+
+        @Override
+        public Result apply(IntegerResult op1, IntegerResult op2) {
+            return new BooleanResult(op1.getInteger() == op2.getInteger());
         }
     }
 }

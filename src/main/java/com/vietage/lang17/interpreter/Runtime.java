@@ -13,6 +13,7 @@ public class Runtime {
     private final Context globalContext = new Context();
     private final Deque<State> states = new ArrayDeque<>();
     private final NumberOperations numberOperations = new NumberOperations();
+    private final EqualityChecker equalityChecker = new EqualityChecker(numberOperations);
 
     public Runtime(Map<String, Function> functions) {
         this.functions = functions;
@@ -50,5 +51,9 @@ public class Runtime {
 
     public NumberOperations getNumberOperations() {
         return numberOperations;
+    }
+
+    public EqualityChecker getEqualityChecker() {
+        return equalityChecker;
     }
 }
