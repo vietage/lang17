@@ -35,11 +35,6 @@ public class ExpressionStateFactory {
         }
 
         @Override
-        public void visit(UnaryExpression unaryExpression) {
-            result = new UnaryOperation(unaryExpression, context, consumer);
-        }
-
-        @Override
         public void visit(BooleanConstant booleanConstant) {
             result = new ReturnBoolean(booleanConstant, consumer);
         }
@@ -65,31 +60,6 @@ public class ExpressionStateFactory {
         }
 
         @Override
-        public void visit(MultiplicationExpression multiplicationExpression) {
-            result = new MultiplicationOperation(multiplicationExpression, context, consumer);
-        }
-
-        @Override
-        public void visit(OrExpression orExpression) {
-            result = new OrOperation(orExpression, context, consumer);
-        }
-
-        @Override
-        public void visit(AdditionExpression additionExpression) {
-            result = new AdditionOperation(additionExpression, context, consumer);
-        }
-
-        @Override
-        public void visit(RelationalExpression relationalExpression) {
-            result = new RelationalOperation(relationalExpression, context, consumer);
-        }
-
-        @Override
-        public void visit(EqualityExpression equalityExpression) {
-            result = new EqualityOperation(equalityExpression, context, consumer);
-        }
-
-        @Override
         public void visit(ArrayRead arrayRead) {
             result = new ReadArray(arrayRead, context, consumer);
         }
@@ -100,8 +70,38 @@ public class ExpressionStateFactory {
         }
 
         @Override
+        public void visit(UnaryExpression unaryExpression) {
+            result = new UnaryOperation(unaryExpression, context, consumer);
+        }
+
+        @Override
+        public void visit(OrExpression orExpression) {
+            result = new OrOperation(orExpression, context, consumer);
+        }
+
+        @Override
         public void visit(AndExpression andExpression) {
             result = new AndOperation(andExpression, context, consumer);
+        }
+
+        @Override
+        public void visit(AdditionExpression additionExpression) {
+            result = new AdditionOperation(additionExpression, context, consumer);
+        }
+
+        @Override
+        public void visit(MultiplicationExpression multiplicationExpression) {
+            result = new MultiplicationOperation(multiplicationExpression, context, consumer);
+        }
+
+        @Override
+        public void visit(RelationalExpression relationalExpression) {
+            result = new RelationalOperation(relationalExpression, context, consumer);
+        }
+
+        @Override
+        public void visit(EqualityExpression equalityExpression) {
+            result = new EqualityOperation(equalityExpression, context, consumer);
         }
     }
 }

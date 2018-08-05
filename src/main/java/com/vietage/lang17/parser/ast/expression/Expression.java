@@ -12,8 +12,6 @@ public interface Expression extends ASTElement {
 
         void visit(FunctionCall functionCall);
 
-        void visit(UnaryExpression unaryExpression);
-
         void visit(BooleanConstant booleanConstant);
 
         void visit(StringConstant stringConstant);
@@ -24,20 +22,22 @@ public interface Expression extends ASTElement {
 
         void visit(VariableRead variableRead);
 
-        void visit(MultiplicationExpression multiplicationExpression);
+        void visit(ArrayRead arrayRead);
+
+        void visit(ArrayAllocation arrayAllocation);
+
+        void visit(UnaryExpression unaryExpression);
 
         void visit(OrExpression orExpression);
+
+        void visit(AndExpression andExpression);
+
+        void visit(MultiplicationExpression multiplicationExpression);
 
         void visit(AdditionExpression additionExpression);
 
         void visit(RelationalExpression relationalExpression);
 
         void visit(EqualityExpression equalityExpression);
-
-        void visit(ArrayRead arrayRead);
-
-        void visit(ArrayAllocation arrayAllocation);
-
-        void visit(AndExpression andExpression);
     }
 }

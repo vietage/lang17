@@ -37,11 +37,6 @@ public class FormatExpression extends FormatCommand implements Expression.Visito
     }
 
     @Override
-    public void visit(UnaryExpression unaryExpression) {
-        commandQueue.add(new FormatUnaryExpression(indent, unaryExpression));
-    }
-
-    @Override
     public void visit(BooleanConstant booleanConstant) {
         commandQueue.add(new FormatBooleanConstant(indent, booleanConstant));
     }
@@ -67,14 +62,34 @@ public class FormatExpression extends FormatCommand implements Expression.Visito
     }
 
     @Override
-    public void visit(MultiplicationExpression multiplicationExpression) {
-        commandQueue.add(new FormatMultiplicationExpression(
-                indent, multiplicationExpression, parentOperatorPrecedence));
+    public void visit(ArrayRead arrayRead) {
+        commandQueue.add(new FormatArrayRead(indent, arrayRead));
+    }
+
+    @Override
+    public void visit(ArrayAllocation arrayAllocation) {
+        commandQueue.add(new FormatArrayAllocation(indent, arrayAllocation));
+    }
+
+    @Override
+    public void visit(UnaryExpression unaryExpression) {
+        commandQueue.add(new FormatUnaryExpression(indent, unaryExpression));
     }
 
     @Override
     public void visit(OrExpression orExpression) {
         commandQueue.add(new FormatOrExpression(indent, orExpression, parentOperatorPrecedence));
+    }
+
+    @Override
+    public void visit(AndExpression andExpression) {
+        commandQueue.add(new FormatAndExpression(indent, andExpression, parentOperatorPrecedence));
+    }
+
+    @Override
+    public void visit(MultiplicationExpression multiplicationExpression) {
+        commandQueue.add(new FormatMultiplicationExpression(
+                indent, multiplicationExpression, parentOperatorPrecedence));
     }
 
     @Override
@@ -90,20 +105,5 @@ public class FormatExpression extends FormatCommand implements Expression.Visito
     @Override
     public void visit(EqualityExpression equalityExpression) {
         commandQueue.add(new FormatEqualityExpression(indent, equalityExpression, parentOperatorPrecedence));
-    }
-
-    @Override
-    public void visit(ArrayRead arrayRead) {
-        commandQueue.add(new FormatArrayRead(indent, arrayRead));
-    }
-
-    @Override
-    public void visit(ArrayAllocation arrayAllocation) {
-        commandQueue.add(new FormatArrayAllocation(indent, arrayAllocation));
-    }
-
-    @Override
-    public void visit(AndExpression andExpression) {
-        commandQueue.add(new FormatAndExpression(indent, andExpression, parentOperatorPrecedence));
     }
 }
