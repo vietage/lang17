@@ -43,13 +43,13 @@ public class MultiplicationOperation implements State {
 
             switch (multiplicationExpression.getOperator()) {
                 case MULTIPLICATION:
-                    resultConsumer.accept(runtime.getArithmetic().multiply(leftOperand, rightOperand));
+                    resultConsumer.accept(runtime.getNumberOperations().multiply(leftOperand, rightOperand));
                     break;
                 case DIVISION:
-                    resultConsumer.accept(runtime.getArithmetic().divide(leftOperand, rightOperand));
+                    resultConsumer.accept(runtime.getNumberOperations().divide(leftOperand, rightOperand));
                     break;
                 case MODULO:
-                    resultConsumer.accept(runtime.getArithmetic().modulo(leftOperand, rightOperand));
+                    resultConsumer.accept(runtime.getNumberOperations().modulo(leftOperand, rightOperand));
                     break;
                 default:
                     throw new RuntimeException("Unsupported multiplication operator: " +

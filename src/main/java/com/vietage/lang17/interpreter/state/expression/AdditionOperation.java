@@ -41,11 +41,15 @@ public class AdditionOperation implements State {
 
             switch (additionExpression.getOperator()) {
                 case ADDITION:
-                    resultConsumer.accept(runtime.getArithmetic().add(leftOperand, rightOperand));
+                    resultConsumer.accept(runtime.getNumberOperations().add(leftOperand, rightOperand));
                     break;
                 case SUBSTRACTION:
-                    resultConsumer.accept(runtime.getArithmetic().subtract(leftOperand, rightOperand));
+                    resultConsumer.accept(runtime.getNumberOperations().subtract(leftOperand, rightOperand));
                     break;
+                default:
+                    throw new RuntimeException("Unsupported addition operator: " +
+                            additionExpression.getOperator());
+
             }
         }
     }

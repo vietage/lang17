@@ -81,7 +81,7 @@ public class ExpressionStateFactory {
 
         @Override
         public void visit(RelationalExpression relationalExpression) {
-
+            result = new RelationalOperation(relationalExpression, context, consumer);
         }
 
         @Override
