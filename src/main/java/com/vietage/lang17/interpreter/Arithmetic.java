@@ -9,6 +9,8 @@ public class Arithmetic {
     private static final Operation MULTIPLICATION = new Multiplication();
     private static final Operation DIVISION = new Division();
     private static final Operation MODULO = new Modulo();
+    private static final Operation ADDITION = new Addition();
+    private static final Operation SUBTRACTION = new Subtraction();
 
     public Result multiply(Result op1, Result op2) {
         return applyOperation(MULTIPLICATION, op1, op2);
@@ -20,6 +22,14 @@ public class Arithmetic {
 
     public Result modulo(Result op1, Result op2) {
         return applyOperation(MODULO, op1, op2);
+    }
+
+    public Result add(Result op1, Result op2) {
+        return applyOperation(ADDITION, op1, op2);
+    }
+
+    public Result subtract(Result op1, Result op2) {
+        return applyOperation(SUBTRACTION, op1, op2);
     }
 
     private Result applyOperation(Operation operation, Result op1, Result op2) {
@@ -88,4 +98,29 @@ public class Arithmetic {
         }
     }
 
+    private static class Addition implements Operation {
+
+        @Override
+        public FloatResult apply(FloatResult op1, FloatResult op2) {
+            return new FloatResult(op1.getFloat() + op2.getFloat());
+        }
+
+        @Override
+        public IntegerResult apply(IntegerResult op1, IntegerResult op2) {
+            return new IntegerResult(op1.getInteger() + op2.getInteger());
+        }
+    }
+
+    private static class Subtraction implements Operation {
+
+        @Override
+        public FloatResult apply(FloatResult op1, FloatResult op2) {
+            return new FloatResult(op1.getFloat() - op2.getFloat());
+        }
+
+        @Override
+        public IntegerResult apply(IntegerResult op1, IntegerResult op2) {
+            return new IntegerResult(op1.getInteger() - op2.getInteger());
+        }
+    }
 }
