@@ -135,7 +135,7 @@ public class Context {
 
     private void checkCanHoldValueOf(String name, Type arrayType, Type valueType) {
         Type valueArrayType = Type.getArrayType(valueType);
-        if (valueArrayType == null || !arrayType.equals(valueArrayType)) {
+        if (!arrayType.equals(valueArrayType)) {
             throw new InterpreterException(String.format(
                     "Illegal try to set `%s` of type %s to %s value", name, arrayType, valueType
             ));
