@@ -56,10 +56,6 @@ public class AllocateArray implements State {
                 return new BooleanArrayResult(new boolean[size]);
             case STRING:
                 return new StringArrayResult(new String[size]);
-            case INTEGER_ARRAY:
-            case FLOAT_ARRAY:
-            case BOOLEAN_ARRAY:
-            case STRING_ARRAY:
             default:
                 throw new InterpreterException(String.format("Illegal try to allocate array of type: %s", type));
         }
