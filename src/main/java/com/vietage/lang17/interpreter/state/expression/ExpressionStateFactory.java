@@ -71,7 +71,7 @@ public class ExpressionStateFactory {
 
         @Override
         public void visit(OrExpression orExpression) {
-
+            result = new OrOperation(orExpression, context, consumer);
         }
 
         @Override

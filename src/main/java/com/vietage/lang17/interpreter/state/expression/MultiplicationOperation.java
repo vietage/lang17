@@ -28,10 +28,10 @@ public class MultiplicationOperation implements State {
 
     @Override
     public void run(Runtime runtime) {
-        ExpressionStateFactory factory = new ExpressionStateFactory();
-
         if (init) {
             init = false;
+
+            ExpressionStateFactory factory = new ExpressionStateFactory();
 
             Consumer<Result> leftConsumer = result -> leftOperand = result;
             Consumer<Result> rightConsumer = result -> rightOperand = result;
