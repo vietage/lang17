@@ -3,54 +3,35 @@ package com.vietage.lang17.interpreter.state.expression;
 import com.vietage.lang17.interpreter.Context;
 import com.vietage.lang17.interpreter.Runtime;
 import com.vietage.lang17.interpreter.result.Result;
-import com.vietage.lang17.interpreter.state.State;
 import com.vietage.lang17.parser.ast.expression.AdditionExpression;
+import com.vietage.lang17.parser.ast.expression.TwoOperandsExpression;
 
 import java.util.function.Consumer;
 
-public class AdditionOperation implements State {
+public class AdditionOperation extends TwoOperandsOperation {
 
     private final AdditionExpression additionExpression;
-    private final Context context;
-    private final Consumer<Result> resultConsumer;
-
-    private boolean init = true;
-    private Result leftOperand;
-    private Result rightOperand;
 
     public AdditionOperation(AdditionExpression additionExpression, Context context, Consumer<Result> resultConsumer) {
+        super(context, resultConsumer);
         this.additionExpression = additionExpression;
-        this.context = context;
-        this.resultConsumer = resultConsumer;
     }
 
     @Override
-    public void run(Runtime runtime) {
-        if (init) {
-            init = false;
-
-            ExpressionStateFactory factory = new ExpressionStateFactory();
-
-            Consumer<Result> leftConsumer = result -> leftOperand = result;
-            Consumer<Result> rightConsumer = result -> rightOperand = result;
-
-            runtime.enterState(factory.get(additionExpression.getLeftExpression(), context, leftConsumer));
-            runtime.enterState(factory.get(additionExpression.getRightExpression(), context, rightConsumer));
-        } else {
-            runtime.exitState();
-
-            switch (additionExpression.getOperator()) {
-                case ADDITION:
-                    resultConsumer.accept(runtime.getNumberOperations().add(leftOperand, rightOperand));
-                    break;
-                case SUBTRACTION:
-                    resultConsumer.accept(runtime.getNumberOperations().subtract(leftOperand, rightOperand));
-                    break;
-                default:
-                    throw new RuntimeException("Unsupported addition operator: " +
-                            additionExpression.getOperator());
-
-            }
+    protected Result getResult(Runtime runtime, Result leftOperand, Result rightOperand) {
+        switch (additionExpression.getOperator()) {
+            case ADDITION:
+                return runtime.getNumberOperations().add(leftOperand, rightOperand);
+            case SUBTRACTION:
+                return runtime.getNumberOperations().subtract(leftOperand, rightOperand);
+            default:
+                throw new RuntimeException("Unsupported addition operator: " +
+                        additionExpression.getOperator());
         }
+    }
+
+    @Override
+    protected TwoOperandsExpression getTwoOperandsExpression() {
+        return additionExpression;
     }
 }
