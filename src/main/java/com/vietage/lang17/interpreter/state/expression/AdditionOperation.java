@@ -43,7 +43,7 @@ public class AdditionOperation implements State {
                 case ADDITION:
                     resultConsumer.accept(runtime.getNumberOperations().add(leftOperand, rightOperand));
                     break;
-                case SUBSTRACTION:
+                case SUBTRACTION:
                     resultConsumer.accept(runtime.getNumberOperations().subtract(leftOperand, rightOperand));
                     break;
                 default:

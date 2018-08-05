@@ -41,7 +41,7 @@ public class FormatAdditionExpression extends FormatOperatorExpression {
         switch (operator) {
             case ADDITION:
                 return " + ";
-            case SUBSTRACTION:
+            case SUBTRACTION:
                 return " - ";
             default:
                 throw new RuntimeException("Unsupported addition operator: " + operator);
