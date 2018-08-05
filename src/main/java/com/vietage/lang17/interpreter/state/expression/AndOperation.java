@@ -5,33 +5,33 @@ import com.vietage.lang17.interpreter.Runtime;
 import com.vietage.lang17.interpreter.result.BooleanResult;
 import com.vietage.lang17.interpreter.result.Result;
 import com.vietage.lang17.interpreter.state.State;
+import com.vietage.lang17.parser.ast.expression.AndExpression;
 import com.vietage.lang17.parser.ast.expression.Expression;
-import com.vietage.lang17.parser.ast.expression.OrExpression;
 
 import java.util.Iterator;
 import java.util.function.Consumer;
 
-public class OrOperation implements State {
+public class AndOperation implements State {
 
     private final Context context;
     private final Consumer<Result> resultConsumer;
     private final Iterator<Expression> expressions;
 
     private Result lastResult;
-    private boolean result = false;
+    private boolean result = true;
 
-    public OrOperation(OrExpression orExpression, Context context, Consumer<Result> resultConsumer) {
+    public AndOperation(AndExpression andExpression, Context context, Consumer<Result> resultConsumer) {
         this.context = context;
         this.resultConsumer = resultConsumer;
-        this.expressions = orExpression.getExpressions().iterator();
+        this.expressions = andExpression.getExpressions().iterator();
     }
 
     @Override
     public void run(Runtime runtime) {
         if (lastResult != null) {
-            result |= lastResult.getBoolean();
+            result &= lastResult.getBoolean();
         }
-        if (!result && expressions.hasNext()) {
+        if (result && expressions.hasNext()) {
             Expression expression = expressions.next();
 
             ExpressionStateFactory factory = new ExpressionStateFactory();

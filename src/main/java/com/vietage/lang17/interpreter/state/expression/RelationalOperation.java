@@ -57,7 +57,6 @@ public class RelationalOperation implements State {
                 default:
                     throw new RuntimeException("Unsupported relational operator: " +
                             relationalExpression.getOperator());
-
             }
         }
     }

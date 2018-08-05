@@ -101,7 +101,7 @@ public class ExpressionStateFactory {
 
         @Override
         public void visit(AndExpression andExpression) {
-
+            result = new AndOperation(andExpression, context, consumer);
         }
     }
 }
