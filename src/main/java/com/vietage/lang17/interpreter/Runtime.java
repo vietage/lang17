@@ -43,7 +43,7 @@ public class Runtime {
         Function function = functions.get(name);
 
         if (function == null) {
-            throw new InterpreterException(String.format("FunctionReturn `%s` not found", name));
+            throw new InterpreterException(String.format("Function `%s` not found", name));
         }
 
         return function;
