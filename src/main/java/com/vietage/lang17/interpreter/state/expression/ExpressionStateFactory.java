@@ -96,7 +96,7 @@ public class ExpressionStateFactory {
 
         @Override
         public void visit(ArrayAllocation arrayAllocation) {
-
+            result = new AllocateArray(arrayAllocation, context, consumer);
         }
 
         @Override
