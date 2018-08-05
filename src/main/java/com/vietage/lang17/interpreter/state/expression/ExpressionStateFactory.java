@@ -91,7 +91,7 @@ public class ExpressionStateFactory {
 
         @Override
         public void visit(ArrayRead arrayRead) {
-
+            result = new ReadArray(arrayRead, context, consumer);
         }
 
         @Override
