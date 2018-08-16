@@ -9,7 +9,7 @@ public class Interpreter {
     private static final String MAIN_FUNCTION = "main";
 
     public void interpret(Program program) {
-        Runtime runtime = new Runtime(program.getFunctions());
+        Runtime runtime = new Runtime(new Functions(program));
 
         Context mainContext = new Context(runtime.getGlobalContext());
         runtime.enterState(new Invoke(new FunctionCall(MAIN_FUNCTION), mainContext));

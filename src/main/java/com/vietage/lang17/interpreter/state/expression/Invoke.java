@@ -1,12 +1,11 @@
 package com.vietage.lang17.interpreter.state.expression;
 
 import com.vietage.lang17.interpreter.Context;
+import com.vietage.lang17.interpreter.Function;
 import com.vietage.lang17.interpreter.Runtime;
 import com.vietage.lang17.interpreter.result.Result;
-import com.vietage.lang17.interpreter.state.Block;
 import com.vietage.lang17.interpreter.state.State;
 import com.vietage.lang17.parser.ast.Argument;
-import com.vietage.lang17.parser.ast.Function;
 import com.vietage.lang17.parser.ast.expression.Expression;
 import com.vietage.lang17.parser.ast.expression.FunctionCall;
 
@@ -41,7 +40,7 @@ public class Invoke implements State {
             Function function = runtime.getFunction(functionCall.getName());
 
             Context functionContext = new Context(runtime.getGlobalContext());
-            runtime.enterState(new Block(functionContext, function.getStatements().iterator()));
+            runtime.enterState(function.getBodyState(functionContext));
 
             ExpressionStateFactory factory = new ExpressionStateFactory();
 
