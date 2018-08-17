@@ -96,14 +96,12 @@ public class Context {
     }
 
     private Result tryGet(String name) {
-        if (variables == null) {
-            return null;
-        }
+        if (variables != null) {
+            Result result = variables.get(name);
 
-        Result result = variables.get(name);
-
-        if (result != null) {
-            return result;
+            if (result != null) {
+                return result;
+            }
         }
 
         if (parent != null) {
