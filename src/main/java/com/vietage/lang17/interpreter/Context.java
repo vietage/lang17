@@ -3,6 +3,7 @@ package com.vietage.lang17.interpreter;
 import com.vietage.lang17.interpreter.result.*;
 import com.vietage.lang17.parser.ast.Type;
 
+import java.util.HashMap;
 import java.util.Map;
 
 public class Context {
@@ -56,6 +57,9 @@ public class Context {
 
     public void set(String name, Result variable) {
         if (!trySet(name, variable)) {
+            if (variables == null) {
+                variables = new HashMap<>();
+            }
             variables.put(name, variable);
         }
     }
@@ -109,7 +113,7 @@ public class Context {
     }
 
     private boolean trySet(String name, Result variable) {
-        if (variables.containsKey(name)) {
+        if (variables != null && variables.containsKey(name)) {
             Result result = variables.get(name);
 
             if (!result.getType().equals(variable.getType())) {
