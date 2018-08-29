@@ -1,6 +1,8 @@
 package com.vietage.lang17.interpreter;
 
+import com.vietage.lang17.interpreter.lib.IsOk;
 import com.vietage.lang17.interpreter.lib.Println;
+import com.vietage.lang17.interpreter.lib.ReadInt;
 import com.vietage.lang17.parser.ast.Program;
 
 import java.util.Map;
@@ -17,7 +19,9 @@ public class Functions {
         functions = Stream.concat(
                 // System functions
                 Stream.of(
-                        Println.getSystemFunction()
+                        Println.getSystemFunction(),
+                        ReadInt.getSystemFunction(),
+                        IsOk.getSystemFunction()
                 ),
                 // User defined functions
                 program.getFunctions().values().stream()
