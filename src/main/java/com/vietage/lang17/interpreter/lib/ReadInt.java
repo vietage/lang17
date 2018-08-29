@@ -11,6 +11,7 @@ import com.vietage.lang17.parser.ast.expression.IntegerConstant;
 import com.vietage.lang17.parser.ast.statement.ReturnStatement;
 
 import java.util.Collections;
+import java.util.NoSuchElementException;
 import java.util.Scanner;
 
 public class ReadInt implements State {
@@ -37,7 +38,7 @@ public class ReadInt implements State {
             runtime.getGlobalContext().set(IS_OK_GLOBAL_VARIABLE, new BooleanResult(true));
 
             runtime.enterState(new Return(new ReturnStatement(new IntegerConstant(result)), context));
-        } catch (Exception e) {
+        } catch (NoSuchElementException e) {
             runtime.getGlobalContext().set(IS_OK_GLOBAL_VARIABLE, new BooleanResult(false));
         }
     }
