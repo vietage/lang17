@@ -14,7 +14,7 @@ public class Main {
         format("examples/formatterTest2");
         format("examples/formatterTest3");
         format("examples/formatterTest4");
-        format("examples/formatterTest5");
+        format("examples/quicksort");
     }
 
     private static void format(String sourceFile) throws IOException {

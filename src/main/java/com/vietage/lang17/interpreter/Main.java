@@ -11,7 +11,7 @@ public class Main {
 
     public static void main(String[] args) throws IOException {
         Lexer lexer = new Lexer();
-        Root root = lexer.read("examples/helloWorld");
+        Root root = lexer.read("examples/quicksort");
 
         Parser parser = new Parser();
         Program program = parser.parse(root);
