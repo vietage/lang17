@@ -48,13 +48,13 @@ public class AllocateArray implements State {
 
     private Result allocateArray(Type type, int size) {
         switch (type) {
-            case INTEGER:
+            case INTEGER_ARRAY:
                 return new IntegerArrayResult(new long[size]);
-            case FLOAT:
+            case FLOAT_ARRAY:
                 return new FloatArrayResult(new double[size]);
-            case BOOLEAN:
+            case BOOLEAN_ARRAY:
                 return new BooleanArrayResult(new boolean[size]);
-            case STRING:
+            case STRING_ARRAY:
                 return new StringArrayResult(new String[size]);
             default:
                 throw new InterpreterException(String.format("Illegal try to allocate array of type: %s", type));
