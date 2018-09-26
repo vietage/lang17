@@ -17,6 +17,7 @@ public class Functions {
         functions = Stream.concat(
                 // System functions
                 Stream.of(
+                        Print.getSystemFunction(),
                         Println.getSystemFunction(),
                         ReadInt.getSystemFunction(),
                         IsOk.getSystemFunction(),
