@@ -3,6 +3,7 @@ package com.vietage.lang17.interpreter;
 import com.vietage.lang17.interpreter.lib.IsOk;
 import com.vietage.lang17.interpreter.lib.Println;
 import com.vietage.lang17.interpreter.lib.ReadInt;
+import com.vietage.lang17.interpreter.lib.SizeInt;
 import com.vietage.lang17.parser.ast.Program;
 
 import java.util.Map;
@@ -21,7 +22,8 @@ public class Functions {
                 Stream.of(
                         Println.getSystemFunction(),
                         ReadInt.getSystemFunction(),
-                        IsOk.getSystemFunction()
+                        IsOk.getSystemFunction(),
+                        SizeInt.getSystemFunction()
                 ),
                 // User defined functions
                 program.getFunctions().values().stream()
