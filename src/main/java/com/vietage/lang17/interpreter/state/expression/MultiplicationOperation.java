@@ -22,11 +22,11 @@ public class MultiplicationOperation extends TwoOperandsOperation {
     protected Result getResult(Runtime runtime, Result leftOperand, Result rightOperand) {
         switch (multiplicationExpression.getOperator()) {
             case MULTIPLICATION:
-                return runtime.getNumberOperations().multiply(leftOperand, rightOperand);
+                return runtime.getOperators().multiply(leftOperand, rightOperand);
             case DIVISION:
-                return runtime.getNumberOperations().divide(leftOperand, rightOperand);
+                return runtime.getOperators().divide(leftOperand, rightOperand);
             case MODULO:
-                return runtime.getNumberOperations().modulo(leftOperand, rightOperand);
+                return runtime.getOperators().modulo(leftOperand, rightOperand);
             default:
                 throw new RuntimeException("Unsupported multiplication operator: " +
                         multiplicationExpression.getOperator());

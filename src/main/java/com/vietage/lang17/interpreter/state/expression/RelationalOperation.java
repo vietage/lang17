@@ -22,13 +22,13 @@ public class RelationalOperation extends TwoOperandsOperation {
     protected Result getResult(Runtime runtime, Result leftOperand, Result rightOperand) {
         switch (relationalExpression.getOperator()) {
             case LESS_OR_EQUAL:
-                return runtime.getNumberOperations().lessOrEqual(leftOperand, rightOperand);
+                return runtime.getOperators().lessOrEqual(leftOperand, rightOperand);
             case GREATER_OR_EQUAL:
-                return runtime.getNumberOperations().greaterOrEqual(leftOperand, rightOperand);
+                return runtime.getOperators().greaterOrEqual(leftOperand, rightOperand);
             case LESS:
-                return runtime.getNumberOperations().less(leftOperand, rightOperand);
+                return runtime.getOperators().less(leftOperand, rightOperand);
             case GREATER:
-                return runtime.getNumberOperations().greater(leftOperand, rightOperand);
+                return runtime.getOperators().greater(leftOperand, rightOperand);
             default:
                 throw new RuntimeException("Unsupported relational operator: " +
                         relationalExpression.getOperator());

@@ -21,9 +21,9 @@ public class AdditionOperation extends TwoOperandsOperation {
     protected Result getResult(Runtime runtime, Result leftOperand, Result rightOperand) {
         switch (additionExpression.getOperator()) {
             case ADDITION:
-                return runtime.getNumberOperations().add(leftOperand, rightOperand);
+                return runtime.getOperators().add(leftOperand, rightOperand);
             case SUBTRACTION:
-                return runtime.getNumberOperations().subtract(leftOperand, rightOperand);
+                return runtime.getOperators().subtract(leftOperand, rightOperand);
             default:
                 throw new RuntimeException("Unsupported addition operator: " +
                         additionExpression.getOperator());

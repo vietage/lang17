@@ -1,5 +1,6 @@
 package com.vietage.lang17.interpreter;
 
+import com.vietage.lang17.interpreter.operator.Operators;
 import com.vietage.lang17.interpreter.state.State;
 
 import java.util.ArrayDeque;
@@ -10,8 +11,8 @@ public class Runtime {
     private final Functions functions;
     private final Context globalContext = new Context();
     private final Deque<State> states = new ArrayDeque<>();
-    private final NumberOperations numberOperations = new NumberOperations();
-    private final EqualityChecker equalityChecker = new EqualityChecker(numberOperations);
+    private final Operators operators = new Operators();
+    private final EqualityChecker equalityChecker = new EqualityChecker(operators);
 
     public Runtime(Functions functions) {
         this.functions = functions;
@@ -47,8 +48,8 @@ public class Runtime {
         return function;
     }
 
-    public NumberOperations getNumberOperations() {
-        return numberOperations;
+    public Operators getOperators() {
+        return operators;
     }
 
     public EqualityChecker getEqualityChecker() {
