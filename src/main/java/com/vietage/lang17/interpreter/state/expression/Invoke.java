@@ -68,4 +68,8 @@ public class Invoke implements State {
     public void setResult(Result result) {
         this.result = result;
     }
+
+    public FunctionCall getFunctionCall() {
+        return functionCall;
+    }
 }

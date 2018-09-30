@@ -14,8 +14,17 @@ public class Interpreter {
         Context mainContext = new Context(runtime.getGlobalContext());
         runtime.enterState(new Invoke(new FunctionCall(MAIN_FUNCTION), mainContext));
 
-        while (runtime.hasState()) {
-            runtime.getState().run(runtime);
+        try {
+            while (runtime.hasState()) {
+                runtime.getState().run(runtime);
+            }
+        } catch (InterpreterException e) {
+            printStackTrace(runtime);
+            e.printStackTrace();
         }
+    }
+
+    private void printStackTrace(Runtime runtime) {
+        new StackTracePrinter(System.err).print(runtime);
     }
 }
