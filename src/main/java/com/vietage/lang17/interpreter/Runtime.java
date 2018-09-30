@@ -12,7 +12,6 @@ public class Runtime {
     private final Context globalContext = new Context();
     private final Deque<State> states = new ArrayDeque<>();
     private final Operators operators = new Operators();
-    private final EqualityChecker equalityChecker = new EqualityChecker(operators);
 
     public Runtime(Functions functions) {
         this.functions = functions;
@@ -50,9 +49,5 @@ public class Runtime {
 
     public Operators getOperators() {
         return operators;
-    }
-
-    public EqualityChecker getEqualityChecker() {
-        return equalityChecker;
     }
 }

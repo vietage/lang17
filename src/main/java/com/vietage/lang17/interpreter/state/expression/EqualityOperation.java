@@ -1,7 +1,9 @@
 package com.vietage.lang17.interpreter.state.expression;
 
 import com.vietage.lang17.interpreter.Context;
+import com.vietage.lang17.interpreter.InterpreterException;
 import com.vietage.lang17.interpreter.Runtime;
+import com.vietage.lang17.interpreter.result.BooleanResult;
 import com.vietage.lang17.interpreter.result.Result;
 import com.vietage.lang17.parser.ast.expression.EqualityExpression;
 import com.vietage.lang17.parser.ast.expression.TwoOperandsExpression;
@@ -21,9 +23,9 @@ public class EqualityOperation extends TwoOperandsOperation {
     protected Result getResult(Runtime runtime, Result leftOperand, Result rightOperand) {
         switch (equalityExpression.getOperator()) {
             case EQUAL:
-                return runtime.getEqualityChecker().equal(leftOperand, rightOperand);
+                return runtime.getOperators().equal(leftOperand, rightOperand);
             case NOT_EQUAL:
-                return runtime.getEqualityChecker().notEqual(leftOperand, rightOperand);
+                return not(runtime.getOperators().equal(leftOperand, rightOperand));
             default:
                 throw new RuntimeException("Unsupported equality operator: " +
                         equalityExpression.getOperator());
@@ -33,5 +35,12 @@ public class EqualityOperation extends TwoOperandsOperation {
     @Override
     protected TwoOperandsExpression getTwoOperandsExpression() {
         return equalityExpression;
+    }
+
+    private Result not(Result result) {
+        if (result.isBoolean()) {
+            return new BooleanResult(!result.getBoolean());
+        }
+        throw new InterpreterException(String.format("Unable to take not operation on %s type", result.getType()));
     }
 }
