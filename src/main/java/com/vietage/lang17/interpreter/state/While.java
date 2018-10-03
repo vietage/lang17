@@ -4,11 +4,12 @@ import com.vietage.lang17.interpreter.Context;
 import com.vietage.lang17.interpreter.Runtime;
 import com.vietage.lang17.interpreter.result.Result;
 import com.vietage.lang17.interpreter.state.expression.ExpressionStateFactory;
+import com.vietage.lang17.parser.ast.ASTElement;
 import com.vietage.lang17.parser.ast.statement.WhileLoop;
 
 import java.util.function.Consumer;
 
-public class While implements State {
+public class While implements ASTElementState {
 
     private final WhileLoop whileLoop;
     private final Context parentContext;
@@ -39,6 +40,11 @@ public class While implements State {
         } else {
             runtime.exitState();
         }
+    }
+
+    @Override
+    public ASTElement getAstElement() {
+        return whileLoop;
     }
 
     public void setCondition(Boolean condition) {

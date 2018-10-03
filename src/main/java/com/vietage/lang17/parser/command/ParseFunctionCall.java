@@ -20,7 +20,7 @@ public class ParseFunctionCall extends ParseCommand
 
     @Override
     public void parse(Queue<ParseCommand> commandQueue) {
-        FunctionCall functionCall = new FunctionCall(lexeme.getName().getResult());
+        FunctionCall functionCall = new FunctionCall(lexeme.getName().getResult(), lexeme.getStartPosition());
 
         if (lexeme.getExpressions().getResult()) {
             List<Expression> arguments = new ArrayList<>();

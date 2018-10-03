@@ -3,12 +3,13 @@ package com.vietage.lang17.interpreter.state.expression;
 import com.vietage.lang17.interpreter.Context;
 import com.vietage.lang17.interpreter.Runtime;
 import com.vietage.lang17.interpreter.result.Result;
-import com.vietage.lang17.interpreter.state.State;
+import com.vietage.lang17.interpreter.state.ASTElementState;
+import com.vietage.lang17.parser.ast.ASTElement;
 import com.vietage.lang17.parser.ast.expression.VariableRead;
 
 import java.util.function.Consumer;
 
-public class ReadVariable implements State {
+public class ReadVariable implements ASTElementState {
 
     private final VariableRead variableRead;
     private final Context context;
@@ -25,5 +26,10 @@ public class ReadVariable implements State {
         runtime.exitState();
 
         resultConsumer.accept(context.get(variableRead.getName()));
+    }
+
+    @Override
+    public ASTElement getAstElement() {
+        return variableRead;
     }
 }

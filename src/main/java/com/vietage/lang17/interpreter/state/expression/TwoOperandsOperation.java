@@ -3,12 +3,12 @@ package com.vietage.lang17.interpreter.state.expression;
 import com.vietage.lang17.interpreter.Context;
 import com.vietage.lang17.interpreter.Runtime;
 import com.vietage.lang17.interpreter.result.Result;
-import com.vietage.lang17.interpreter.state.State;
+import com.vietage.lang17.interpreter.state.ASTElementState;
 import com.vietage.lang17.parser.ast.expression.TwoOperandsExpression;
 
 import java.util.function.Consumer;
 
-public abstract class TwoOperandsOperation implements State {
+public abstract class TwoOperandsOperation implements ASTElementState {
 
     private final Context context;
     private final Consumer<Result> resultConsumer;

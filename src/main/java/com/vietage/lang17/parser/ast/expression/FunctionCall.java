@@ -1,16 +1,23 @@
 package com.vietage.lang17.parser.ast.expression;
 
+import com.vietage.lang17.lexer.Position;
 import com.vietage.lang17.parser.ast.statement.Statement;
 
 import java.util.Collections;
 import java.util.List;
 
-public class FunctionCall implements Statement, Expression {
+public class FunctionCall extends Statement implements Expression {
 
     private final String name;
     private List<Expression> arguments = Collections.emptyList();
 
     public FunctionCall(String name) {
+        super(null);
+        this.name = name;
+    }
+
+    public FunctionCall(String name, Position position) {
+        super(position);
         this.name = name;
     }
 

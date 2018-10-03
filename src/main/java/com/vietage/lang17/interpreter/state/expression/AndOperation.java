@@ -4,17 +4,19 @@ import com.vietage.lang17.interpreter.Context;
 import com.vietage.lang17.interpreter.Runtime;
 import com.vietage.lang17.interpreter.result.BooleanResult;
 import com.vietage.lang17.interpreter.result.Result;
-import com.vietage.lang17.interpreter.state.State;
+import com.vietage.lang17.interpreter.state.ASTElementState;
+import com.vietage.lang17.parser.ast.ASTElement;
 import com.vietage.lang17.parser.ast.expression.AndExpression;
 import com.vietage.lang17.parser.ast.expression.Expression;
 
 import java.util.Iterator;
 import java.util.function.Consumer;
 
-public class AndOperation implements State {
+public class AndOperation implements ASTElementState {
 
     private final Context context;
     private final Consumer<Result> resultConsumer;
+    private final AndExpression andExpression;
     private final Iterator<Expression> expressions;
 
     private Result lastResult;
@@ -23,6 +25,7 @@ public class AndOperation implements State {
     public AndOperation(AndExpression andExpression, Context context, Consumer<Result> resultConsumer) {
         this.context = context;
         this.resultConsumer = resultConsumer;
+        this.andExpression = andExpression;
         this.expressions = andExpression.getExpressions().iterator();
     }
 
@@ -42,5 +45,10 @@ public class AndOperation implements State {
             runtime.exitState();
             resultConsumer.accept(new BooleanResult(result));
         }
+    }
+
+    @Override
+    public ASTElement getAstElement() {
+        return andExpression;
     }
 }

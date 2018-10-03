@@ -33,12 +33,12 @@ public class Block implements State, Statement.Visitor {
 
     @Override
     public void visit(ContinueStatement continueStatement) {
-        runtime.enterState(new Continue());
+        runtime.enterState(new Continue(continueStatement));
     }
 
     @Override
     public void visit(BreakStatement breakStatement) {
-        runtime.enterState(new Break());
+        runtime.enterState(new Break(breakStatement));
     }
 
     @Override

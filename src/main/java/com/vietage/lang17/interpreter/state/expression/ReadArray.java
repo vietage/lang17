@@ -4,12 +4,13 @@ import com.vietage.lang17.interpreter.Context;
 import com.vietage.lang17.interpreter.InterpreterException;
 import com.vietage.lang17.interpreter.Runtime;
 import com.vietage.lang17.interpreter.result.Result;
-import com.vietage.lang17.interpreter.state.State;
+import com.vietage.lang17.interpreter.state.ASTElementState;
+import com.vietage.lang17.parser.ast.ASTElement;
 import com.vietage.lang17.parser.ast.expression.ArrayRead;
 
 import java.util.function.Consumer;
 
-public class ReadArray implements State {
+public class ReadArray implements ASTElementState {
 
     private final ArrayRead arrayRead;
     private final Context context;
@@ -43,5 +44,10 @@ public class ReadArray implements State {
             throw new InterpreterException(String.format(
                     "Unsupported type used as array index: %s", indexExpressionResult));
         }
+    }
+
+    @Override
+    public ASTElement getAstElement() {
+        return arrayRead;
     }
 }

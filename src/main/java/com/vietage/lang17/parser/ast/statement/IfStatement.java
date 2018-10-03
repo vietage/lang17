@@ -1,15 +1,20 @@
 package com.vietage.lang17.parser.ast.statement;
 
+import com.vietage.lang17.lexer.Position;
 import com.vietage.lang17.parser.ast.expression.Expression;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class IfStatement implements Statement {
+public class IfStatement extends Statement {
 
     private Expression condition;
     private final List<Statement> trueStatements = new ArrayList<>();
     private List<Statement> falseStatements;
+
+    public IfStatement(Position position) {
+        super(position);
+    }
 
     @Override
     public void accept(Visitor visitor) {

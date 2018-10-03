@@ -4,11 +4,12 @@ import com.vietage.lang17.interpreter.Context;
 import com.vietage.lang17.interpreter.Runtime;
 import com.vietage.lang17.interpreter.result.Result;
 import com.vietage.lang17.interpreter.state.expression.ExpressionStateFactory;
+import com.vietage.lang17.parser.ast.ASTElement;
 import com.vietage.lang17.parser.ast.statement.IfStatement;
 
 import java.util.function.Consumer;
 
-public class If implements State {
+public class If implements ASTElementState {
 
     private final IfStatement ifStatement;
     private final Context parentContext;
@@ -47,5 +48,10 @@ public class If implements State {
 
     public void setCondition(boolean condition) {
         this.condition = condition;
+    }
+
+    @Override
+    public ASTElement getAstElement() {
+        return ifStatement;
     }
 }

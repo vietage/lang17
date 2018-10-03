@@ -4,7 +4,8 @@ import com.vietage.lang17.interpreter.Context;
 import com.vietage.lang17.interpreter.Function;
 import com.vietage.lang17.interpreter.Runtime;
 import com.vietage.lang17.interpreter.result.Result;
-import com.vietage.lang17.interpreter.state.State;
+import com.vietage.lang17.interpreter.state.ASTElementState;
+import com.vietage.lang17.parser.ast.ASTElement;
 import com.vietage.lang17.parser.ast.Argument;
 import com.vietage.lang17.parser.ast.expression.Expression;
 import com.vietage.lang17.parser.ast.expression.FunctionCall;
@@ -12,7 +13,7 @@ import com.vietage.lang17.parser.ast.expression.FunctionCall;
 import java.util.Iterator;
 import java.util.function.Consumer;
 
-public class Invoke implements State {
+public class Invoke implements ASTElementState {
 
     private final FunctionCall functionCall;
     private final Context context;
@@ -63,6 +64,11 @@ public class Invoke implements State {
                 resultConsumer.accept(result);
             }
         }
+    }
+
+    @Override
+    public ASTElement getAstElement() {
+        return functionCall;
     }
 
     public void setResult(Result result) {

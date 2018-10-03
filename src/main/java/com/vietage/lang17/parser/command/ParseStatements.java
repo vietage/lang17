@@ -1,22 +1,11 @@
 package com.vietage.lang17.parser.command;
 
-import com.vietage.lang17.lexer.lexeme.Assignment;
-import com.vietage.lang17.lexer.lexeme.Block;
-import com.vietage.lang17.lexer.lexeme.Call;
-import com.vietage.lang17.lexer.lexeme.LoopOp;
-import com.vietage.lang17.lexer.lexeme.RestExpressions;
-import com.vietage.lang17.lexer.lexeme.StatementAndWhitespace;
-import com.vietage.lang17.lexer.lexeme.StatementChoiceLexeme;
-import com.vietage.lang17.lexer.lexeme.VarDefinition;
+import com.vietage.lang17.lexer.lexeme.*;
 import com.vietage.lang17.parser.ast.expression.Expression;
 import com.vietage.lang17.parser.ast.expression.FunctionCall;
-import com.vietage.lang17.parser.ast.statement.BreakStatement;
-import com.vietage.lang17.parser.ast.statement.ContinueStatement;
+import com.vietage.lang17.parser.ast.statement.*;
 import com.vietage.lang17.parser.ast.statement.IfStatement;
 import com.vietage.lang17.parser.ast.statement.ReturnStatement;
-import com.vietage.lang17.parser.ast.statement.Statement;
-import com.vietage.lang17.parser.ast.statement.VariableAssignment;
-import com.vietage.lang17.parser.ast.statement.VariableDefinition;
 import com.vietage.lang17.parser.ast.statement.WhileLoop;
 
 import java.util.ArrayList;
@@ -45,7 +34,8 @@ public class ParseStatements extends ParseCommand<Block, Statement>
     public void visit(VarDefinition varDefinition) {
         VariableDefinition variableDefinition = new VariableDefinition(
                 varDefinition.getType().getType(),
-                varDefinition.getName().getResult()
+                varDefinition.getName().getResult(),
+                varDefinition.getStartPosition()
         );
 
         // parse right hand expression
@@ -63,7 +53,7 @@ public class ParseStatements extends ParseCommand<Block, Statement>
     public void visit(Assignment assignment) {
         String name = assignment.getVarAccess().getName().getResult();
 
-        VariableAssignment variableAssignment = new VariableAssignment(name);
+        VariableAssignment variableAssignment = new VariableAssignment(name, assignment.getStartPosition());
 
         // parse array index expression
         if (assignment.getVarAccess().getIndexExpression().getResult()) {
@@ -88,7 +78,7 @@ public class ParseStatements extends ParseCommand<Block, Statement>
 
     @Override
     public void visit(com.vietage.lang17.lexer.lexeme.IfStatement ifLexeme) {
-        IfStatement ifStatement = new IfStatement();
+        IfStatement ifStatement = new IfStatement(ifLexeme.getStartPosition());
 
         // parse condition
         commandQueue.add(
@@ -123,7 +113,7 @@ public class ParseStatements extends ParseCommand<Block, Statement>
 
     @Override
     public void visit(com.vietage.lang17.lexer.lexeme.WhileLoop whileLexeme) {
-        WhileLoop whileLoop = new WhileLoop();
+        WhileLoop whileLoop = new WhileLoop(whileLexeme.getStartPosition());
 
         // parse condition
         commandQueue.add(
@@ -147,10 +137,10 @@ public class ParseStatements extends ParseCommand<Block, Statement>
     @Override
     public void visit(LoopOp loopOp) {
         if (loopOp.isBreak()) {
-            resultConsumer.consume(new BreakStatement());
+            resultConsumer.consume(new BreakStatement(loopOp.getStartPosition()));
         }
         if (loopOp.isContinue()) {
-            resultConsumer.consume(new ContinueStatement());
+            resultConsumer.consume(new ContinueStatement(loopOp.getStartPosition()));
         }
     }
 
@@ -158,7 +148,7 @@ public class ParseStatements extends ParseCommand<Block, Statement>
     public void visit(Call call) {
         String name = call.getName().getResult();
 
-        FunctionCall functionCall = new FunctionCall(name);
+        FunctionCall functionCall = new FunctionCall(name, call.getStartPosition());
 
         // parse arguments
         if (call.getExpressions().getResult()) {
@@ -190,7 +180,7 @@ public class ParseStatements extends ParseCommand<Block, Statement>
 
     @Override
     public void visit(com.vietage.lang17.lexer.lexeme.ReturnStatement returnLexeme) {
-        ReturnStatement returnStatement = new ReturnStatement();
+        ReturnStatement returnStatement = new ReturnStatement(returnLexeme.getStartPosition());
 
         commandQueue.add(
                 new ParseExpression(

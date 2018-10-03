@@ -1,15 +1,18 @@
 package com.vietage.lang17.parser.ast.statement;
 
+import com.vietage.lang17.lexer.Position;
 import com.vietage.lang17.parser.ast.expression.Expression;
 
-public class ReturnStatement implements Statement {
+public class ReturnStatement extends Statement {
 
     private Expression expression;
 
-    public ReturnStatement() {
+    public ReturnStatement(Position position) {
+        super(position);
     }
 
     public ReturnStatement(Expression expression) {
+        super(null);
         this.expression = expression;
     }
 

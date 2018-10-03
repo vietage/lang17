@@ -4,11 +4,12 @@ import com.vietage.lang17.interpreter.Context;
 import com.vietage.lang17.interpreter.Runtime;
 import com.vietage.lang17.interpreter.result.Result;
 import com.vietage.lang17.interpreter.state.expression.ExpressionStateFactory;
+import com.vietage.lang17.parser.ast.ASTElement;
 import com.vietage.lang17.parser.ast.statement.VariableAssignment;
 
 import java.util.function.Consumer;
 
-public class AssignVariable implements State {
+public class AssignVariable implements ASTElementState {
 
     private final VariableAssignment variableAssignment;
     private final Context context;
@@ -43,6 +44,11 @@ public class AssignVariable implements State {
             Consumer<Result> resultConsumer = result -> context.set(variableAssignment.getName(), result);
             runtime.enterState(factory.get(variableAssignment.getExpression(), context, resultConsumer));
         }
+    }
+
+    @Override
+    public ASTElement getAstElement() {
+        return variableAssignment;
     }
 
     private void setIndex(int index) {
