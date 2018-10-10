@@ -5,10 +5,11 @@ import com.vietage.lang17.interpreter.Runtime;
 import com.vietage.lang17.interpreter.result.Result;
 import com.vietage.lang17.interpreter.state.expression.ExpressionStateFactory;
 import com.vietage.lang17.interpreter.state.expression.Invoke;
-import com.vietage.lang17.parser.ast.ASTElement;
+import com.vietage.lang17.lexer.Position;
+import com.vietage.lang17.parser.ast.PositionalElement;
 import com.vietage.lang17.parser.ast.statement.ReturnStatement;
 
-public class Return implements ASTElementState {
+public class Return extends TwoPhaseState implements PositionalElement {
 
     private final ReturnStatement returnStatement;
     private final Context context;
@@ -21,30 +22,31 @@ public class Return implements ASTElementState {
     }
 
     @Override
-    public void run(Runtime runtime) {
-        if (result == null) {
-            // compute return value
-            ExpressionStateFactory factory = new ExpressionStateFactory();
-            runtime.enterState(factory.get(returnStatement.getExpression(), context, this::setResult));
-        } else {
-            // return the result
-            while (runtime.hasState()) {
-                State state = runtime.getState();
+    void onInitialize(Runtime runtime) {
+        // compute return value
+        ExpressionStateFactory factory = new ExpressionStateFactory();
+        runtime.enterState(factory.get(returnStatement.getExpression(), context, this::setResult));
+    }
 
-                if (state instanceof Invoke) {
-                    Invoke invoke = (Invoke) state;
-                    invoke.setResult(result);
-                    return;
-                } else {
-                    runtime.exitState();
-                }
+    @Override
+    void onReturn(Runtime runtime) {
+        // return the result
+        while (runtime.hasState()) {
+            State state = runtime.getState();
+
+            if (state instanceof Invoke) {
+                Invoke invoke = (Invoke) state;
+                invoke.setResult(result);
+                return;
+            } else {
+                runtime.exitState();
             }
         }
     }
 
     @Override
-    public ASTElement getAstElement() {
-        return returnStatement;
+    public Position getPosition() {
+        return returnStatement.getPosition();
     }
 
     public void setResult(Result result) {

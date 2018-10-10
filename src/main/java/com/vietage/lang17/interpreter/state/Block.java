@@ -48,7 +48,7 @@ public class Block implements State, Statement.Visitor {
 
     @Override
     public void visit(WhileLoop whileLoop) {
-        runtime.enterState(new While(whileLoop, context));
+        runtime.enterState(new WhileExpression(whileLoop, context));
     }
 
     @Override

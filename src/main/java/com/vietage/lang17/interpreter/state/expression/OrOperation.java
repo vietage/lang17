@@ -4,19 +4,17 @@ import com.vietage.lang17.interpreter.Context;
 import com.vietage.lang17.interpreter.Runtime;
 import com.vietage.lang17.interpreter.result.BooleanResult;
 import com.vietage.lang17.interpreter.result.Result;
-import com.vietage.lang17.interpreter.state.ASTElementState;
-import com.vietage.lang17.parser.ast.ASTElement;
+import com.vietage.lang17.interpreter.state.State;
 import com.vietage.lang17.parser.ast.expression.Expression;
 import com.vietage.lang17.parser.ast.expression.OrExpression;
 
 import java.util.Iterator;
 import java.util.function.Consumer;
 
-public class OrOperation implements ASTElementState {
+public class OrOperation implements State {
 
     private final Context context;
     private final Consumer<Result> resultConsumer;
-    private final OrExpression orExpression;
     private final Iterator<Expression> expressions;
 
     private Result lastResult;
@@ -25,7 +23,6 @@ public class OrOperation implements ASTElementState {
     public OrOperation(OrExpression orExpression, Context context, Consumer<Result> resultConsumer) {
         this.context = context;
         this.resultConsumer = resultConsumer;
-        this.orExpression = orExpression;
         this.expressions = orExpression.getExpressions().iterator();
     }
 
@@ -45,10 +42,5 @@ public class OrOperation implements ASTElementState {
             runtime.exitState();
             resultConsumer.accept(new BooleanResult(result));
         }
-    }
-
-    @Override
-    public ASTElement getAstElement() {
-        return orExpression;
     }
 }

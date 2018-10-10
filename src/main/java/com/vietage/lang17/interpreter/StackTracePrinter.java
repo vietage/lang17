@@ -1,10 +1,8 @@
 package com.vietage.lang17.interpreter;
 
-import com.vietage.lang17.interpreter.state.ASTElementState;
 import com.vietage.lang17.interpreter.state.State;
 import com.vietage.lang17.interpreter.state.expression.Invoke;
 import com.vietage.lang17.lexer.Position;
-import com.vietage.lang17.parser.ast.ASTElement;
 import com.vietage.lang17.parser.ast.PositionalElement;
 
 import java.io.OutputStream;
@@ -36,12 +34,8 @@ public class StackTracePrinter {
     }
 
     private Position getPosition(State state, Position position) {
-        if (state instanceof ASTElementState) {
-            ASTElement astElement = ((ASTElementState) state).getAstElement();
-
-            if (astElement instanceof PositionalElement) {
-                position = ((PositionalElement) astElement).getPosition();
-            }
+        if (state instanceof PositionalElement) {
+            position = ((PositionalElement) state).getPosition();
         }
         return position;
     }

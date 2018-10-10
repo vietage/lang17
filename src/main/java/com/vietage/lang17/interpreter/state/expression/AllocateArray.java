@@ -4,14 +4,13 @@ import com.vietage.lang17.interpreter.Context;
 import com.vietage.lang17.interpreter.InterpreterException;
 import com.vietage.lang17.interpreter.Runtime;
 import com.vietage.lang17.interpreter.result.*;
-import com.vietage.lang17.interpreter.state.ASTElementState;
-import com.vietage.lang17.parser.ast.ASTElement;
+import com.vietage.lang17.interpreter.state.State;
 import com.vietage.lang17.parser.ast.Type;
 import com.vietage.lang17.parser.ast.expression.ArrayAllocation;
 
 import java.util.function.Consumer;
 
-public class AllocateArray implements ASTElementState {
+public class AllocateArray implements State {
 
     private final ArrayAllocation arrayAllocation;
     private final Context context;
@@ -45,11 +44,6 @@ public class AllocateArray implements ASTElementState {
             throw new InterpreterException(String.format(
                     "Unsupported type used as array size: %s", sizeExpressionResult));
         }
-    }
-
-    @Override
-    public ASTElement getAstElement() {
-        return arrayAllocation;
     }
 
     private Result allocateArray(Type type, int size) {

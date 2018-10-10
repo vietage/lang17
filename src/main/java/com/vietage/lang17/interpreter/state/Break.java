@@ -1,10 +1,11 @@
 package com.vietage.lang17.interpreter.state;
 
 import com.vietage.lang17.interpreter.Runtime;
-import com.vietage.lang17.parser.ast.ASTElement;
+import com.vietage.lang17.lexer.Position;
+import com.vietage.lang17.parser.ast.PositionalElement;
 import com.vietage.lang17.parser.ast.statement.BreakStatement;
 
-public class Break implements ASTElementState {
+public class Break implements State, PositionalElement {
 
     private final BreakStatement breakStatement;
 
@@ -17,7 +18,7 @@ public class Break implements ASTElementState {
         while (runtime.hasState()) {
             State state = runtime.getState();
 
-            if (state instanceof While) {
+            if (state instanceof WhileBody) {
                 runtime.exitState();
                 return;
             } else {
@@ -27,7 +28,7 @@ public class Break implements ASTElementState {
     }
 
     @Override
-    public ASTElement getAstElement() {
-        return breakStatement;
+    public Position getPosition() {
+        return breakStatement.getPosition();
     }
 }
