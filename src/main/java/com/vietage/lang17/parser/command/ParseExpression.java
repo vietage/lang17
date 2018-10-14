@@ -26,7 +26,7 @@ public class ParseExpression extends ParseCommand
             );
         } else {
             // several expressions exist, parse them all
-            OrExpression orExpression = new OrExpression();
+            OrExpression orExpression = new OrExpression(lexeme.getStartPosition());
 
             // parse the first and expression
             commandQueue.add(

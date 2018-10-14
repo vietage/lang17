@@ -8,11 +8,13 @@ import com.vietage.lang17.interpreter.result.FloatResult;
 import com.vietage.lang17.interpreter.result.IntegerResult;
 import com.vietage.lang17.interpreter.result.Result;
 import com.vietage.lang17.interpreter.state.State;
+import com.vietage.lang17.lexer.Position;
+import com.vietage.lang17.parser.ast.PositionalElement;
 import com.vietage.lang17.parser.ast.expression.UnaryExpression;
 
 import java.util.function.Consumer;
 
-public class UnaryOperation implements State {
+public class UnaryOperation implements State, PositionalElement {
 
     private final UnaryExpression unaryExpression;
     private final Context context;
@@ -44,6 +46,11 @@ public class UnaryOperation implements State {
             default:
                 throw new RuntimeException("Unsupported unary operator: " + unaryExpression.getOperator());
         }
+    }
+
+    @Override
+    public Position getPosition() {
+        return unaryExpression.getPosition();
     }
 
     private Result not(Result result) {

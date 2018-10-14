@@ -22,14 +22,14 @@ public class Return extends TwoPhaseState implements PositionalElement {
     }
 
     @Override
-    void onInitialize(Runtime runtime) {
+    protected void onInitialize(Runtime runtime) {
         // compute return value
         ExpressionStateFactory factory = new ExpressionStateFactory();
         runtime.enterState(factory.get(returnStatement.getExpression(), context, this::setResult));
     }
 
     @Override
-    void onReturn(Runtime runtime) {
+    protected void onReturn(Runtime runtime) {
         // return the result
         while (runtime.hasState()) {
             State state = runtime.getState();

@@ -1,6 +1,8 @@
 package com.vietage.lang17.parser.ast.expression;
 
-public interface TwoOperandsExpression {
+import com.vietage.lang17.parser.ast.PositionalElement;
+
+public interface TwoOperandsExpression extends Expression, PositionalElement {
 
     Expression getLeftExpression();
 

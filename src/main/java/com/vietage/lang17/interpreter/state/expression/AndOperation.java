@@ -5,14 +5,17 @@ import com.vietage.lang17.interpreter.Runtime;
 import com.vietage.lang17.interpreter.result.BooleanResult;
 import com.vietage.lang17.interpreter.result.Result;
 import com.vietage.lang17.interpreter.state.State;
+import com.vietage.lang17.lexer.Position;
+import com.vietage.lang17.parser.ast.PositionalElement;
 import com.vietage.lang17.parser.ast.expression.AndExpression;
 import com.vietage.lang17.parser.ast.expression.Expression;
 
 import java.util.Iterator;
 import java.util.function.Consumer;
 
-public class AndOperation implements State {
+public class AndOperation implements State, PositionalElement {
 
+    private final AndExpression andExpression;
     private final Context context;
     private final Consumer<Result> resultConsumer;
     private final Iterator<Expression> expressions;
@@ -21,6 +24,7 @@ public class AndOperation implements State {
     private boolean result = true;
 
     public AndOperation(AndExpression andExpression, Context context, Consumer<Result> resultConsumer) {
+        this.andExpression = andExpression;
         this.context = context;
         this.resultConsumer = resultConsumer;
         this.expressions = andExpression.getExpressions().iterator();
@@ -42,5 +46,10 @@ public class AndOperation implements State {
             runtime.exitState();
             resultConsumer.accept(new BooleanResult(result));
         }
+    }
+
+    @Override
+    public Position getPosition() {
+        return andExpression.getPosition();
     }
 }

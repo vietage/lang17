@@ -3,6 +3,7 @@ package com.vietage.lang17.interpreter.state.expression;
 import com.vietage.lang17.interpreter.Context;
 import com.vietage.lang17.interpreter.Runtime;
 import com.vietage.lang17.interpreter.result.Result;
+import com.vietage.lang17.lexer.Position;
 import com.vietage.lang17.parser.ast.expression.AdditionExpression;
 import com.vietage.lang17.parser.ast.expression.TwoOperandsExpression;
 
@@ -33,5 +34,10 @@ public class AdditionOperation extends TwoOperandsOperation {
     @Override
     protected TwoOperandsExpression getTwoOperandsExpression() {
         return additionExpression;
+    }
+
+    @Override
+    public Position getPosition() {
+        return additionExpression.getPosition();
     }
 }

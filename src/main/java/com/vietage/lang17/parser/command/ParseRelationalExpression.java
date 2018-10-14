@@ -28,7 +28,8 @@ public class ParseRelationalExpression extends ParseCommand<RelativeExpression, 
             RelationalOperator relationalOperator = lexeme.getRightAddExpression()
                     .getLexeme().getRelativeOp().getRelationalOperator();
 
-            RelationalExpression relationalExpression = new RelationalExpression(relationalOperator);
+            RelationalExpression relationalExpression = new RelationalExpression(
+                    relationalOperator, lexeme.getStartPosition());
 
             // parse left hand expression
             commandQueue.add(

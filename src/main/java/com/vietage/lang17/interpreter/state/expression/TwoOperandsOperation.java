@@ -4,11 +4,12 @@ import com.vietage.lang17.interpreter.Context;
 import com.vietage.lang17.interpreter.Runtime;
 import com.vietage.lang17.interpreter.result.Result;
 import com.vietage.lang17.interpreter.state.State;
+import com.vietage.lang17.parser.ast.PositionalElement;
 import com.vietage.lang17.parser.ast.expression.TwoOperandsExpression;
 
 import java.util.function.Consumer;
 
-public abstract class TwoOperandsOperation implements State {
+public abstract class TwoOperandsOperation implements State, PositionalElement {
 
     private final Context context;
     private final Consumer<Result> resultConsumer;

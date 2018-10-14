@@ -6,9 +6,9 @@ public abstract class TwoPhaseState implements State {
 
     private boolean init = true;
 
-    abstract void onInitialize(Runtime runtime);
+    protected abstract void onInitialize(Runtime runtime);
 
-    abstract void onReturn(Runtime runtime);
+    protected abstract void onReturn(Runtime runtime);
 
     @Override
     public void run(Runtime runtime) {

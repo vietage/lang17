@@ -43,7 +43,8 @@ public class ParseMultiplicationExpression extends ParseCommand
                 MultiplicationOperator operator = next.getMulKeyword().getMultiplicationOperator();
                 UnaryExpression rightOperand = next.getUnaryExpression();
 
-                MultiplicationExpression multiplicationExpression = new MultiplicationExpression(operator);
+                MultiplicationExpression multiplicationExpression = new MultiplicationExpression(
+                        operator, lexeme.getStartPosition());
 
                 // previously parsed multiplication expression goes to the left expression
                 multiplicationExpression.setLeftExpression(multiplication);
@@ -70,7 +71,8 @@ public class ParseMultiplicationExpression extends ParseCommand
         MultiplicationOperator operator = next.getMulKeyword().getMultiplicationOperator();
         UnaryExpression rightOperand = next.getUnaryExpression();
 
-        MultiplicationExpression multiplicationExpression = new MultiplicationExpression(operator);
+        MultiplicationExpression multiplicationExpression = new MultiplicationExpression(
+                operator, lexeme.getStartPosition());
 
         commandQueue.add(
                 new ParseUnaryExpression(

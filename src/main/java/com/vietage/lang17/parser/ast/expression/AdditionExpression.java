@@ -1,13 +1,18 @@
 package com.vietage.lang17.parser.ast.expression;
 
-public class AdditionExpression implements Expression, TwoOperandsExpression {
+import com.vietage.lang17.lexer.Position;
+import com.vietage.lang17.parser.ast.PositionalElement;
+
+public class AdditionExpression implements TwoOperandsExpression, PositionalElement {
 
     private final AdditionOperator operator;
+    private final Position position;
     private Expression leftExpression;
     private Expression rightExpression;
 
-    public AdditionExpression(AdditionOperator operator) {
+    public AdditionExpression(AdditionOperator operator, Position position) {
         this.operator = operator;
+        this.position = position;
     }
 
     @Override
@@ -40,5 +45,10 @@ public class AdditionExpression implements Expression, TwoOperandsExpression {
 
     public void setRightExpression(Expression rightExpression) {
         this.rightExpression = rightExpression;
+    }
+
+    @Override
+    public Position getPosition() {
+        return position;
     }
 }

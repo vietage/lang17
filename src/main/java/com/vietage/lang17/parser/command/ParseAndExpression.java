@@ -26,7 +26,7 @@ public class ParseAndExpression extends ParseCommand
             );
         } else {
             // parse several equality expressions and put them into AndExpression
-            AndExpression andExpression = new AndExpression();
+            AndExpression andExpression = new AndExpression(lexeme.getStartPosition());
 
             // parse the first equality expression
             commandQueue.add(

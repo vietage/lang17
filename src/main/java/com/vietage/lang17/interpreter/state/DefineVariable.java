@@ -21,14 +21,14 @@ public class DefineVariable extends TwoPhaseState implements PositionalElement {
     }
 
     @Override
-    void onInitialize(Runtime runtime) {
+    protected void onInitialize(Runtime runtime) {
         ExpressionStateFactory factory = new ExpressionStateFactory();
         Consumer<Result> resultConsumer = result -> context.set(variableDefinition.getName(), result);
         runtime.enterState(factory.get(variableDefinition.getExpression(), context, resultConsumer));
     }
 
     @Override
-    void onReturn(Runtime runtime) {
+    protected void onReturn(Runtime runtime) {
         // do nothing
     }
 

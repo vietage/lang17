@@ -15,14 +15,14 @@ public class WhileBody extends TwoPhaseState {
     }
 
     @Override
-    void onInitialize(Runtime runtime) {
+    protected void onInitialize(Runtime runtime) {
         // interpret while body statements
         Context blockContext = new Context(parentContext);
         runtime.enterState(new Block(blockContext, whileLoop.getStatements().iterator()));
     }
 
     @Override
-    void onReturn(Runtime runtime) {
+    protected void onReturn(Runtime runtime) {
         // after finishing interpreting the while body re-evaluate the while condition
         runtime.enterState(new WhileExpression(whileLoop, parentContext));
     }

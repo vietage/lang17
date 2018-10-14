@@ -29,7 +29,7 @@ public class ParseEqualityExpression extends ParseCommand
             EqualityOperator equalityOperator = lexeme.getRightRelativeExpression()
                     .getLexeme().getEqualOp().getEqualityOperator();
 
-            EqualityExpression equalityExpression = new EqualityExpression(equalityOperator);
+            EqualityExpression equalityExpression = new EqualityExpression(equalityOperator, lexeme.getStartPosition());
 
             // parse left hand expression
             commandQueue.add(

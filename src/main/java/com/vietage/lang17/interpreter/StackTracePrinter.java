@@ -17,27 +17,24 @@ public class StackTracePrinter {
     }
 
     public void print(Runtime runtime) {
-        State state = null;
+        State state;
         Position position = null;
 
         while ((state = runtime.getState()) != null) {
             runtime.exitState();
 
-            if (state instanceof Invoke && position != null) {
-                Invoke invoke = (Invoke) state;
-                writer.println(formatTraceLine(invoke.getFunctionCall().getName(), position));
+            if (state instanceof PositionalElement) {
+                if (position == null) {
+                    position = ((PositionalElement) state).getPosition();
+                }
+                if (state instanceof Invoke) {
+                    Invoke invoke = (Invoke) state;
+                    writer.println(formatTraceLine(invoke.getFunctionCall().getName(), position));
+                    position = invoke.getPosition();
+                }
             }
-
-            position = getPosition(state, position);
         }
         writer.flush();
-    }
-
-    private Position getPosition(State state, Position position) {
-        if (state instanceof PositionalElement) {
-            position = ((PositionalElement) state).getPosition();
-        }
-        return position;
     }
 
     private String formatTraceLine(String functionName, Position position) {

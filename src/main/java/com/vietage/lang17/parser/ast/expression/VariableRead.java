@@ -1,11 +1,16 @@
 package com.vietage.lang17.parser.ast.expression;
 
-public class VariableRead implements Expression {
+import com.vietage.lang17.lexer.Position;
+import com.vietage.lang17.parser.ast.PositionalElement;
+
+public class VariableRead implements Expression, PositionalElement {
 
     private final String name;
+    private final Position position;
 
-    public VariableRead(String name) {
+    public VariableRead(String name, Position position) {
         this.name = name;
+        this.position = position;
     }
 
     @Override
@@ -22,4 +27,8 @@ public class VariableRead implements Expression {
         return name;
     }
 
+    @Override
+    public Position getPosition() {
+        return position;
+    }
 }

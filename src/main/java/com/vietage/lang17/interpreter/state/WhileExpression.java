@@ -23,7 +23,7 @@ public class WhileExpression extends TwoPhaseState implements PositionalElement 
     }
 
     @Override
-    void onInitialize(Runtime runtime) {
+    protected void onInitialize(Runtime runtime) {
         // evaluate the condition
         ExpressionStateFactory factory = new ExpressionStateFactory();
         Consumer<Result> resultConsumer = result -> this.setCondition(result.getBoolean());
@@ -31,7 +31,7 @@ public class WhileExpression extends TwoPhaseState implements PositionalElement 
     }
 
     @Override
-    void onReturn(Runtime runtime) {
+    protected void onReturn(Runtime runtime) {
         // invoke block if condition == true
         if (condition) {
             runtime.enterState(new WhileBody(whileLoop, parentContext));

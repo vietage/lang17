@@ -5,12 +5,14 @@ import com.vietage.lang17.interpreter.InterpreterException;
 import com.vietage.lang17.interpreter.Runtime;
 import com.vietage.lang17.interpreter.result.*;
 import com.vietage.lang17.interpreter.state.State;
+import com.vietage.lang17.lexer.Position;
+import com.vietage.lang17.parser.ast.PositionalElement;
 import com.vietage.lang17.parser.ast.Type;
 import com.vietage.lang17.parser.ast.expression.ArrayAllocation;
 
 import java.util.function.Consumer;
 
-public class AllocateArray implements State {
+public class AllocateArray implements State, PositionalElement {
 
     private final ArrayAllocation arrayAllocation;
     private final Context context;
@@ -59,5 +61,10 @@ public class AllocateArray implements State {
             default:
                 throw new InterpreterException(String.format("Illegal try to allocate array of type: %s", type));
         }
+    }
+
+    @Override
+    public Position getPosition() {
+        return arrayAllocation.getPosition();
     }
 }

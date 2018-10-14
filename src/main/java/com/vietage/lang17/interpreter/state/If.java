@@ -23,7 +23,7 @@ public class If extends TwoPhaseState implements PositionalElement {
     }
 
     @Override
-    void onInitialize(Runtime runtime) {
+    protected void onInitialize(Runtime runtime) {
         // compute condition
         ExpressionStateFactory factory = new ExpressionStateFactory();
         Consumer<Result> resultConsumer = result -> this.setCondition(result.getBoolean());
@@ -31,7 +31,7 @@ public class If extends TwoPhaseState implements PositionalElement {
     }
 
     @Override
-    void onReturn(Runtime runtime) {
+    protected void onReturn(Runtime runtime) {
         if (condition) {
             // execute true branch
             Context blockContext = new Context(parentContext);

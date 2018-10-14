@@ -5,6 +5,7 @@ import com.vietage.lang17.interpreter.InterpreterException;
 import com.vietage.lang17.interpreter.Runtime;
 import com.vietage.lang17.interpreter.result.BooleanResult;
 import com.vietage.lang17.interpreter.result.Result;
+import com.vietage.lang17.lexer.Position;
 import com.vietage.lang17.parser.ast.expression.EqualityExpression;
 import com.vietage.lang17.parser.ast.expression.TwoOperandsExpression;
 
@@ -42,5 +43,10 @@ public class EqualityOperation extends TwoOperandsOperation {
             return new BooleanResult(!result.getBoolean());
         }
         throw new InterpreterException(String.format("Unable to take not operation on %s type", result.getType()));
+    }
+
+    @Override
+    public Position getPosition() {
+        return equalityExpression.getPosition();
     }
 }

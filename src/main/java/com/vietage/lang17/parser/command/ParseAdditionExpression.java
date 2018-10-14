@@ -42,7 +42,7 @@ public class ParseAdditionExpression extends ParseCommand
                 AdditionOperator operator = next.getAddKeyword().getAdditionOperator();
                 MulExpression rightOperand = next.getMulExpression();
 
-                AdditionExpression additionExpression = new AdditionExpression(operator);
+                AdditionExpression additionExpression = new AdditionExpression(operator, next.getStartPosition());
 
                 // previously parsed addition expression goes to the left expression
                 additionExpression.setLeftExpression(addition);
@@ -69,7 +69,7 @@ public class ParseAdditionExpression extends ParseCommand
         AdditionOperator operator = next.getAddKeyword().getAdditionOperator();
         MulExpression rightOperand = next.getMulExpression();
 
-        AdditionExpression additionExpression = new AdditionExpression(operator);
+        AdditionExpression additionExpression = new AdditionExpression(operator, next.getStartPosition());
 
         commandQueue.add(
                 new ParseMultiplicationExpression(

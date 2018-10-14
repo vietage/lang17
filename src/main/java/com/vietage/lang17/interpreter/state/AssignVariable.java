@@ -23,7 +23,7 @@ public class AssignVariable extends TwoPhaseState implements PositionalElement {
     }
 
     @Override
-    void onInitialize(Runtime runtime) {
+    protected void onInitialize(Runtime runtime) {
         ExpressionStateFactory factory = new ExpressionStateFactory();
 
         if (variableAssignment.getIndexExpression() != null) {
@@ -46,7 +46,7 @@ public class AssignVariable extends TwoPhaseState implements PositionalElement {
     }
 
     @Override
-    void onReturn(Runtime runtime) {
+    protected void onReturn(Runtime runtime) {
         // do nothing
     }
 

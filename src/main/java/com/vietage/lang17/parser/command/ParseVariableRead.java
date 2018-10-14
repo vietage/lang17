@@ -20,7 +20,7 @@ public class ParseVariableRead extends ParseCommand<VarAccess, Expression> {
 
         if (lexeme.getIndexExpression().getResult()) {
             // parse array read
-            ArrayRead arrayRead = new ArrayRead(name);
+            ArrayRead arrayRead = new ArrayRead(name, lexeme.getStartPosition());
 
             commandQueue.add(
                     new ParseExpression(
@@ -31,7 +31,7 @@ public class ParseVariableRead extends ParseCommand<VarAccess, Expression> {
             resultConsumer.consume(arrayRead);
         } else {
             // parse variable read
-            resultConsumer.consume(new VariableRead(name));
+            resultConsumer.consume(new VariableRead(name, lexeme.getStartPosition()));
         }
 
     }

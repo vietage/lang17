@@ -1,12 +1,17 @@
 package com.vietage.lang17.parser.ast.expression;
 
-public class UnaryExpression implements Expression {
+import com.vietage.lang17.lexer.Position;
+import com.vietage.lang17.parser.ast.PositionalElement;
+
+public class UnaryExpression implements Expression, PositionalElement {
 
     private final UnaryOperator operator;
+    private final Position position;
     private Expression expression;
 
-    public UnaryExpression(UnaryOperator operator) {
+    public UnaryExpression(UnaryOperator operator, Position position) {
         this.operator = operator;
+        this.position = position;
     }
 
     @Override
@@ -29,5 +34,10 @@ public class UnaryExpression implements Expression {
 
     public void setExpression(Expression expression) {
         this.expression = expression;
+    }
+
+    @Override
+    public Position getPosition() {
+        return position;
     }
 }

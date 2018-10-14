@@ -19,7 +19,7 @@ public class ParseArrayAllocation extends ParseCommand
     public void parse(Queue<ParseCommand> commandQueue) {
         Type type = Type.getArrayType(lexeme.getBasicType().getType());
 
-        ArrayAllocation arrayAllocation = new ArrayAllocation(type);
+        ArrayAllocation arrayAllocation = new ArrayAllocation(type, lexeme.getStartPosition());
 
         commandQueue.add(
                 new ParseExpression(
