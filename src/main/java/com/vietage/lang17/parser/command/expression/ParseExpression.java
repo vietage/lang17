@@ -18,7 +18,7 @@ public class ParseExpression extends ParseCommand<com.vietage.lang17.lexer.lexem
     @Override
     public void parse(Queue<ParseCommand> commandQueue) {
         if (lexeme.getRestAndExpressions().getLexemes().isEmpty()) {
-            // just one expression exists, do not create intermediate AndExpression
+            // just one expression exists, do not create intermediate OrExpression
             commandQueue.add(
                     new ParseAndExpression(
                             lexeme.getAndExpression(),
