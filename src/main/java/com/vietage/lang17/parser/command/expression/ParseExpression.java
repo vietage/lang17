@@ -1,13 +1,14 @@
-package com.vietage.lang17.parser.command;
+package com.vietage.lang17.parser.command.expression;
 
 import com.vietage.lang17.lexer.lexeme.RestAndExpressions;
 import com.vietage.lang17.parser.ast.expression.Expression;
 import com.vietage.lang17.parser.ast.expression.OrExpression;
+import com.vietage.lang17.parser.command.ParseCommand;
+import com.vietage.lang17.parser.command.ResultConsumer;
 
 import java.util.Queue;
 
-public class ParseExpression extends ParseCommand
-        <com.vietage.lang17.lexer.lexeme.Expression, Expression> {
+public class ParseExpression extends ParseCommand<com.vietage.lang17.lexer.lexeme.Expression, Expression> {
 
     public ParseExpression(com.vietage.lang17.lexer.lexeme.Expression lexeme,
                            ResultConsumer<Expression> resultConsumer) {

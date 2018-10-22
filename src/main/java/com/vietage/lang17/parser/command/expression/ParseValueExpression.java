@@ -1,13 +1,9 @@
-package com.vietage.lang17.parser.command;
+package com.vietage.lang17.parser.command.expression;
 
-import com.vietage.lang17.lexer.lexeme.BracketsExpression;
-import com.vietage.lang17.lexer.lexeme.Call;
-import com.vietage.lang17.lexer.lexeme.Constant;
-import com.vietage.lang17.lexer.lexeme.NewArray;
-import com.vietage.lang17.lexer.lexeme.ValueExpression;
-import com.vietage.lang17.lexer.lexeme.ValueExpressionLexeme;
-import com.vietage.lang17.lexer.lexeme.VarAccess;
+import com.vietage.lang17.lexer.lexeme.*;
 import com.vietage.lang17.parser.ast.expression.Expression;
+import com.vietage.lang17.parser.command.ParseCommand;
+import com.vietage.lang17.parser.command.ResultConsumer;
 
 import java.util.Queue;
 

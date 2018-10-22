@@ -1,13 +1,11 @@
-package com.vietage.lang17.parser.command;
+package com.vietage.lang17.parser.command.expression;
 
 import com.vietage.lang17.lexer.lexeme.Constant;
 import com.vietage.lang17.lexer.lexeme.ConstantLexeme;
 import com.vietage.lang17.lexer.lexeme.NumberConstant;
-import com.vietage.lang17.parser.ast.expression.BooleanConstant;
-import com.vietage.lang17.parser.ast.expression.Expression;
-import com.vietage.lang17.parser.ast.expression.FloatConstant;
-import com.vietage.lang17.parser.ast.expression.IntegerConstant;
-import com.vietage.lang17.parser.ast.expression.StringConstant;
+import com.vietage.lang17.parser.ast.expression.*;
+import com.vietage.lang17.parser.command.ParseCommand;
+import com.vietage.lang17.parser.command.ResultConsumer;
 
 import java.util.Queue;
 

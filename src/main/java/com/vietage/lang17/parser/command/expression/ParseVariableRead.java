@@ -1,9 +1,11 @@
-package com.vietage.lang17.parser.command;
+package com.vietage.lang17.parser.command.expression;
 
 import com.vietage.lang17.lexer.lexeme.VarAccess;
 import com.vietage.lang17.parser.ast.expression.ArrayRead;
 import com.vietage.lang17.parser.ast.expression.Expression;
 import com.vietage.lang17.parser.ast.expression.VariableRead;
+import com.vietage.lang17.parser.command.ParseCommand;
+import com.vietage.lang17.parser.command.ResultConsumer;
 
 import java.util.Queue;
 

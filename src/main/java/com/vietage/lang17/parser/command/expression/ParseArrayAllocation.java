@@ -1,14 +1,15 @@
-package com.vietage.lang17.parser.command;
+package com.vietage.lang17.parser.command.expression;
 
 import com.vietage.lang17.lexer.lexeme.NewArray;
 import com.vietage.lang17.parser.ast.Type;
 import com.vietage.lang17.parser.ast.expression.ArrayAllocation;
 import com.vietage.lang17.parser.ast.expression.Expression;
+import com.vietage.lang17.parser.command.ParseCommand;
+import com.vietage.lang17.parser.command.ResultConsumer;
 
 import java.util.Queue;
 
-public class ParseArrayAllocation extends ParseCommand
-        <NewArray, Expression> {
+public class ParseArrayAllocation extends ParseCommand<NewArray, Expression> {
 
     public ParseArrayAllocation(NewArray lexeme,
                                 ResultConsumer<Expression> resultConsumer) {

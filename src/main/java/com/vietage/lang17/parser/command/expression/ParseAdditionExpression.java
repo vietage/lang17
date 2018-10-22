@@ -1,4 +1,4 @@
-package com.vietage.lang17.parser.command;
+package com.vietage.lang17.parser.command.expression;
 
 import com.vietage.lang17.lexer.lexeme.AddExpression;
 import com.vietage.lang17.lexer.lexeme.MulExpression;
@@ -6,12 +6,13 @@ import com.vietage.lang17.lexer.lexeme.RestMulExpressions;
 import com.vietage.lang17.parser.ast.expression.AdditionExpression;
 import com.vietage.lang17.parser.ast.expression.AdditionOperator;
 import com.vietage.lang17.parser.ast.expression.Expression;
+import com.vietage.lang17.parser.command.ParseCommand;
+import com.vietage.lang17.parser.command.ResultConsumer;
 
 import java.util.Iterator;
 import java.util.Queue;
 
-public class ParseAdditionExpression extends ParseCommand
-        <AddExpression, Expression> {
+public class ParseAdditionExpression extends ParseCommand<AddExpression, Expression> {
 
     public ParseAdditionExpression(AddExpression lexeme,
                                    ResultConsumer<Expression> resultConsumer) {
