@@ -1,15 +1,12 @@
 package com.vietage.lang17.parser.command;
 
 import com.vietage.lang17.lexer.lexeme.*;
-import com.vietage.lang17.parser.ast.expression.Expression;
-import com.vietage.lang17.parser.ast.expression.FunctionCall;
 import com.vietage.lang17.parser.ast.statement.*;
 import com.vietage.lang17.parser.ast.statement.IfStatement;
 import com.vietage.lang17.parser.ast.statement.ReturnStatement;
 import com.vietage.lang17.parser.ast.statement.WhileLoop;
 
 import java.util.ArrayList;
-import java.util.List;
 import java.util.Queue;
 
 public class ParseStatements extends ParseCommand<Block, Statement>
@@ -146,36 +143,7 @@ public class ParseStatements extends ParseCommand<Block, Statement>
 
     @Override
     public void visit(Call call) {
-        String name = call.getName().getResult();
-
-        FunctionCall functionCall = new FunctionCall(name, call.getStartPosition());
-
-        // parse arguments
-        if (call.getExpressions().getResult()) {
-            List<Expression> arguments = new ArrayList<>();
-
-            functionCall.setArguments(arguments);
-
-            // parse the first argument
-            commandQueue.add(
-                    new ParseExpression(
-                            call.getExpressions().getLexeme().getExpression(),
-                            arguments::add
-                    )
-            );
-
-            // parse the rest arguments
-            for (RestExpressions restExpressions : call.getExpressions().getLexeme().getRestExpressions()) {
-                commandQueue.add(
-                        new ParseExpression(
-                                restExpressions.getExpression(),
-                                arguments::add
-                        )
-                );
-            }
-        }
-
-        resultConsumer.consume(functionCall);
+        resultConsumer.consume(new ParseInvocation().parse(call, commandQueue));
     }
 
     @Override
