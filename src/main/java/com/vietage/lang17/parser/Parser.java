@@ -6,24 +6,29 @@ import com.vietage.lang17.parser.command.ParseCommand;
 import com.vietage.lang17.parser.command.ParseProgram;
 
 import java.util.ArrayDeque;
-import java.util.Queue;
+import java.util.Deque;
 
 public class Parser {
 
-    private final Queue<ParseCommand> commandQueue = new ArrayDeque<>();
     private Program program;
 
     public Program parse(Root root) {
-        commandQueue.add(
+        Deque<ParseCommand> commandQueue = new ArrayDeque<>();
+        Deque<ParseCommand> commandStack = new ArrayDeque<>();
+
+        commandStack.push(
                 new ParseProgram(
                         root,
                         this::setProgram
                 )
         );
 
-        while (!commandQueue.isEmpty()) {
-            ParseCommand parseCommand = commandQueue.remove();
-            parseCommand.parse(commandQueue);
+        while (!commandStack.isEmpty()) {
+            commandStack.pop().parse(commandQueue);
+
+            while (!commandQueue.isEmpty()) {
+                commandStack.push(commandQueue.removeLast());
+            }
         }
 
         return program;
