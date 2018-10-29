@@ -4,13 +4,14 @@ import com.vietage.lang17.lexer.Position;
 import com.vietage.lang17.parser.ast.expression.Expression;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class IfStatement extends Statement {
 
     private Expression condition;
     private final List<Statement> trueStatements = new ArrayList<>();
-    private List<Statement> falseStatements;
+    private List<Statement> falseStatements = Collections.emptyList();
 
     public IfStatement(Position position) {
         super(position);
