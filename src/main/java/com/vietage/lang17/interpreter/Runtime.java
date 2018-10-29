@@ -8,6 +8,8 @@ import java.util.Deque;
 
 public class Runtime {
 
+    private static final short MAX_STACK_DEPTH = Short.MAX_VALUE;
+
     private final Functions functions;
     private final Context globalContext = new Context();
     private final Deque<State> states = new ArrayDeque<>();
@@ -19,6 +21,9 @@ public class Runtime {
 
     public void enterState(State state) {
         states.push(state);
+        if (states.size() > MAX_STACK_DEPTH) {
+            throw new InterpreterException("Stack overflow");
+        }
     }
 
     public void exitState() {
